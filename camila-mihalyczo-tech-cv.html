@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camila Mihalyczo — Frontend Developer & UX/UI Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0e0d;
+    --paper: #f8f5f0;
+    --accent: #1a1a2e;
+    --electric: #4f46e5;
+    --electric-light: #e0e7ff;
+    --muted: #6b6b78;
+    --rule: #d4cfc8;
+    --tag-bg: #eeeaf6;
+    --tag-fg: #3730a3;
+  }
+
+  @media print {
+    body { background: white; }
+    .no-print { display: none; }
+    .page { box-shadow: none; margin: 0; max-width: 100%; }
+  }
+
+  body {
+    font-family: 'Syne', sans-serif;
+    background: #e8e3dc;
+    min-height: 100vh;
+    padding: 2.5rem 1rem;
+    color: var(--ink);
+  }
+
+  .print-hint {
+    text-align: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--paper);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--accent);
+    color: white;
+    padding: 3rem 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 40px solid rgba(79,70,229,0.25);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    right: 80px; bottom: -80px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 30px solid rgba(79,70,229,0.15);
+  }
+
+  .name {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .role {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    color: #a5b4fc;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
+
+  .contact-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: #c7d2fe;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .contact-item a { color: #c7d2fe; text-decoration: none; }
+  .contact-item a:hover { color: white; }
+
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: #6366f1; flex-shrink: 0; }
+
+  /* ── BODY LAYOUT ── */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    min-height: 500px;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: #f0ebe3;
+    padding: 2.5rem 1.8rem;
+    border-right: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--electric);
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--electric-light);
+  }
+
+  .sidebar-section { margin-bottom: 2.2rem; }
+
+  /* Skills */
+  .skill-group { margin-bottom: 1.2rem; }
+  .skill-group-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .tag {
+    background: var(--tag-bg);
+    color: var(--tag-fg);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 3px 9px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .tag.core {
+    background: var(--electric);
+    color: white;
+  }
+
+  /* Languages */
+  .lang-item { margin-bottom: 0.7rem; }
+  .lang-name { font-size: 0.82rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .lang-level { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+  .lang-bar {
+    height: 3px;
+    background: var(--rule);
+    border-radius: 2px;
+    margin-top: 0.35rem;
+    overflow: hidden;
+  }
+  .lang-fill { height: 100%; background: var(--electric); border-radius: 2px; }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    padding: 2.5rem 2.5rem 2.5rem 2rem;
+  }
+
+  .main-section { margin-bottom: 2.4rem; }
+
+  /* Summary */
+  .summary-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #2d2d3a;
+  }
+
+  .highlight { color: var(--electric); font-weight: 600; }
+
+  /* Experience & Education */
+  .entry { margin-bottom: 1.6rem; position: relative; padding-left: 1rem; }
+  .entry::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 6px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--electric);
+  }
+
+  .entry-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.2rem; }
+
+  .entry-title { font-size: 0.92rem; font-weight: 700; }
+  .entry-company { font-size: 0.82rem; color: var(--muted); }
+  .entry-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--electric);
+    white-space: nowrap;
+    background: var(--electric-light);
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+
+  .entry-desc {
+    font-size: 0.82rem;
+    color: #444;
+    line-height: 1.6;
+    margin-top: 0.4rem;
+  }
+
+  .entry-desc li { margin-left: 1rem; margin-bottom: 0.2rem; }
+
+  /* Portfolio note */
+  .portfolio-box {
+    background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+    border: 1.5px solid #c7d2fe;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .portfolio-box .pf-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--electric);
+    margin-bottom: 0.5rem;
+  }
+
+  .portfolio-item { font-size: 0.82rem; color: #3730a3; margin-bottom: 0.2rem; }
+  .portfolio-item a { color: #4f46e5; text-decoration: none; font-weight: 600; }
+  .portfolio-item a:hover { text-decoration: underline; }
+
+  /* Education compact */
+  .edu-item { margin-bottom: 1rem; }
+  .edu-title { font-size: 0.85rem; font-weight: 700; }
+  .edu-where { font-size: 0.78rem; color: var(--muted); }
+
+  /* Divider */
+  .rule { border: none; border-top: 1px solid var(--rule); margin: 0.5rem 0 1.5rem; }
+
+  /* Setup strip */
+  .setup-strip {
+    background: var(--accent);
+    color: #a5b4fc;
+    padding: 1rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .setup-item { display: flex; align-items: center; gap: 0.4rem; }
+  .setup-item::before { content: '▸'; color: #6366f1; }
+</style>
+</head>
+<body>
+
+<p class="print-hint no-print">Tip: use Ctrl+P / Cmd+P to save as PDF</p>
+
+<article class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <h1 class="name">Camila Mihalyczo</h1>
+    <p class="role">Frontend Developer &nbsp;·&nbsp; UX/UI Designer</p>
+    <div class="contact-row">
+      <span class="contact-item"><span class="dot"></span>Buenos Aires, Argentina</span>
+      <span class="contact-item"><span class="dot"></span>+54 11 5126-8940</span>
+      <span class="contact-item"><span class="dot"></span><a href="mailto:camilamihalyczo@gmail.com">camilamihalyczo@gmail.com</a></span>
+      <span class="contact-item"><span class="dot"></span><a href="https://linkedin.com/in/camila-mihalyczo" target="_blank">linkedin.com/in/camila-mihalyczo</a></span>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="sidebar-section">
+        <p class="section-label">Core Stack</p>
+        <div class="skill-group">
+          <div class="tag-list">
+            <span class="tag core">HTML5</span>
+            <span class="tag core">CSS3</span>
+            <span class="tag core">JavaScript</span>
+            <span class="tag core">Figma</span>
+            <span class="tag core">Responsive Design</span>
+            <span class="tag core">Mobile-First</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="section-label">Design & Tools</p>
+        <div class="tag-list">
+          <span class="tag">Canva</span>
+          <span class="tag">p5.js</span>
+          <span class="tag">UX Research</span>
+          <span class="tag">Wireframing</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">Git</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Notion</span>
+          <span class="tag">Trello</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="section-label">In Progress</p>
+        <div class="tag-list">
+          <span class="tag">React</span>
+          <span class="tag">Full Stack (Digital House)</span>
+          <span class="tag">AWS</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="section-label">Languages</p>
+        <div class="lang-item">
+          <div class="lang-name">Spanish</div>
+          <div class="lang-level">Native</div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">English</div>
+          <div class="lang-level">C1 Advanced — Near Native</div>
+          <div class="lang-bar"><div class="lang-fill" style="width:92%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">Portuguese</div>
+          <div class="lang-level">A2 Basic</div>
+          <div class="lang-bar"><div class="lang-fill" style="width:30%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">German</div>
+          <div class="lang-level">A2 Basic</div>
+          <div class="lang-bar"><div class="lang-fill" style="width:25%"></div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <p class="section-label">Soft Skills</p>
+        <div class="tag-list">
+          <span class="tag">Remote-Ready</span>
+          <span class="tag">Self-managed</span>
+          <span class="tag">Detail-oriented</span>
+          <span class="tag">Fast learner</span>
+          <span class="tag">Bilingual comms</span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- Summary -->
+      <section class="main-section">
+        <p class="section-label">Profile</p>
+        <p class="summary-text">
+          Junior <span class="highlight">Frontend Developer & UX/UI Designer</span> based in Buenos Aires, currently pursuing a Bachelor's in Multimedia Arts at Universidad Nacional de las Artes. I build <span class="highlight">responsive, mobile-first interfaces</span> using HTML5, CSS3, and JavaScript, with hands-on UX knowledge applied to real-world web projects. Comfortable working independently in remote environments, with strong bilingual communication skills in English and Spanish.
+        </p>
+      </section>
+
+      <!-- Portfolio -->
+      <div class="portfolio-box">
+        <p class="pf-label">Portfolio Projects</p>
+        <p class="portfolio-item">▸ <strong>VNS Matrix</strong> — Full website design & development <a href="https://camilamihalyczo-dotcom.github.io/tp-2-info-general" target="_blank">view live →</a></p>
+        <p class="portfolio-item">▸ <strong>Netianas</strong> — Live site with contact form via EmailJS <a href="https://netianas.vercel.app" target="_blank">view live →</a></p>
+        <p class="portfolio-item">▸ <strong>Fle Cookies</strong> — E-commerce landing page, mobile-first <span style="color:#888">[deploying soon]</span></p>
+        <p class="portfolio-item">▸ <strong>Personal Blog</strong> — In progress <span style="color:#888">[coming soon]</span></p>
+        <p class="portfolio-item" style="margin-top:0.5rem; color:#6b6b78; font-size:0.78rem;">→ GitHub: <strong><a href="https://github.com/camilamihalyczo-dotcom" target="_blank" style="color:#4f46e5">github.com/camilamihalyczo-dotcom</a></strong></p>
+      </div>
+
+      <!-- Experience -->
+      <section class="main-section">
+        <p class="section-label">Relevant Experience</p>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div>
+              <div class="entry-title">Frontend Web Developer (Freelance)</div>
+              <div class="entry-company">Self-employed — Client Projects</div>
+            </div>
+            <span class="entry-date">2022 – Present</span>
+          </div>
+          <ul class="entry-desc">
+            <li>Designed and developed client websites from scratch using HTML5, CSS3, and JavaScript.</li>
+            <li>Applied mobile-first and responsive design principles across all projects.</li>
+            <li>Collaborated directly with clients on UX decisions, layout, and branding.</li>
+            <li>Projects include VNS Matrix and Fle Cookies (e-commerce landing page).</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div>
+              <div class="entry-title">Marketing & Community Manager</div>
+              <div class="entry-company">Wewant Digital Agency / Autonomous</div>
+            </div>
+            <span class="entry-date">Mar 2023 – Present</span>
+          </div>
+          <ul class="entry-desc">
+            <li>Managed digital communication across multiple brands using integrated tools and dashboards.</li>
+            <li>Created visual content and applied design thinking to brand communication.</li>
+            <li>Handled workflow coordination and client follow-ups in a fully remote environment.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <div>
+              <div class="entry-title">Operations & Leadership</div>
+              <div class="entry-company">AIESEC in Argentina</div>
+            </div>
+            <span class="entry-date">Feb 2021 – Feb 2022</span>
+          </div>
+          <ul class="entry-desc">
+            <li>Managed international coordination and remote team workflows using CRM-like platforms.</li>
+            <li>Led documentation processes and stakeholder communication across global teams.</li>
+          </ul>
+        </div>
+      </section>
+
+      <hr class="rule">
+
+      <!-- Education -->
+      <section class="main-section">
+        <p class="section-label">Education & Certifications</p>
+
+        <div class="edu-item">
+          <div class="edu-title">Bachelor of Multimedia Arts <span style="font-weight:400; color:#888">(in progress)</span></div>
+          <div class="edu-where">Universidad Nacional de las Artes — Digital interfaces & interactive systems</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">Full Stack Developer Diploma <span style="font-weight:400; color:#888">(in progress)</span></div>
+          <div class="edu-where">Digital House</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">Digital Marketing Specialization</div>
+          <div class="edu-where">The University of Chicago</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">IoT: Business Implications</div>
+          <div class="edu-where">MIT — Executive Certification</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">E-Commerce & Commercial Management</div>
+          <div class="edu-where">IE University</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">C1 Advanced Business English</div>
+          <div class="edu-where">Oxford Language Institute</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">Executive Assistant Training</div>
+          <div class="edu-where">Pareto Talent — CRM, admin workflows, SOP documentation</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- SETUP STRIP -->
+  <footer class="setup-strip">
+    <span class="setup-item">Windows 11 · Intel i5 8th Gen · 16GB RAM</span>
+    <span class="setup-item">Wired Ethernet 30 Mbps</span>
+    <span class="setup-item">Noise-cancelling headset · 1080p webcam</span>
+    <span class="setup-item">Backup power & internet</span>
+  </footer>
+
+</article>
+</body>
+</html>
