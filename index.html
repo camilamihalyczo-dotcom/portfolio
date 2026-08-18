@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Camila Mihalyczo — Frontend Developer & UX/UI Designer</title>
+<title>Camila Mihalyczo — Designer & Developer</title>
+<meta name="description" content="Camila Mihalyczo — UX/UI and multimedia designer, frontend developer. Buenos Aires, Argentina. EN / ES.">
+
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Unbounded:wght@300;400;700;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -259,7 +261,7 @@ nav.scrolled {
 }
 .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
 
-/* ── HERO RIGHT — CODE BLOCK ── */
+/* ── HERO RIGHT — WORK GRID ── */
 .hero-right {
   position: relative;
   z-index: 1;
@@ -267,47 +269,89 @@ nav.scrolled {
   animation: fadeUp 0.8s 0.4s forwards;
 }
 
-.code-window {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 8px;
-  overflow: hidden;
-  font-size: 12px;
-  line-height: 1.8;
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
 }
 
-.code-titlebar {
-  background: var(--bg3);
-  padding: 10px 14px;
+.work-tile {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.work-tile:hover { border-color: var(--border2); transform: translateY(-3px); }
+
+/* Placeholder visual. Para usar una imagen real, poné un <img> dentro
+   de .work-thumb (ver comentarios en el HTML) — el placeholder queda tapado. */
+.work-thumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(140deg, var(--c1, #24243a), var(--c2, #16161f));
   border-bottom: 1px solid var(--border);
 }
-.dot-r { width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; }
-.dot-y { width: 10px; height: 10px; border-radius: 50%; background: #febc2e; }
-.dot-g { width: 10px; height: 10px; border-radius: 50%; background: #28c840; }
-.code-filename { margin-left: 8px; color: var(--dim); font-size: 11px; }
-
-.code-body { padding: 1.2rem 1.5rem; }
-.ln { color: var(--dim); user-select: none; margin-right: 1.5rem; font-size: 11px; }
-.kw { color: var(--violet); }
-.fn { color: var(--cyan); }
-.str { color: var(--amber); }
-.cm { color: var(--dim); font-style: italic; }
-.prop { color: var(--pink); }
-.val { color: var(--green); }
-.pun { color: var(--muted); }
-
-/* typing cursor blink */
-.cursor-blink {
-  display: inline-block;
-  width: 8px; height: 14px;
-  background: var(--green);
-  vertical-align: middle;
-  animation: blink 1s step-end infinite;
+.work-thumb::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 18px 18px;
+  pointer-events: none;
 }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.work-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 2;
+}
+.wt-mark {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
+  color: rgba(255,255,255,0.28);
+  position: relative;
+  z-index: 1;
+}
+
+.work-meta { padding: 0.7rem 0.85rem 0.85rem; }
+.work-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.25rem;
+}
+.work-type {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.work-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+  text-decoration: none;
+}
+.work-more:hover { color: var(--green); }
 
 /* ── STATUS PILLS ── */
 .status-row {
@@ -381,6 +425,17 @@ section { padding: 6rem 3rem; }
 .stack-item:hover { border-color: var(--green); background: rgba(0,255,136,0.04); }
 .stack-item .tag-icon { color: var(--green); font-size: 11px; }
 
+.stack-block + .stack-block { margin-top: 1.6rem; }
+.stack-group-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
 /* ── PROJECTS ── */
 #projects { background: var(--bg); }
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
@@ -415,6 +470,8 @@ section { padding: 6rem 3rem; }
   color: var(--green);
   text-transform: uppercase;
   margin-bottom: 0.8rem;
+  padding-right: 4.5rem; /* deja lugar al badge live/deploying */
+  line-height: 1.5;
 }
 .project-name {
   font-family: 'Unbounded', sans-serif;
@@ -464,6 +521,131 @@ section { padding: 6rem 3rem; }
   text-transform: uppercase;
 }
 
+/* ── PORTFOLIO GALLERY ── */
+#portfolio { background: var(--bg); }
+
+.pf-group + .pf-group { margin-top: 4rem; }
+
+.pf-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.pf-group-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.pf-group-sub { font-size: 11px; color: var(--muted); margin-top: 0.3rem; }
+
+.pf-dl {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--violet);
+  border: 1px solid rgba(167,139,250,0.4);
+  padding: 0.45rem 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.pf-dl:hover { background: rgba(167,139,250,0.1); }
+
+.pf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.pf-item {
+  position: relative;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  overflow: hidden;
+  cursor: none;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.pf-item:hover { border-color: var(--border2); transform: translateY(-2px); }
+/* contain, no cover: un poster recortado deja de ser el poster */
+.pf-item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  display: block;
+  background: var(--bg);
+  padding: 0.6rem;
+  transition: transform 0.25s;
+}
+.pf-item:hover img { transform: scale(1.02); }
+.pf-item:hover img { filter: saturate(1.1); }
+
+.pf-cap {
+  padding: 0.6rem 0.75rem 0.75rem;
+  border-top: 1px solid var(--border);
+}
+.pf-cap-name { font-size: 11px; color: var(--text); margin-bottom: 0.15rem; }
+.pf-cap-type { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); }
+
+/* slot vacío a la espera de imagen */
+.pf-item.empty {
+  border-style: dashed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  text-align: center;
+  padding: 1rem;
+}
+.pf-item.empty span { font-size: 10px; letter-spacing: 0.1em; color: var(--dim); text-transform: uppercase; }
+
+/* ── LIGHTBOX ── */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  background: rgba(5,5,9,0.94);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 3rem;
+}
+#lightbox.open { display: flex; }
+#lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 1px solid var(--border2);
+}
+.lb-caption {
+  position: absolute;
+  bottom: 1.5rem; left: 0; right: 0;
+  text-align: center;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+.lb-btn {
+  position: absolute;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  width: 42px; height: 42px;
+  cursor: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lb-btn:hover { border-color: var(--green); color: var(--green); }
+#lb-close { top: 1.5rem; right: 1.5rem; }
+#lb-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
+#lb-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+
 /* ── CVS DOWNLOAD ── */
 #cvs {
   background: var(--bg2);
@@ -506,6 +688,9 @@ section { padding: 6rem 3rem; }
   align-self: flex-start;
 }
 .cv-card-btn:hover { background: rgba(167,139,250,0.1); }
+.cv-card-btns { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+.cv-card-btn.alt { color: var(--cyan); border-color: rgba(0,212,255,0.4); }
+.cv-card-btn.alt:hover { background: rgba(0,212,255,0.1); }
 
 /* ── CONTACT ── */
 #contact { background: var(--bg); }
@@ -558,7 +743,9 @@ footer {
   nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
   #hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
-  .hero-right { display: none; }
+  .hero-right { margin-top: 1rem; }
+  .work-grid { gap: 0.7rem; }
+  .wt-mark { font-size: 1.1rem; }
   section { padding: 4rem 1.5rem; }
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
   footer { flex-direction: column; gap: 0.5rem; text-align: center; }
@@ -577,6 +764,7 @@ footer {
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav.about">about</a></li>
     <li><a href="#projects" data-i18n="nav.projects">projects</a></li>
+    <li><a href="#portfolio" data-i18n="nav.portfolio">portfolio</a></li>
     <li><a href="#cvs" data-i18n="nav.cv">cv</a></li>
     <li><a href="#contact" data-i18n="nav.contact">contact</a></li>
   </ul>
@@ -593,11 +781,11 @@ footer {
     <p class="hero-eyebrow" data-i18n="hero.eyebrow">available for remote work</p>
     <h1 class="hero-name">Camila<br><span>Mihalyczo</span></h1>
     <p class="hero-role" data-i18n-html="hero.role">
-      <span class="accent">Frontend Developer</span> &amp; UX/UI Designer<br>
+      <span class="accent">UX/UI &amp; Multimedia Designer</span> — Frontend Developer<br>
       Buenos Aires, Argentina — EN / ES
     </p>
-    <p class="hero-desc">
-      I build responsive, mobile-first interfaces and design experiences that bridge code and creativity. 6+ years working across digital marketing, education, and international organizations.
+    <p class="hero-desc" data-i18n="hero.desc">
+      I design digital experiences and build them myself. Interfaces, interactive pieces and visual identity — from research and wireframes through to the live site. 6+ years across design, digital marketing and international teams.
     </p>
     <div class="hero-ctas">
       <a href="#projects" class="btn-primary" data-i18n="hero.cta1">view work →</a>
@@ -606,37 +794,60 @@ footer {
     <div class="status-row">
       <span class="status-pill sp-green"><span class="dot"></span><span data-i18n="hero.status1">open to work</span></span>
       <span class="status-pill sp-cyan"><span class="dot"></span><span data-i18n="hero.status2">remote-ready</span></span>
-      <span class="status-pill sp-violet"><span class="dot"></span>bilingual</span>
+      <span class="status-pill sp-violet"><span class="dot"></span><span data-i18n="hero.status3">bilingual</span></span>
     </div>
   </div>
 
   <div class="hero-right">
-    <div class="code-window">
-      <div class="code-titlebar">
-        <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
-        <span class="code-filename">camila.js</span>
-      </div>
-      <div class="code-body">
-        <div><span class="ln">01</span><span class="kw">const</span> <span class="fn">developer</span> <span class="pun">= {</span></div>
-        <div><span class="ln">02</span>&nbsp;&nbsp;<span class="prop">name</span><span class="pun">:</span> <span class="str">"Camila Mihalyczo"</span><span class="pun">,</span></div>
-        <div><span class="ln">03</span>&nbsp;&nbsp;<span class="prop">role</span><span class="pun">:</span> <span class="str">"Frontend + UX/UI"</span><span class="pun">,</span></div>
-        <div><span class="ln">04</span>&nbsp;&nbsp;<span class="prop">location</span><span class="pun">:</span> <span class="str">"Buenos Aires 🇦🇷"</span><span class="pun">,</span></div>
-        <div><span class="ln">05</span>&nbsp;&nbsp;<span class="prop">stack</span><span class="pun">: [</span></div>
-        <div><span class="ln">06</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"HTML5"</span><span class="pun">,</span> <span class="str">"CSS3"</span><span class="pun">,</span> <span class="str">"JS"</span><span class="pun">,</span></div>
-        <div><span class="ln">07</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"Figma"</span><span class="pun">,</span> <span class="str">"p5.js"</span><span class="pun">,</span> <span class="str">"React*"</span></div>
-        <div><span class="ln">08</span>&nbsp;&nbsp;<span class="pun">],</span></div>
-        <div><span class="ln">09</span>&nbsp;&nbsp;<span class="prop">languages</span><span class="pun">: {</span></div>
-        <div><span class="ln">10</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">spanish</span><span class="pun">:</span> <span class="val">"native"</span><span class="pun">,</span></div>
-        <div><span class="ln">11</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">english</span><span class="pun">:</span> <span class="val">"C1 advanced"</span></div>
-        <div><span class="ln">12</span>&nbsp;&nbsp;<span class="pun">},</span></div>
-        <div><span class="ln">13</span>&nbsp;&nbsp;<span class="prop">available</span><span class="pun">:</span> <span class="val">true</span><span class="pun">,</span></div>
-        <div><span class="ln">14</span>&nbsp;&nbsp;<span class="prop">remote</span><span class="pun">:</span> <span class="val">true</span></div>
-        <div><span class="ln">15</span><span class="pun">};</span></div>
-        <div>&nbsp;</div>
-        <div><span class="ln">16</span><span class="cm">// * learning in progress</span></div>
-        <div><span class="ln">17</span><span class="fn">console</span><span class="pun">.</span><span class="fn">log</span><span class="pun">(</span><span class="str">"hire me"</span><span class="pun">, developer);</span> <span class="cursor-blink"></span></div>
-      </div>
+    <!-- ══ GRILLA DE TRABAJOS ══
+         Cada .work-thumb muestra un placeholder generado por CSS.
+         Para poner la imagen real, descomentá el <img> y dejá el archivo
+         en assets/img/. Medida sugerida: 800×600 (4:3), JPG o WebP. -->
+    <div class="work-grid">
+
+      <a href="#portfolio" class="work-tile">
+        <div class="work-thumb">
+          <img src="assets/img/work/simply-shopping.jpg" alt="Simply Shopping">
+        </div>
+        <div class="work-meta">
+          <p class="work-name">Simply Shopping</p>
+          <p class="work-type" data-i18n="work.t2">ux/ui — app design</p>
+        </div>
+      </a>
+
+      <a href="#portfolio" class="work-tile">
+        <div class="work-thumb">
+          <img src="assets/img/work/adolescencia.jpg" alt="Adolescencia">
+        </div>
+        <div class="work-meta">
+          <p class="work-name">Adolescencia</p>
+          <p class="work-type" data-i18n="work.t4">poster — graphic design</p>
+        </div>
+      </a>
+
+      <a href="#portfolio" class="work-tile">
+        <div class="work-thumb">
+          <img src="assets/img/work/agile-technology.jpg" alt="Agile Technology">
+        </div>
+        <div class="work-meta">
+          <p class="work-name">Agile Technology</p>
+          <p class="work-type" data-i18n="work.t3">ux/ui — interface</p>
+        </div>
+      </a>
+
+      <a href="https://camilamihalyczo-dotcom.github.io/tp-2-info-general" target="_blank" class="work-tile">
+        <div class="work-thumb" style="--c1:#2a2140;--c2:#141420">
+          <!-- <img src="assets/img/work/vns-matrix.jpg" alt="VNS Matrix"> -->
+          <span class="wt-mark">VNS</span>
+        </div>
+        <div class="work-meta">
+          <p class="work-name">VNS Matrix</p>
+          <p class="work-type" data-i18n="work.t1">interactive experience</p>
+        </div>
+      </a>
+
     </div>
+    <a href="#portfolio" class="work-more" data-i18n="work.more">see all the pieces →</a>
   </div>
 </section>
 
@@ -644,28 +855,38 @@ footer {
 <section id="about">
   <div class="reveal">
     <p class="section-label" data-i18n="about.label">01 — about</p>
-    <h2 class="section-title" data-i18n="about.title">code meets design</h2>
+    <h2 class="section-title" data-i18n="about.title">design & development</h2>
   </div>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p class="hi" data-i18n="about.p1">I'm a bilingual developer and designer based in Buenos Aires, currently finishing my Bachelor's in Multimedia Arts at Universidad Nacional de las Artes.</p>
-      <p data-i18n="about.p2">My background is unusual: I came from education, marketing, and international operations — which means I don't just build things that work, I build things that communicate and convert.</p>
-      <p data-i18n="about.p3">I've been coding for 2+ years, with real client projects live. I'm expanding into full-stack (Digital House) and cloud infrastructure (AWS) while keeping design thinking at the center of everything I build.</p>
+      <p class="hi" data-i18n="about.p1">I'm a bilingual designer and developer based in Buenos Aires, finishing my Bachelor's in Multimedia Arts at Universidad Nacional de las Artes.</p>
+      <p data-i18n="about.p2">I work across the whole process: research, visual direction, interface design and interactive pieces — and then I build them. Designing and coding the same project means fewer things get lost in translation.</p>
+      <p data-i18n="about.p3">My background runs through education, marketing and international teams, so I think about audience and message as much as about layout and componentry. Currently expanding into full-stack (Digital House) and cloud (AWS).</p>
     </div>
     <div>
-      <div class="stack-grid">
-        <div class="stack-item"><span class="tag-icon">▸</span> HTML5 / CSS3</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> JavaScript</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> Figma</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> Responsive / Mobile-first</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> p5.js</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> Canva</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> Adobe Suite</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> Video Editing</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> Git / GitHub</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> UX Research</div>
-        <div class="stack-item"><span class="tag-icon">▸</span> React <span style="color:var(--dim);font-size:10px">*in progress</span></div>
-        <div class="stack-item"><span class="tag-icon">▸</span> AWS <span style="color:var(--dim);font-size:10px">*in progress</span></div>
+      <div class="stack-block">
+        <p class="stack-group-label" data-i18n="stack.design">design</p>
+        <div class="stack-grid">
+          <div class="stack-item"><span class="tag-icon">▸</span> Figma</div>
+          <div class="stack-item"><span class="tag-icon">▸</span> UX Research</div>
+          <div class="stack-item"><span class="tag-icon">▸</span> Adobe Suite</div>
+          <div class="stack-item"><span class="tag-icon">▸</span> <span data-i18n="stack.video">Video Editing</span></div>
+          <div class="stack-item"><span class="tag-icon">▸</span> <span data-i18n="stack.motion">Motion / Multimedia</span></div>
+          <div class="stack-item"><span class="tag-icon">▸</span> Canva</div>
+        </div>
+      </div>
+      <div class="stack-block">
+        <p class="stack-group-label" data-i18n="stack.dev">development</p>
+        <div class="stack-grid">
+          <div class="stack-item"><span class="tag-icon">▸</span> HTML5 / CSS3</div>
+          <div class="stack-item"><span class="tag-icon">▸</span> JavaScript</div>
+          <div class="stack-item"><span class="tag-icon">▸</span> <span data-i18n="stack.responsive">Responsive / Mobile-first</span></div>
+          <div class="stack-item"><span class="tag-icon">▸</span> p5.js</div>
+          <div class="stack-item"><span class="tag-icon">▸</span> Git / GitHub</div>
+          <div class="stack-item"><span class="tag-icon">▸</span> Vercel / GH Pages</div>
+          <div class="stack-item"><span class="tag-icon">▸</span> React <span style="color:var(--dim);font-size:10px" data-i18n="stack.wip">*in progress</span></div>
+          <div class="stack-item"><span class="tag-icon">▸</span> AWS <span style="color:var(--dim);font-size:10px" data-i18n="stack.wip2">*in progress</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -681,101 +902,202 @@ footer {
 
     <a href="https://camilamihalyczo-dotcom.github.io/tp-2-info-general" target="_blank" class="project-card">
       <span class="badge-live">live</span>
-      <p class="project-type">web development</p>
+      <p class="project-type" data-i18n="projects.vns.type">interactive experience — design & build</p>
       <h3 class="project-name">VNS Matrix</h3>
-      <p class="project-desc" data-i18n="projects.vns.desc">Immersive cyberfeminist web experience — multi-page responsive site with glitch art aesthetic, floating OS-style windows, interactive gallery, and a hidden Easter egg.</p>
+      <p class="project-desc" data-i18n="projects.vns.desc">Immersive cyberfeminist web experience. Art direction and interface built around a glitch aesthetic — floating OS-style windows, interactive gallery, non-linear navigation and a hidden Easter egg.</p>
       <div class="project-tags">
-        <span class="project-tag">HTML5</span>
-        <span class="project-tag">CSS3</span>
+        <span class="project-tag">Art direction</span>
+        <span class="project-tag">Interaction design</span>
+        <span class="project-tag">Glitch Art</span>
+        <span class="project-tag">HTML5 / CSS3</span>
         <span class="project-tag">JavaScript</span>
         <span class="project-tag">Tailwind</span>
-        <span class="project-tag">Glitch Art</span>
       </div>
-      <span class="project-link">view project</span>
+      <span class="project-link" data-i18n="projects.link">view project</span>
     </a>
 
     <a href="https://netianas.vercel.app" target="_blank" class="project-card">
       <span class="badge-live">live</span>
-      <p class="project-type">web development</p>
+      <p class="project-type" data-i18n="projects.netianas.type">web design + development</p>
       <h3 class="project-name">Netianas</h3>
-      <p class="project-desc" data-i18n="projects.netianas.desc">Live site with contact form via EmailJS. Mobile-first design, deployed on Vercel.</p>
+      <p class="project-desc" data-i18n="projects.netianas.desc">Mobile-first site designed and built end to end — layout, visual system and contact flow via EmailJS. Live on Vercel.</p>
       <div class="project-tags">
-        <span class="project-tag">HTML5</span>
-        <span class="project-tag">CSS3</span>
+        <span class="project-tag">Visual design</span>
+        <span class="project-tag">Mobile-first</span>
+        <span class="project-tag">HTML5 / CSS3</span>
         <span class="project-tag">EmailJS</span>
         <span class="project-tag">Vercel</span>
       </div>
-      <span class="project-link">view project</span>
+      <span class="project-link" data-i18n="projects.link">view project</span>
     </a>
 
     <a href="#" class="project-card">
       <span class="badge-wip">deploying</span>
-      <p class="project-type">e-commerce / landing page</p>
+      <p class="project-type" data-i18n="projects.fle.type">brand + landing page</p>
       <h3 class="project-name">Fle Cookies</h3>
-      <p class="project-desc" data-i18n="projects.fle.desc">E-commerce landing page. Completed and ready to deploy — mobile-first, conversion-focused layout.</p>
+      <p class="project-desc" data-i18n="projects.fle.desc">Visual identity applied to an e-commerce landing page. Mobile-first layout designed around a single conversion path. Finished and ready to deploy.</p>
       <div class="project-tags">
-        <span class="project-tag">HTML5</span>
-        <span class="project-tag">CSS3</span>
-        <span class="project-tag">JS</span>
+        <span class="project-tag">Visual identity</span>
+        <span class="project-tag">Landing design</span>
         <span class="project-tag">E-commerce</span>
+        <span class="project-tag">HTML5 / CSS3 / JS</span>
       </div>
-      <span class="project-link">view project</span>
+      <span class="project-link" data-i18n="projects.link">view project</span>
     </a>
 
     <a href="#" class="project-card">
       <span class="badge-live">live</span>
-      <p class="project-type">ux/ui — figma</p>
+      <p class="project-type" data-i18n="projects.ux.type">ux/ui — product design</p>
       <h3 class="project-name">Simply Shopping</h3>
       <p class="project-desc" data-i18n="projects.ux.desc">Mobile-first e-commerce app. Simple, accessible design focused on usability — screens for discovery, deals, and personalization.</p>
       <div class="project-tags">
         <span class="project-tag">Figma</span>
-        <span class="project-tag">Mobile-first</span>
+        <span class="project-tag">User flows</span>
         <span class="project-tag">E-commerce UX</span>
         <span class="project-tag">App design</span>
       </div>
-      <span class="project-link">view in Figma</span>
+      <span class="project-link" data-i18n="projects.link.figma">view in Figma</span>
     </a>
 
     <a href="#" class="project-card">
       <span class="badge-live">live</span>
-      <p class="project-type">ux/ui — figma</p>
+      <p class="project-type" data-i18n="projects.agile.type">ux/ui — interface system</p>
       <h3 class="project-name">Agile Technology UI</h3>
-      <p class="project-desc">Responsive user interface for a tech product. Customizable layouts across screen sizes — sign-up flow and product showcase.</p>
+      <p class="project-desc" data-i18n="projects.agile.desc">Responsive interface for a tech product. Component and layout system that adapts across screen sizes — sign-up flow and product showcase.</p>
       <div class="project-tags">
         <span class="project-tag">Figma</span>
+        <span class="project-tag">Design system</span>
         <span class="project-tag">Responsive UI</span>
         <span class="project-tag">Interface design</span>
       </div>
-      <span class="project-link">view in Figma</span>
+      <span class="project-link" data-i18n="projects.link.figma">view in Figma</span>
     </a>
 
   </div>
 </section>
 
+<!-- PORTFOLIO GALLERY -->
+<section id="portfolio">
+  <div class="reveal">
+    <p class="section-label" data-i18n="pf.label">03 — portfolio</p>
+    <h2 class="section-title" data-i18n="pf.title">the pieces</h2>
+  </div>
+
+  <!-- ── UX/UI ── -->
+  <div class="pf-group reveal">
+    <div class="pf-group-head">
+      <div>
+        <h3 class="pf-group-title" data-i18n="pf.uxui.title">UX/UI design</h3>
+        <p class="pf-group-sub" data-i18n="pf.uxui.sub">Interfaces, user flows and app design — Figma.</p>
+      </div>
+      <a href="assets/portfolio/camila-mihalyczo-portfolio-uxui.pdf" download class="pf-dl" data-i18n="pf.uxui.dl">↓ full portfolio PDF</a>
+    </div>
+    <div class="pf-grid">
+      <figure class="pf-item" data-full="assets/img/work/simply-shopping.jpg" data-cap="Simply Shopping — UX/UI">
+        <img src="assets/img/work/simply-shopping.jpg" alt="Simply Shopping — pantallas de la app" loading="lazy">
+        <figcaption class="pf-cap">
+          <p class="pf-cap-name">Simply Shopping</p>
+          <p class="pf-cap-type" data-i18n="pf.c.app">mobile app</p>
+        </figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/agile-technology.jpg" data-cap="Agile Technology — UI">
+        <img src="assets/img/work/agile-technology.jpg" alt="Agile Technology — interfaz de registro" loading="lazy">
+        <figcaption class="pf-cap">
+          <p class="pf-cap-name">Agile Technology</p>
+          <p class="pf-cap-type" data-i18n="pf.c.ui">responsive interface</p>
+        </figcaption>
+      </figure>
+      <!-- Slots a completar: exportá la captura y reemplazá este bloque por una <figure> igual a las de arriba -->
+      <div class="pf-item empty"><span data-i18n="pf.slot.vns">VNS Matrix<br>— screenshot pending —</span></div>
+      <div class="pf-item empty"><span data-i18n="pf.slot.net">Netianas<br>— screenshot pending —</span></div>
+    </div>
+  </div>
+
+  <!-- ── GRÁFICO / CONTENIDO ── -->
+  <div class="pf-group reveal">
+    <div class="pf-group-head">
+      <div>
+        <h3 class="pf-group-title" data-i18n="pf.graph.title">graphic design & content</h3>
+        <p class="pf-group-sub" data-i18n="pf.graph.sub">Posters, social campaigns and brand content for galleries, artists and gastronomy.</p>
+      </div>
+      <a href="assets/portfolio/camila-mihalyczo-portfolio-creative.pdf" download class="pf-dl" data-i18n="pf.graph.dl">↓ full portfolio PDF</a>
+    </div>
+    <div class="pf-grid">
+      <figure class="pf-item" data-full="assets/img/work/adolescencia.jpg" data-cap="Adolescencia — poster">
+        <img src="assets/img/work/adolescencia.jpg" alt="Poster Adolescencia" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name">Adolescencia</p><p class="pf-cap-type" data-i18n="pf.c.poster">poster</p></figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/ciclo-cortos.jpg" data-cap="Ciclo de Cortos — poster">
+        <img src="assets/img/work/ciclo-cortos.jpg" alt="Poster Ciclo de Cortos" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name">Ciclo de Cortos</p><p class="pf-cap-type" data-i18n="pf.c.poster">poster</p></figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/demian-rugna.jpg" data-cap="Demian Rugna — Falopa Multimedia">
+        <img src="assets/img/work/demian-rugna.jpg" alt="Poster Demian Rugna" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name">Demian Rugna</p><p class="pf-cap-type" data-i18n="pf.c.event">event piece</p></figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/julieta.jpg" data-cap="Julieta — poster">
+        <img src="assets/img/work/julieta.jpg" alt="Poster Julieta" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name">Julieta</p><p class="pf-cap-type" data-i18n="pf.c.poster">poster</p></figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/falopa-feed.jpg" data-cap="Falopa Multimedia — feed">
+        <img src="assets/img/work/falopa-feed.jpg" alt="Feed de Falopa Multimedia" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name">Falopa Multimedia</p><p class="pf-cap-type" data-i18n="pf.c.feed">social feed</p></figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/aiesec-intercambio.jpg" data-cap="AIESEC Argentina — campaña">
+        <img src="assets/img/work/aiesec-intercambio.jpg" alt="Pieza de campaña AIESEC" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name">AIESEC Argentina</p><p class="pf-cap-type" data-i18n="pf.c.campaign">campaign</p></figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/tiberio-almuerzo.jpg" data-cap="Tiberio Food &amp; Coffee">
+        <img src="assets/img/work/tiberio-almuerzo.jpg" alt="Pieza Almuerzo Tiberio" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name">Tiberio</p><p class="pf-cap-type" data-i18n="pf.c.brand">brand content</p></figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/ilustracion.jpg" data-cap="Ilustración">
+        <img src="assets/img/work/ilustracion.jpg" alt="Ilustración" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name" data-i18n="pf.c.illuname">Illustration</p><p class="pf-cap-type" data-i18n="pf.c.illu">artwork</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" aria-hidden="true">
+  <button class="lb-btn" id="lb-close" aria-label="close">✕</button>
+  <button class="lb-btn" id="lb-prev" aria-label="previous">‹</button>
+  <button class="lb-btn" id="lb-next" aria-label="next">›</button>
+  <img id="lb-img" src="" alt="">
+  <p class="lb-caption" id="lb-cap"></p>
+</div>
+
 <!-- CVS -->
 <section id="cvs">
   <div class="reveal">
-    <p class="section-label" data-i18n="cv.label">03 — cv</p>
+    <p class="section-label" data-i18n="cv.label">04 — cv</p>
     <h2 class="section-title" data-i18n="cv.title">download my resume</h2>
   </div>
   <div class="cv-grid reveal">
     <div class="cv-card">
-      <p class="cv-card-role">design & development</p>
-      <h3 class="cv-card-title">Frontend Developer<br>& UX/UI Designer</h3>
-      <p class="cv-card-desc" data-i18n="cv.dev.desc">For agencies, product teams, and startups. HTML/CSS/JS, Figma, responsive design, mobile-first.</p>
-      <a href="assets/cv/camila-mihalyczo-cv-frontend-uxui.pdf" download class="cv-card-btn">↓ download PDF</a>
+      <p class="cv-card-role" data-i18n="cv.dev.role">design & development</p>
+      <h3 class="cv-card-title">UX/UI Designer<br>& Frontend Developer</h3>
+      <p class="cv-card-desc" data-i18n="cv.dev.desc">For agencies, product teams and startups. Figma, UX research, responsive and mobile-first design, HTML/CSS/JS.</p>
+      <div class="cv-card-btns">
+        <a href="assets/cv/camila-mihalyczo-cv-frontend-uxui.pdf" download class="cv-card-btn" data-i18n="cv.btn.cv">↓ download CV (PDF)</a>
+        <a href="assets/portfolio/camila-mihalyczo-portfolio-uxui.pdf" download class="cv-card-btn alt" data-i18n="cv.btn.pf">↓ download portfolio (PDF)</a>
+      </div>
     </div>
     <div class="cv-card">
-      <p class="cv-card-role">content & brand</p>
+      <p class="cv-card-role" data-i18n="cv.content.role">content & brand</p>
       <h3 class="cv-card-title">Content Creator<br>& Community Manager</h3>
-      <p class="cv-card-desc" data-i18n="cv.content.desc">For brands and agencies. Canva, social media, community management, digital marketing.</p>
-      <a href="assets/cv/camila-mihalyczo-cv-content-manager.pdf" download class="cv-card-btn">↓ download PDF</a>
+      <p class="cv-card-desc" data-i18n="cv.content.desc">For brands and agencies. Visual content, social media, community management, digital marketing.</p>
+      <div class="cv-card-btns">
+        <a href="assets/cv/camila-mihalyczo-cv-content-manager.pdf" download class="cv-card-btn" data-i18n="cv.btn.cv2">↓ download CV (PDF)</a>
+        <a href="assets/portfolio/camila-mihalyczo-portfolio-creative.pdf" download class="cv-card-btn alt" data-i18n="cv.btn.pf2">↓ download portfolio (PDF)</a>
+      </div>
     </div>
     <div class="cv-card" style="opacity:0.6; border-style: dashed;">
-      <p class="cv-card-role">tech & sales</p>
+      <p class="cv-card-role" data-i18n="cv.aws.role">tech & sales</p>
       <h3 class="cv-card-title">Tech Operations<br>& AWS Cloud</h3>
       <p class="cv-card-desc" data-i18n="cv.aws.desc">For startups — commercial vision + cloud platform maintenance. Coming when course is done.</p>
-      <a href="#" class="cv-card-btn" style="opacity:0.4; pointer-events:none;">coming soon</a>
+      <a href="#" class="cv-card-btn" style="opacity:0.4; pointer-events:none;" data-i18n="cv.soon">coming soon</a>
     </div>
   </div>
 </section>
@@ -783,8 +1105,8 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
   <div class="reveal">
-    <p class="section-label" data-i18n="contact.label">04 — contact</p>
-    <h2 class="section-title" data-i18n="contact.title">let's build something</h2>
+    <p class="section-label" data-i18n="contact.label">05 — contact</p>
+    <h2 class="section-title" data-i18n="contact.title">let's make something</h2>
   </div>
   <div class="contact-inner reveal">
     <p data-i18n="contact.desc">Open to remote opportunities — full-time, part-time, or freelance. Comfortable working with international teams in English or Spanish.</p>
@@ -801,7 +1123,7 @@ footer {
         <span class="cl-label">GITHUB</span>
         <span class="cl-val">github.com/camilamihalyczo-dotcom</span>
       </a>
-      <a href="tel:+5411512 68940" class="contact-link">
+      <a href="tel:+541151268940" class="contact-link">
         <span class="cl-label">PHONE / WA</span>
         <span class="cl-val">+54 11 5126-8940</span>
       </a>
@@ -811,8 +1133,8 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2025 Camila Mihalyczo</span>
-  <span data-i18n="footer.built">designed &amp; built by me — HTML / CSS / JS</span>
+  <span>© 2026 Camila Mihalyczo</span>
+  <span data-i18n="footer.built">designed &amp; built by me</span>
 </footer>
 
 <script>
@@ -849,66 +1171,164 @@ const translations = {
     'nav.projects': 'projects',
     'nav.cv': 'cv',
     'nav.contact': 'contact',
+    'nav.portfolio': 'portfolio',
+    'work.t1': 'interactive experience',
+    'work.t2': 'ux/ui — app design',
+    'work.t3': 'ux/ui — interface',
+    'work.t4': 'poster — graphic design',
+    'work.more': 'see all the pieces →',
+    'pf.label': '03 — portfolio',
+    'pf.title': 'the pieces',
+    'pf.uxui.title': 'UX/UI design',
+    'pf.uxui.sub': 'Interfaces, user flows and app design — Figma.',
+    'pf.uxui.dl': '↓ full portfolio PDF',
+    'pf.graph.title': 'graphic design & content',
+    'pf.graph.sub': 'Posters, social campaigns and brand content for galleries, artists and gastronomy.',
+    'pf.graph.dl': '↓ full portfolio PDF',
+    'pf.c.app': 'mobile app',
+    'pf.c.ui': 'responsive interface',
+    'pf.c.poster': 'poster',
+    'pf.c.event': 'event piece',
+    'pf.c.feed': 'social feed',
+    'pf.c.campaign': 'campaign',
+    'pf.c.brand': 'brand content',
+    'pf.c.illu': 'artwork',
+    'pf.c.illuname': 'Illustration',
+    'pf.slot.vns': 'VNS Matrix — screenshot pending',
+    'pf.slot.net': 'Netianas — screenshot pending',
+    'cv.btn.cv': '↓ download CV (PDF)',
+    'cv.btn.pf': '↓ download portfolio (PDF)',
+    'cv.btn.cv2': '↓ download CV (PDF)',
+    'cv.btn.pf2': '↓ download portfolio (PDF)',
     'hero.eyebrow': 'available for remote work',
-    'hero.role': '<span class="accent">Frontend Developer</span> &amp; UX/UI Designer<br>Buenos Aires, Argentina — EN / ES',
-    'hero.desc': 'I build responsive, mobile-first interfaces and design experiences that bridge code and creativity. 6+ years working across digital marketing, education, and international organizations.',
+    'hero.role': '<span class="accent">UX/UI &amp; Multimedia Designer</span> — Frontend Developer<br>Buenos Aires, Argentina — EN / ES',
+    'hero.desc': 'I design digital experiences and build them myself. Interfaces, interactive pieces and visual identity — from research and wireframes through to the live site. 6+ years across design, digital marketing and international teams.',
     'hero.cta1': 'view work →',
     'hero.cta2': 'get in touch',
     'hero.status1': 'open to work',
     'hero.status2': 'remote-ready',
+    'hero.status3': 'bilingual',
     'about.label': '01 — about',
-    'about.title': 'code meets design',
-    'about.p1': "I'm a bilingual developer and designer based in Buenos Aires, currently finishing my Bachelor's in Multimedia Arts at Universidad Nacional de las Artes.",
-    'about.p2': "My background is unusual: I came from education, marketing, and international operations — which means I don't just build things that work, I build things that communicate and convert.",
-    'about.p3': "I've been coding for 2+ years, with real client projects live. I'm expanding into full-stack (Digital House) and cloud infrastructure (AWS) while keeping design thinking at the center of everything I build.",
+    'about.title': 'design & development',
+    'about.p1': "I'm a bilingual designer and developer based in Buenos Aires, finishing my Bachelor's in Multimedia Arts at Universidad Nacional de las Artes.",
+    'about.p2': 'I work across the whole process: research, visual direction, interface design and interactive pieces — and then I build them. Designing and coding the same project means fewer things get lost in translation.',
+    'about.p3': 'My background runs through education, marketing and international teams, so I think about audience and message as much as about layout and componentry. Currently expanding into full-stack (Digital House) and cloud (AWS).',
+    'stack.design': 'design',
+    'stack.dev': 'development',
+    'stack.video': 'Video Editing',
+    'stack.motion': 'Motion / Multimedia',
+    'stack.responsive': 'Responsive / Mobile-first',
+    'stack.wip': '*in progress',
+    'stack.wip2': '*in progress',
     'projects.label': '02 — projects',
     'projects.title': 'selected work',
-    'projects.vns.desc': 'Immersive cyberfeminist web experience — multi-page responsive site with glitch art aesthetic, floating OS-style windows, interactive gallery, and a hidden Easter egg.',
-    'projects.netianas.desc': 'Live site with contact form via EmailJS. Mobile-first design, deployed on Vercel.',
-    'projects.fle.desc': 'E-commerce landing page. Completed and ready to deploy — mobile-first, conversion-focused layout.',
-    'projects.ux.desc': 'Mobile-first e-commerce app. Simple, accessible design focused on usability.',
-    'cv.label': '03 — cv',
+    'projects.link': 'view project',
+    'projects.link.figma': 'view in Figma',
+    'projects.vns.type': 'interactive experience — design & build',
+    'projects.vns.desc': 'Immersive cyberfeminist web experience. Art direction and interface built around a glitch aesthetic — floating OS-style windows, interactive gallery, non-linear navigation and a hidden Easter egg.',
+    'projects.netianas.type': 'web design + development',
+    'projects.netianas.desc': 'Mobile-first site designed and built end to end — layout, visual system and contact flow via EmailJS. Live on Vercel.',
+    'projects.fle.type': 'brand + landing page',
+    'projects.fle.desc': 'Visual identity applied to an e-commerce landing page. Mobile-first layout designed around a single conversion path. Finished and ready to deploy.',
+    'projects.ux.type': 'ux/ui — product design',
+    'projects.ux.desc': 'Mobile-first e-commerce app. Simple, accessible design focused on usability — screens for discovery, deals, and personalization.',
+    'projects.agile.type': 'ux/ui — interface system',
+    'projects.agile.desc': 'Responsive interface for a tech product. Component and layout system that adapts across screen sizes — sign-up flow and product showcase.',
+    'cv.label': '04 — cv',
     'cv.title': 'download my resume',
-    'cv.dev.desc': 'For agencies, product teams, and startups. HTML/CSS/JS, Figma, responsive design, mobile-first.',
-    'cv.content.desc': 'For brands and agencies. Canva, social media, community management, digital marketing.',
+    'cv.dev.role': 'design & development',
+    'cv.dev.desc': 'For agencies, product teams and startups. Figma, UX research, responsive and mobile-first design, HTML/CSS/JS.',
+    'cv.content.role': 'content & brand',
+    'cv.content.desc': 'For brands and agencies. Visual content, social media, community management, digital marketing.',
+    'cv.aws.role': 'tech & sales',
     'cv.aws.desc': 'For startups — commercial vision + cloud platform maintenance. Coming when course is done.',
-    'contact.label': '04 — contact',
-    'contact.title': "let's build something",
+    'cv.soon': 'coming soon',
+    'contact.label': '05 — contact',
+    'contact.title': "let's make something",
     'contact.desc': 'Open to remote opportunities — full-time, part-time, or freelance. Comfortable working with international teams in English or Spanish.',
-    'footer.built': 'designed & built by me — HTML / CSS / JS',
+    'footer.built': 'designed & built by me',
   },
   es: {
     'nav.about': 'sobre mí',
     'nav.projects': 'proyectos',
     'nav.cv': 'cv',
     'nav.contact': 'contacto',
+    'nav.portfolio': 'portfolio',
+    'work.t1': 'experiencia interactiva',
+    'work.t2': 'ux/ui — diseño de app',
+    'work.t3': 'ux/ui — interfaz',
+    'work.t4': 'poster — diseño gráfico',
+    'work.more': 'ver todas las piezas →',
+    'pf.label': '03 — portfolio',
+    'pf.title': 'las piezas',
+    'pf.uxui.title': 'diseño UX/UI',
+    'pf.uxui.sub': 'Interfaces, flujos de usuario y diseño de app — Figma.',
+    'pf.uxui.dl': '↓ portfolio completo PDF',
+    'pf.graph.title': 'diseño gráfico y contenido',
+    'pf.graph.sub': 'Posters, campañas de redes y contenido de marca para galerías, artistas y gastronomía.',
+    'pf.graph.dl': '↓ portfolio completo PDF',
+    'pf.c.app': 'app mobile',
+    'pf.c.ui': 'interfaz responsive',
+    'pf.c.poster': 'poster',
+    'pf.c.event': 'pieza de evento',
+    'pf.c.feed': 'feed de redes',
+    'pf.c.campaign': 'campaña',
+    'pf.c.brand': 'contenido de marca',
+    'pf.c.illu': 'obra',
+    'pf.c.illuname': 'Ilustración',
+    'pf.slot.vns': 'VNS Matrix — falta captura',
+    'pf.slot.net': 'Netianas — falta captura',
+    'cv.btn.cv': '↓ descargar CV (PDF)',
+    'cv.btn.pf': '↓ descargar portfolio (PDF)',
+    'cv.btn.cv2': '↓ descargar CV (PDF)',
+    'cv.btn.pf2': '↓ descargar portfolio (PDF)',
     'hero.eyebrow': 'disponible para trabajo remoto',
-    'hero.role': '<span class="accent">Desarrolladora Frontend</span> &amp; Diseñadora UX/UI<br>Buenos Aires, Argentina — EN / ES',
-    'hero.desc': 'Construyo interfaces responsive y mobile-first, y diseño experiencias que conectan código y creatividad. Más de 6 años trabajando en marketing digital, educación y organizaciones internacionales.',
+    'hero.role': '<span class="accent">Diseñadora UX/UI &amp; Multimedial</span> — Desarrolladora Frontend<br>Buenos Aires, Argentina — EN / ES',
+    'hero.desc': 'Diseño experiencias digitales y las construyo. Interfaces, piezas interactivas e identidad visual — desde la investigación y los wireframes hasta el sitio publicado. Más de 6 años entre diseño, marketing digital y equipos internacionales.',
     'hero.cta1': 'ver proyectos →',
     'hero.cta2': 'escribime',
     'hero.status1': 'disponible',
     'hero.status2': 'trabajo remoto',
+    'hero.status3': 'bilingüe',
     'about.label': '01 — sobre mí',
-    'about.title': 'código y diseño',
-    'about.p1': 'Soy desarrolladora y diseñadora bilingüe con base en Buenos Aires, actualmente terminando la Licenciatura en Artes Multimediales en la Universidad Nacional de las Artes.',
-    'about.p2': 'Mi recorrido es poco común: vengo de la educación, el marketing y la gestión de operaciones — lo que significa que no solo construyo cosas que funcionan, sino cosas que comunican y convierten.',
-    'about.p3': 'Llevo más de 2 años programando, con proyectos reales para clientes publicados y en funcionamiento. Estoy expandiéndome hacia el desarrollo full-stack (Digital House) e infraestructura cloud (AWS), sin perder el diseño como eje central.',
+    'about.title': 'diseño y desarrollo',
+    'about.p1': 'Soy diseñadora y desarrolladora bilingüe con base en Buenos Aires, terminando la Licenciatura en Artes Multimediales en la Universidad Nacional de las Artes.',
+    'about.p2': 'Trabajo sobre todo el proceso: investigación, dirección visual, diseño de interfaz y piezas interactivas — y después las construyo. Diseñar y programar el mismo proyecto hace que se pierdan menos cosas en el camino.',
+    'about.p3': 'Mi recorrido pasa por la educación, el marketing y equipos internacionales, así que pienso tanto en la audiencia y el mensaje como en el layout y los componentes. Actualmente expandiéndome hacia full-stack (Digital House) y cloud (AWS).',
+    'stack.design': 'diseño',
+    'stack.dev': 'desarrollo',
+    'stack.video': 'Edición de video',
+    'stack.motion': 'Motion / Multimedia',
+    'stack.responsive': 'Responsive / Mobile-first',
+    'stack.wip': '*en curso',
+    'stack.wip2': '*en curso',
     'projects.label': '02 — proyectos',
     'projects.title': 'trabajo seleccionado',
-    'projects.vns.desc': 'Experiencia web cyberfeminista — sitio responsive multipágina con estética glitch, ventanas flotantes estilo OS, galería interactiva y Easter egg oculto.',
-    'projects.netianas.desc': 'Sitio publicado con formulario de contacto via EmailJS. Diseño mobile-first, desplegado en Vercel.',
-    'projects.fle.desc': 'Landing page de e-commerce. Completada y lista para publicar — mobile-first, diseño orientado a conversión.',
-    'projects.ux.desc': 'App de e-commerce mobile-first. Diseño simple y accesible enfocado en usabilidad.',
-    'cv.label': '03 — cv',
+    'projects.link': 'ver proyecto',
+    'projects.link.figma': 'ver en Figma',
+    'projects.vns.type': 'experiencia interactiva — diseño y desarrollo',
+    'projects.vns.desc': 'Experiencia web cyberfeminista inmersiva. Dirección de arte e interfaz construidas sobre una estética glitch — ventanas flotantes estilo OS, galería interactiva, navegación no lineal y un Easter egg oculto.',
+    'projects.netianas.type': 'diseño web + desarrollo',
+    'projects.netianas.desc': 'Sitio mobile-first diseñado y construido de punta a punta — layout, sistema visual y flujo de contacto via EmailJS. Publicado en Vercel.',
+    'projects.fle.type': 'marca + landing page',
+    'projects.fle.desc': 'Identidad visual aplicada a una landing de e-commerce. Layout mobile-first diseñado alrededor de un único camino de conversión. Terminada y lista para publicar.',
+    'projects.ux.type': 'ux/ui — diseño de producto',
+    'projects.ux.desc': 'App de e-commerce mobile-first. Diseño simple y accesible enfocado en usabilidad — pantallas de descubrimiento, ofertas y personalización.',
+    'projects.agile.type': 'ux/ui — sistema de interfaz',
+    'projects.agile.desc': 'Interfaz responsive para un producto tecnológico. Sistema de componentes y layouts que se adapta a distintos tamaños de pantalla — flujo de registro y showcase de producto.',
+    'cv.label': '04 — cv',
     'cv.title': 'descargá mi currículum',
-    'cv.dev.desc': 'Para agencias, equipos de producto y startups. HTML/CSS/JS, Figma, diseño responsive y mobile-first.',
-    'cv.content.desc': 'Para marcas y agencias. Canva, redes sociales, community management, marketing digital.',
+    'cv.dev.role': 'diseño y desarrollo',
+    'cv.dev.desc': 'Para agencias, equipos de producto y startups. Figma, UX research, diseño responsive y mobile-first, HTML/CSS/JS.',
+    'cv.content.role': 'contenido y marca',
+    'cv.content.desc': 'Para marcas y agencias. Contenido visual, redes sociales, community management, marketing digital.',
+    'cv.aws.role': 'tech y ventas',
     'cv.aws.desc': 'Para startups — visión comercial + mantenimiento de plataformas cloud. Disponible al terminar el curso.',
-    'contact.label': '04 — contacto',
-    'contact.title': 'construyamos algo',
+    'cv.soon': 'próximamente',
+    'contact.label': '05 — contacto',
+    'contact.title': 'hagamos algo',
     'contact.desc': 'Abierta a oportunidades remotas — tiempo completo, medio tiempo o freelance. Cómoda trabajando con equipos internacionales en inglés o español.',
-    'footer.built': 'diseñado y desarrollado por mí — HTML / CSS / JS',
+    'footer.built': 'diseñado y desarrollado por mí',
   }
 };
 
@@ -943,9 +1363,47 @@ function applyLang(lang) {
 
   // Update page title
   document.title = lang === 'es'
-    ? 'Camila Mihalyczo — Desarrolladora Frontend & Diseñadora UX/UI'
-    : 'Camila Mihalyczo — Frontend Developer & UX/UI Designer';
+    ? 'Camila Mihalyczo — Diseñadora & Desarrolladora'
+    : 'Camila Mihalyczo — Designer & Developer';
 }
+
+// ── LIGHTBOX ──
+const lbItems = Array.from(document.querySelectorAll('.pf-item[data-full]'));
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbCap = document.getElementById('lb-cap');
+let lbIndex = 0;
+
+function lbShow(i) {
+  lbIndex = (i + lbItems.length) % lbItems.length;
+  const el = lbItems[lbIndex];
+  lbImg.src = el.dataset.full;
+  lbImg.alt = el.dataset.cap || '';
+  lbCap.textContent = el.dataset.cap || '';
+}
+function lbOpen(i) {
+  lbShow(i);
+  lb.classList.add('open');
+  lb.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function lbClose() {
+  lb.classList.remove('open');
+  lb.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+lbItems.forEach((el, i) => el.addEventListener('click', () => lbOpen(i)));
+document.getElementById('lb-close').addEventListener('click', lbClose);
+document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); lbShow(lbIndex - 1); });
+document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); lbShow(lbIndex + 1); });
+lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lbClose();
+  if (e.key === 'ArrowLeft') lbShow(lbIndex - 1);
+  if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
+});
 
 // reveal on scroll
 const reveals = document.querySelectorAll('.reveal');
