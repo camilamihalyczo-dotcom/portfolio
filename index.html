@@ -6,6 +6,28 @@
 <title>Camila Mihalyczo — Designer & Developer</title>
 <meta name="description" content="Camila Mihalyczo — UX/UI and multimedia designer, frontend developer. Buenos Aires, Argentina. EN / ES.">
 
+<!-- ── FAVICON ── -->
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/img/icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+<meta name="theme-color" content="#0a0a0f">
+
+<!-- ── OPEN GRAPH / TWITTER ──
+     og:image necesita URL absoluta. Si cambiás de dominio, actualizá las tres URLs de acá abajo. -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://camilamihalyczo.vercel.app/">
+<meta property="og:title" content="Camila Mihalyczo — Designer &amp; Developer">
+<meta property="og:description" content="UX/UI and multimedia designer, frontend developer. Buenos Aires, Argentina. EN / ES.">
+<meta property="og:image" content="https://camilamihalyczo.vercel.app/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Camila Mihalyczo — Designer &amp; Developer">
+<meta name="twitter:description" content="UX/UI and multimedia designer, frontend developer. Buenos Aires, Argentina. EN / ES.">
+<meta name="twitter:image" content="https://camilamihalyczo.vercel.app/assets/img/og-image.jpg">
+
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Unbounded:wght@300;400;700;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -378,6 +400,110 @@ nav.scrolled {
 .sp-violet .dot { background: var(--violet); }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
+/* ── TRACK SELECTOR ── */
+#tracks {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 3.5rem 3rem;
+}
+.tracks-lead {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+.tracks-lead::before { content: '> '; color: var(--dim); }
+
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.track-card {
+  font-family: 'JetBrains Mono', monospace;
+  text-align: left;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 1.2rem 1.3rem;
+  cursor: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+.track-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.track-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+.track-card:hover::before, .track-card.active::before { transform: scaleX(1); }
+.track-card.active { border-color: var(--border2); background: rgba(0,255,136,0.04); }
+
+.track-role {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.track-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.track-hint { font-size: 10px; color: var(--muted); line-height: 1.6; }
+.track-card .track-go { font-size: 10px; color: var(--cyan); letter-spacing: 0.08em; margin-top: 0.2rem; }
+
+/* ── PORTFOLIO TABS ── */
+.pf-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+.pf-tab {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 0.45rem 1.1rem;
+  cursor: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.pf-tab:hover { color: var(--text); border-color: var(--border2); }
+.pf-tab.active {
+  color: var(--green);
+  border-color: rgba(0,255,136,0.5);
+  background: rgba(0,255,136,0.05);
+}
+.pf-tab .pf-tab-count { color: var(--dim); margin-left: 0.4rem; font-size: 10px; }
+
+.pf-group {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.pf-group.pf-hidden { opacity: 0; transform: translateY(8px); }
+
+/* resalte breve de una tarjeta de CV al llegar desde el selector */
+@keyframes cvFlash {
+  0%, 100% { border-color: var(--border); }
+  30%, 70% { border-color: var(--green); }
+}
+.cv-card.flash { animation: cvFlash 1.6s ease-in-out 2; }
+
 /* ── SECTION SHARED ── */
 section { padding: 6rem 3rem; }
 .section-label {
@@ -582,7 +708,6 @@ section { padding: 6rem 3rem; }
   transition: transform 0.25s;
 }
 .pf-item:hover img { transform: scale(1.02); }
-.pf-item:hover img { filter: saturate(1.1); }
 
 .pf-cap {
   padding: 0.6rem 0.75rem 0.75rem;
@@ -670,7 +795,14 @@ section { padding: 6rem 3rem; }
   color: var(--violet);
 }
 .cv-card-title { font-family: 'Unbounded', sans-serif; font-size: 0.9rem; font-weight: 700; }
-.cv-card-desc { font-size: 11px; color: var(--muted); line-height: 1.6; flex: 1; }
+.cv-card-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
+.cv-card-extra {
+  font-size: 10px;
+  font-style: italic;
+  color: var(--dim);
+  line-height: 1.6;
+  margin-top: -0.2rem;
+}
 .cv-card-btn {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
@@ -688,7 +820,9 @@ section { padding: 6rem 3rem; }
   align-self: flex-start;
 }
 .cv-card-btn:hover { background: rgba(167,139,250,0.1); }
-.cv-card-btns { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+.cv-card-btns { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start; margin-top: auto; padding-top: 0.4rem; }
+/* la tarjeta "coming soon" tiene el botón suelto, sin contenedor */
+.cv-card > .cv-card-btn { margin-top: auto; }
 .cv-card-btn.alt { color: var(--cyan); border-color: rgba(0,212,255,0.4); }
 .cv-card-btn.alt:hover { background: rgba(0,212,255,0.1); }
 
@@ -851,6 +985,37 @@ footer {
   </div>
 </section>
 
+<!-- TRACK SELECTOR -->
+<section id="tracks">
+  <div class="reveal">
+    <p class="tracks-lead" data-i18n="tracks.lead">what are you hiring for?</p>
+    <div class="tracks-grid">
+
+      <button class="track-card" data-track="uxui">
+        <span class="track-role" data-i18n="tracks.a.role">design & development</span>
+        <span class="track-title">Design &amp; Development</span>
+        <span class="track-hint" data-i18n="tracks.a.hint">Interfaces, UX/UI and front-end builds.</span>
+        <span class="track-go" data-i18n="tracks.go">see the work →</span>
+      </button>
+
+      <button class="track-card" data-track="graphic">
+        <span class="track-role" data-i18n="tracks.b.role">content & brand</span>
+        <span class="track-title">Content &amp; Brand</span>
+        <span class="track-hint" data-i18n="tracks.b.hint">Posters, social campaigns and brand content.</span>
+        <span class="track-go" data-i18n="tracks.go2">see the work →</span>
+      </button>
+
+      <button class="track-card" data-track="tech">
+        <span class="track-role" data-i18n="tracks.c.role">tech & sales</span>
+        <span class="track-title">Tech &amp; Sales</span>
+        <span class="track-hint" data-i18n="tracks.c.hint">Operations, commercial vision and cloud platforms.</span>
+        <span class="track-go" data-i18n="tracks.go3">see the CV →</span>
+      </button>
+
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="reveal">
@@ -861,7 +1026,7 @@ footer {
     <div class="about-text">
       <p class="hi" data-i18n="about.p1">I'm a bilingual designer and developer based in Buenos Aires, finishing my Bachelor's in Multimedia Arts at Universidad Nacional de las Artes.</p>
       <p data-i18n="about.p2">I work across the whole process: research, visual direction, interface design and interactive pieces — and then I build them. Designing and coding the same project means fewer things get lost in translation.</p>
-      <p data-i18n="about.p3">My background runs through education, marketing and international teams, so I think about audience and message as much as about layout and componentry. Currently expanding into full-stack (Digital House) and cloud (AWS).</p>
+      <p data-i18n="about.p3">My background runs through education, marketing and international teams, so I think about audience and message as much as about layout and componentry. Currently expanding into full-stack (Digital House) and cloud (AWS) — building real backend features (auth, admin dashboards, custom APIs) across projects like Netianas and my English-learning platform.</p>
     </div>
     <div>
       <div class="stack-block">
@@ -920,12 +1085,29 @@ footer {
       <span class="badge-live">live</span>
       <p class="project-type" data-i18n="projects.netianas.type">web design + development</p>
       <h3 class="project-name">Netianas</h3>
-      <p class="project-desc" data-i18n="projects.netianas.desc">Mobile-first site designed and built end to end — layout, visual system and contact flow via EmailJS. Live on Vercel.</p>
+      <p class="project-desc" data-i18n="projects.netianas.desc">Mobile-first site designed and built end to end — layout, visual system and a contact flow running on my own Node API deployed on Railway. Front end live on Vercel.</p>
       <div class="project-tags">
         <span class="project-tag">Visual design</span>
         <span class="project-tag">Mobile-first</span>
         <span class="project-tag">HTML5 / CSS3</span>
-        <span class="project-tag">EmailJS</span>
+        <span class="project-tag">Node.js</span>
+        <span class="project-tag">REST API</span>
+        <span class="project-tag">Railway</span>
+        <span class="project-tag">Vercel</span>
+      </div>
+      <span class="project-link" data-i18n="projects.link">view project</span>
+    </a>
+
+    <a href="https://activityblog.vercel.app/" target="_blank" class="project-card">
+      <span class="badge-live">live</span>
+      <p class="project-type" data-i18n="projects.blog.type">full-stack — product design & build</p>
+      <h3 class="project-name">Activity Blog</h3>
+      <p class="project-desc" data-i18n="projects.blog.desc">Activity platform for online English classes. Admin panel to create and control sessions and track student progress, with authenticated access. React front end on Vercel, Supabase for auth and database.</p>
+      <div class="project-tags">
+        <span class="project-tag">React</span>
+        <span class="project-tag">Supabase</span>
+        <span class="project-tag">Auth</span>
+        <span class="project-tag">Admin dashboard</span>
         <span class="project-tag">Vercel</span>
       </div>
       <span class="project-link" data-i18n="projects.link">view project</span>
@@ -983,14 +1165,20 @@ footer {
     <h2 class="section-title" data-i18n="pf.title">the pieces</h2>
   </div>
 
+  <div class="pf-tabs reveal">
+    <button class="pf-tab active" data-filter="all" data-i18n="pf.tab.all">all</button>
+    <button class="pf-tab" data-filter="uxui" data-i18n="pf.tab.uxui">ux/ui</button>
+    <button class="pf-tab" data-filter="graphic" data-i18n="pf.tab.graphic">graphic &amp; content</button>
+  </div>
+
   <!-- ── UX/UI ── -->
-  <div class="pf-group reveal">
+  <div class="pf-group reveal" data-cat="uxui">
     <div class="pf-group-head">
       <div>
         <h3 class="pf-group-title" data-i18n="pf.uxui.title">UX/UI design</h3>
         <p class="pf-group-sub" data-i18n="pf.uxui.sub">Interfaces, user flows and app design — Figma.</p>
       </div>
-      <a href="assets/portfolio/camila-mihalyczo-portfolio-uxui.pdf" download class="pf-dl" data-i18n="pf.uxui.dl">↓ full portfolio PDF</a>
+      <a href="assets/portfolio/camila-mihalyczo-portfolio-uxui-en.pdf" download class="pf-dl" data-i18n="pf.uxui.dl" data-pdf-en="assets/portfolio/camila-mihalyczo-portfolio-uxui-en.pdf" data-pdf-es="">↓ full portfolio PDF</a>
     </div>
     <div class="pf-grid">
       <figure class="pf-item" data-full="assets/img/work/simply-shopping.jpg" data-cap="Simply Shopping — UX/UI">
@@ -1014,13 +1202,13 @@ footer {
   </div>
 
   <!-- ── GRÁFICO / CONTENIDO ── -->
-  <div class="pf-group reveal">
+  <div class="pf-group reveal" data-cat="graphic">
     <div class="pf-group-head">
       <div>
         <h3 class="pf-group-title" data-i18n="pf.graph.title">graphic design & content</h3>
         <p class="pf-group-sub" data-i18n="pf.graph.sub">Posters, social campaigns and brand content for galleries, artists and gastronomy.</p>
       </div>
-      <a href="assets/portfolio/camila-mihalyczo-portfolio-creative.pdf" download class="pf-dl" data-i18n="pf.graph.dl">↓ full portfolio PDF</a>
+      <a href="assets/portfolio/camila-mihalyczo-portfolio-creative-en.pdf" download class="pf-dl" data-i18n="pf.graph.dl" data-pdf-en="assets/portfolio/camila-mihalyczo-portfolio-creative-en.pdf" data-pdf-es="">↓ full portfolio PDF</a>
     </div>
     <div class="pf-grid">
       <figure class="pf-item" data-full="assets/img/work/adolescencia.jpg" data-cap="Adolescencia — poster">
@@ -1064,7 +1252,7 @@ footer {
   <button class="lb-btn" id="lb-close" aria-label="close">✕</button>
   <button class="lb-btn" id="lb-prev" aria-label="previous">‹</button>
   <button class="lb-btn" id="lb-next" aria-label="next">›</button>
-  <img id="lb-img" src="" alt="">
+  <img id="lb-img" alt="">
   <p class="lb-caption" id="lb-cap"></p>
 </div>
 
@@ -1080,17 +1268,26 @@ footer {
       <h3 class="cv-card-title">UX/UI Designer<br>& Frontend Developer</h3>
       <p class="cv-card-desc" data-i18n="cv.dev.desc">For agencies, product teams and startups. Figma, UX research, responsive and mobile-first design, HTML/CSS/JS.</p>
       <div class="cv-card-btns">
-        <a href="assets/cv/camila-mihalyczo-cv-frontend-uxui.pdf" download class="cv-card-btn" data-i18n="cv.btn.cv">↓ download CV (PDF)</a>
-        <a href="assets/portfolio/camila-mihalyczo-portfolio-uxui.pdf" download class="cv-card-btn alt" data-i18n="cv.btn.pf">↓ download portfolio (PDF)</a>
+        <a href="assets/cv/camila-mihalyczo-cv-frontend-uxui-en.pdf" download class="cv-card-btn" data-i18n="cv.btn.cv"
+           data-pdf-en="assets/cv/camila-mihalyczo-cv-frontend-uxui-en.pdf"
+           data-pdf-es="">↓ download CV (PDF)</a>
+        <a href="assets/portfolio/camila-mihalyczo-portfolio-uxui-en.pdf" download class="cv-card-btn alt" data-i18n="cv.btn.pf"
+           data-pdf-en="assets/portfolio/camila-mihalyczo-portfolio-uxui-en.pdf"
+           data-pdf-es="">↓ download portfolio (PDF)</a>
       </div>
     </div>
     <div class="cv-card">
       <p class="cv-card-role" data-i18n="cv.content.role">content & brand</p>
       <h3 class="cv-card-title">Content Creator<br>& Community Manager</h3>
       <p class="cv-card-desc" data-i18n="cv.content.desc">For brands and agencies. Visual content, social media, community management, digital marketing.</p>
+      <p class="cv-card-extra" data-i18n="cv.content.extra">Also available for virtual assistant / ops support work — calendar management, client coordination, CRM &amp; reporting.</p>
       <div class="cv-card-btns">
-        <a href="assets/cv/camila-mihalyczo-cv-content-manager.pdf" download class="cv-card-btn" data-i18n="cv.btn.cv2">↓ download CV (PDF)</a>
-        <a href="assets/portfolio/camila-mihalyczo-portfolio-creative.pdf" download class="cv-card-btn alt" data-i18n="cv.btn.pf2">↓ download portfolio (PDF)</a>
+        <a href="assets/cv/camila-mihalyczo-cv-content-manager-en.pdf" download class="cv-card-btn" data-i18n="cv.btn.cv2"
+           data-pdf-en="assets/cv/camila-mihalyczo-cv-content-manager-en.pdf"
+           data-pdf-es="">↓ download CV (PDF)</a>
+        <a href="assets/portfolio/camila-mihalyczo-portfolio-creative-en.pdf" download class="cv-card-btn alt" data-i18n="cv.btn.pf2"
+           data-pdf-en="assets/portfolio/camila-mihalyczo-portfolio-creative-en.pdf"
+           data-pdf-es="">↓ download portfolio (PDF)</a>
       </div>
     </div>
     <div class="cv-card" style="opacity:0.6; border-style: dashed;">
@@ -1171,6 +1368,22 @@ const translations = {
     'nav.projects': 'projects',
     'nav.cv': 'cv',
     'nav.contact': 'contact',
+    'tracks.lead': 'what are you hiring for?',
+    'tracks.a.role': 'design & development',
+    'tracks.a.hint': 'Interfaces, UX/UI and front-end builds.',
+    'tracks.b.role': 'content & brand',
+    'tracks.b.hint': 'Posters, social campaigns and brand content.',
+    'tracks.c.role': 'tech & sales',
+    'tracks.c.hint': 'Operations, commercial vision and cloud platforms.',
+    'tracks.go': 'see the work →',
+    'tracks.go2': 'see the work →',
+    'tracks.go3': 'see the CV →',
+    'pf.tab.all': 'all',
+    'pf.tab.uxui': 'ux/ui',
+    'pf.tab.graphic': 'graphic & content',
+    'projects.blog.type': 'full-stack — product design & build',
+    'projects.blog.desc': 'Activity platform for online English classes. Admin panel to create and control sessions and track student progress, with authenticated access. React front end on Vercel, Supabase for auth and database.',
+    'cv.content.extra': 'Also available for virtual assistant / ops support work — calendar management, client coordination, CRM & reporting.',
     'nav.portfolio': 'portfolio',
     'work.t1': 'interactive experience',
     'work.t2': 'ux/ui — app design',
@@ -1212,7 +1425,7 @@ const translations = {
     'about.title': 'design & development',
     'about.p1': "I'm a bilingual designer and developer based in Buenos Aires, finishing my Bachelor's in Multimedia Arts at Universidad Nacional de las Artes.",
     'about.p2': 'I work across the whole process: research, visual direction, interface design and interactive pieces — and then I build them. Designing and coding the same project means fewer things get lost in translation.',
-    'about.p3': 'My background runs through education, marketing and international teams, so I think about audience and message as much as about layout and componentry. Currently expanding into full-stack (Digital House) and cloud (AWS).',
+    'about.p3': 'My background runs through education, marketing and international teams, so I think about audience and message as much as about layout and componentry. Currently expanding into full-stack (Digital House) and cloud (AWS) — building real backend features (auth, admin dashboards, custom APIs) across projects like Netianas and my English-learning platform.',
     'stack.design': 'design',
     'stack.dev': 'development',
     'stack.video': 'Video Editing',
@@ -1227,7 +1440,7 @@ const translations = {
     'projects.vns.type': 'interactive experience — design & build',
     'projects.vns.desc': 'Immersive cyberfeminist web experience. Art direction and interface built around a glitch aesthetic — floating OS-style windows, interactive gallery, non-linear navigation and a hidden Easter egg.',
     'projects.netianas.type': 'web design + development',
-    'projects.netianas.desc': 'Mobile-first site designed and built end to end — layout, visual system and contact flow via EmailJS. Live on Vercel.',
+    'projects.netianas.desc': 'Mobile-first site designed and built end to end — layout, visual system and a contact flow running on my own Node API deployed on Railway. Front end live on Vercel.',
     'projects.fle.type': 'brand + landing page',
     'projects.fle.desc': 'Visual identity applied to an e-commerce landing page. Mobile-first layout designed around a single conversion path. Finished and ready to deploy.',
     'projects.ux.type': 'ux/ui — product design',
@@ -1253,6 +1466,22 @@ const translations = {
     'nav.projects': 'proyectos',
     'nav.cv': 'cv',
     'nav.contact': 'contacto',
+    'tracks.lead': '¿para qué puesto estás buscando?',
+    'tracks.a.role': 'diseño y desarrollo',
+    'tracks.a.hint': 'Interfaces, UX/UI y desarrollo front-end.',
+    'tracks.b.role': 'contenido y marca',
+    'tracks.b.hint': 'Posters, campañas de redes y contenido de marca.',
+    'tracks.c.role': 'tech y ventas',
+    'tracks.c.hint': 'Operaciones, visión comercial y plataformas cloud.',
+    'tracks.go': 'ver el trabajo →',
+    'tracks.go2': 'ver el trabajo →',
+    'tracks.go3': 'ver el CV →',
+    'pf.tab.all': 'todo',
+    'pf.tab.uxui': 'ux/ui',
+    'pf.tab.graphic': 'gráfico y contenido',
+    'projects.blog.type': 'full-stack — diseño y desarrollo de producto',
+    'projects.blog.desc': 'Plataforma de actividades para clases de inglés online. Panel de administración para crear y controlar sesiones y seguir el progreso de cada alumno, con acceso autenticado. Front end en React sobre Vercel, Supabase para auth y base de datos.',
+    'cv.content.extra': 'También disponible para trabajo de asistente virtual / soporte de operaciones — gestión de agenda, coordinación con clientes, CRM y reportes.',
     'nav.portfolio': 'portfolio',
     'work.t1': 'experiencia interactiva',
     'work.t2': 'ux/ui — diseño de app',
@@ -1294,7 +1523,7 @@ const translations = {
     'about.title': 'diseño y desarrollo',
     'about.p1': 'Soy diseñadora y desarrolladora bilingüe con base en Buenos Aires, terminando la Licenciatura en Artes Multimediales en la Universidad Nacional de las Artes.',
     'about.p2': 'Trabajo sobre todo el proceso: investigación, dirección visual, diseño de interfaz y piezas interactivas — y después las construyo. Diseñar y programar el mismo proyecto hace que se pierdan menos cosas en el camino.',
-    'about.p3': 'Mi recorrido pasa por la educación, el marketing y equipos internacionales, así que pienso tanto en la audiencia y el mensaje como en el layout y los componentes. Actualmente expandiéndome hacia full-stack (Digital House) y cloud (AWS).',
+    'about.p3': 'Mi recorrido pasa por la educación, el marketing y equipos internacionales, así que pienso tanto en la audiencia y el mensaje como en el layout y los componentes. Actualmente expandiéndome hacia full-stack (Digital House) y cloud (AWS) — construyendo features de backend reales (auth, paneles de administración, APIs propias) en proyectos como Netianas y mi plataforma de inglés.',
     'stack.design': 'diseño',
     'stack.dev': 'desarrollo',
     'stack.video': 'Edición de video',
@@ -1309,7 +1538,7 @@ const translations = {
     'projects.vns.type': 'experiencia interactiva — diseño y desarrollo',
     'projects.vns.desc': 'Experiencia web cyberfeminista inmersiva. Dirección de arte e interfaz construidas sobre una estética glitch — ventanas flotantes estilo OS, galería interactiva, navegación no lineal y un Easter egg oculto.',
     'projects.netianas.type': 'diseño web + desarrollo',
-    'projects.netianas.desc': 'Sitio mobile-first diseñado y construido de punta a punta — layout, sistema visual y flujo de contacto via EmailJS. Publicado en Vercel.',
+    'projects.netianas.desc': 'Sitio mobile-first diseñado y construido de punta a punta — layout, sistema visual y un flujo de contacto que corre sobre una API propia en Node desplegada en Railway. Front end publicado en Vercel.',
     'projects.fle.type': 'marca + landing page',
     'projects.fle.desc': 'Identidad visual aplicada a una landing de e-commerce. Layout mobile-first diseñado alrededor de un único camino de conversión. Terminada y lista para publicar.',
     'projects.ux.type': 'ux/ui — diseño de producto',
@@ -1332,57 +1561,129 @@ const translations = {
   }
 };
 
-let currentLang = 'en';
+const LANG_KEY = 'cm-lang';
+
+// idioma inicial: lo guardado > idioma del navegador > inglés
+function initialLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved === 'en' || saved === 'es') return saved;
+  } catch (e) { /* localStorage bloqueado (modo privado): seguimos igual */ }
+  return (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en';
+}
+
+let currentLang = initialLang();
 
 function toggleLang() {
-  currentLang = currentLang === 'en' ? 'es' : 'en';
-  applyLang(currentLang);
+  applyLang(currentLang === 'en' ? 'es' : 'en');
 }
 
 function applyLang(lang) {
   const t = translations[lang];
+  if (!t) return;
+  currentLang = lang;
 
-  // Update text nodes
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* no bloquea nada */ }
+
+  // Texto plano
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (t[key] !== undefined) el.textContent = t[key];
   });
 
-  // Update innerHTML nodes (for spans inside)
+  // Nodos con HTML adentro
   document.querySelectorAll('[data-i18n-html]').forEach(el => {
     const key = el.getAttribute('data-i18n-html');
     if (t[key] !== undefined) el.innerHTML = t[key];
   });
 
-  // Update lang toggle button appearance
+  // Descargas: apunta al PDF del idioma activo. Si esa versión todavía
+  // no existe (data-pdf-es vacío), cae al archivo que sí exista.
+  document.querySelectorAll('[data-pdf-en]').forEach(a => {
+    const wanted = a.getAttribute('data-pdf-' + lang);
+    const fallback = a.getAttribute('data-pdf-en') || a.getAttribute('data-pdf-es');
+    a.setAttribute('href', wanted || fallback);
+    a.classList.toggle('pdf-fallback', !wanted);
+  });
+
   document.getElementById('lang-en').className = lang === 'en' ? 'lang-active' : '';
   document.getElementById('lang-es').className = lang === 'es' ? 'lang-active' : '';
-
-  // Update html lang attribute
   document.documentElement.lang = lang;
 
-  // Update page title
   document.title = lang === 'es'
     ? 'Camila Mihalyczo — Diseñadora & Desarrolladora'
     : 'Camila Mihalyczo — Designer & Developer';
 }
 
+// ── PORTFOLIO FILTER + TRACK SELECTOR ──
+const pfTabs     = Array.from(document.querySelectorAll('.pf-tab'));
+const pfGroups   = Array.from(document.querySelectorAll('.pf-group[data-cat]'));
+const trackCards = Array.from(document.querySelectorAll('.track-card'));
+
+function applyFilter(cat) {
+  pfTabs.forEach(t => t.classList.toggle('active', t.dataset.filter === cat));
+  trackCards.forEach(c => c.classList.toggle('active', c.dataset.track === cat));
+
+  pfGroups.forEach(g => {
+    const show = cat === 'all' || g.dataset.cat === cat;
+    if (show) {
+      g.hidden = false;
+      requestAnimationFrame(() => g.classList.remove('pf-hidden'));
+    } else {
+      g.classList.add('pf-hidden');
+      setTimeout(() => { if (g.classList.contains('pf-hidden')) g.hidden = true; }, 260);
+    }
+  });
+}
+
+pfTabs.forEach(tab => tab.addEventListener('click', () => applyFilter(tab.dataset.filter)));
+
+trackCards.forEach(card => card.addEventListener('click', () => {
+  const track = card.dataset.track;
+
+  // Tech & Sales todavía no tiene piezas: va al CV y resalta esa tarjeta
+  if (track === 'tech') {
+    trackCards.forEach(c => c.classList.toggle('active', c === card));
+    document.getElementById('cvs').scrollIntoView({ behavior: 'smooth' });
+    const target = document.querySelectorAll('#cvs .cv-card')[2];
+    if (target) {
+      target.classList.remove('flash');
+      void target.offsetWidth;
+      target.classList.add('flash');
+      setTimeout(() => target.classList.remove('flash'), 3400);
+    }
+    return;
+  }
+
+  applyFilter(track);
+  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+}));
+
 // ── LIGHTBOX ──
-const lbItems = Array.from(document.querySelectorAll('.pf-item[data-full]'));
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lb-img');
 const lbCap = document.getElementById('lb-cap');
+let lbItems = [];
 let lbIndex = 0;
 
+// solo recorre las piezas visibles con el filtro actual
+function lbVisible() {
+  return Array.from(document.querySelectorAll('.pf-item[data-full]'))
+    .filter(el => el.offsetParent !== null);
+}
+
 function lbShow(i) {
+  if (!lbItems.length) return;
   lbIndex = (i + lbItems.length) % lbItems.length;
   const el = lbItems[lbIndex];
   lbImg.src = el.dataset.full;
   lbImg.alt = el.dataset.cap || '';
   lbCap.textContent = el.dataset.cap || '';
 }
-function lbOpen(i) {
-  lbShow(i);
+function lbOpen(el) {
+  lbItems = lbVisible();
+  const i = lbItems.indexOf(el);
+  lbShow(i < 0 ? 0 : i);
   lb.classList.add('open');
   lb.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
@@ -1393,7 +1694,8 @@ function lbClose() {
   document.body.style.overflow = '';
 }
 
-lbItems.forEach((el, i) => el.addEventListener('click', () => lbOpen(i)));
+document.querySelectorAll('.pf-item[data-full]').forEach(el =>
+  el.addEventListener('click', () => lbOpen(el)));
 document.getElementById('lb-close').addEventListener('click', lbClose);
 document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); lbShow(lbIndex - 1); });
 document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); lbShow(lbIndex + 1); });
@@ -1415,6 +1717,10 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 reveals.forEach(el => observer.observe(el));
+
+// arranque
+applyLang(currentLang);
+applyFilter('all');
 </script>
 </body>
 </html>
