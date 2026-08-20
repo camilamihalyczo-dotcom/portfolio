@@ -338,7 +338,7 @@ CONTENT = {
          'tags': ['Campaign', 'Social design', 'Community', 'Copywriting']},
   'w2': {'kicker': '03 — client work', 'title': 'Galleries & artists', 'role': 'Freelance content — 2024',
          'body': 'Freelance content creation and community management for clients in the art industry: digital campaigns and content for galleries, artists and private clients.',
-         'bullets': ['Posters and event pieces for film cycles and exhibitions.',
+         'bullets': ['Posters and event pieces for film cycles, exhibitions and community events.',
                      'Feed design keeping a consistent visual identity across each cycle.',
                      'Copy and scheduling for each launch.'],
          'tags': ['Poster design', 'Art direction', 'Feed design', 'Cultural comms']},
@@ -348,7 +348,19 @@ CONTENT = {
                      'Consistent typographic system across every piece.',
                      'Meta Ads campaign management.'],
          'tags': ['Brand content', 'Meta Ads', 'Gastronomy', 'Community']},
-  'contact_label': '05 — contact',
+  'motion_label': '05 — motion',
+  'motion_title': 'motion & video',
+  'motion_intro': 'Short-form pieces for feed, stories and ads — edited and animated end to end. These are video: the frames below are stills, and the full pieces play on the site.',
+  'motion_sample': 'SAMPLE',
+  'motion_watch': 'Watch them at',
+  'motion': [
+   ('tiberio-ad', 'Tiberio Food & Coffee', 'brand ad — 6s', False),
+   ('tiberio-desayuno', 'Tiberio — Desayuno', 'social piece — 10s', False),
+   ('coming-soon', 'Coming Soon', 'campaign teaser — 5s', False),
+   ('sample-promo', 'Sale Promo', 'sample piece — 15s', True),
+   ('sample-sale', 'Spring Sale', 'sample piece — 15s', True),
+  ],
+  'contact_label': '06 — contact',
   'contact_title': "let's work together",
   'contact_body': 'Open to remote opportunities — full-time, part-time or freelance. Comfortable working with international teams in English or Spanish.',
  },
@@ -376,7 +388,7 @@ CONTENT = {
          'tags': ['Campaña', 'Diseño para redes', 'Community', 'Copywriting']},
   'w2': {'kicker': '03 — trabajo para clientes', 'title': 'Galerías y artistas', 'role': 'Contenido freelance — 2024',
          'body': 'Creación de contenido y community management freelance para clientes de la industria del arte: campañas digitales y contenido para galerías, artistas y clientes privados.',
-         'bullets': ['Posters y piezas de evento para ciclos de cine y muestras.',
+         'bullets': ['Posters y piezas de evento para ciclos de cine, muestras y encuentros de comunidad.',
                      'Diseño de feed sosteniendo una identidad visual consistente en cada ciclo.',
                      'Copy y programación de cada lanzamiento.'],
          'tags': ['Diseño de posters', 'Dirección de arte', 'Diseño de feed', 'Comunicación cultural']},
@@ -386,7 +398,19 @@ CONTENT = {
                      'Sistema tipográfico consistente en todas las piezas.',
                      'Gestión de campañas de Meta Ads.'],
          'tags': ['Contenido de marca', 'Meta Ads', 'Gastronomía', 'Community']},
-  'contact_label': '05 — contacto',
+  'motion_label': '05 — motion',
+  'motion_title': 'motion y video',
+  'motion_intro': 'Piezas cortas para feed, stories y ads — editadas y animadas de punta a punta. Son video: los frames de abajo son capturas, y las piezas completas se reproducen en el sitio.',
+  'motion_sample': 'MUESTRA',
+  'motion_watch': 'Se ven en',
+  'motion': [
+   ('tiberio-ad', 'Tiberio Food & Coffee', 'pieza de marca — 6s', False),
+   ('tiberio-desayuno', 'Tiberio — Desayuno', 'pieza de redes — 10s', False),
+   ('coming-soon', 'Coming Soon', 'teaser de campaña — 5s', False),
+   ('sample-promo', 'Sale Promo', 'pieza de muestra — 15s', True),
+   ('sample-sale', 'Spring Sale', 'pieza de muestra — 15s', True),
+  ],
+  'contact_label': '06 — contacto',
   'contact_title': 'trabajemos juntos',
   'contact_body': 'Abierta a oportunidades remotas — tiempo completo, medio tiempo o freelance. Cómoda trabajando con equipos internacionales en inglés o español.',
  },
@@ -460,7 +484,7 @@ def build_creative(lang, path):
     c = canvas.Canvas(path, pagesize=(W, H))
     c.setTitle(t['title']); c.setAuthor('Camila Mihalyczo')
     c.setSubject('Creative / content portfolio')
-    TOTAL = 6
+    TOTAL = 7
 
     cover(c, t); c.showPage()
 
@@ -521,19 +545,53 @@ def build_creative(lang, path):
         yy -= len(lines) * 22 + 12
     tag_row(c, t['w2']['tags'], M, 130, 500, 10)
 
-    pieces = ['adolescencia.jpg', 'ciclo-cortos.jpg', 'demian-rugna.jpg',
-              'julieta.jpg', 'falopa-feed.jpg', 'ilustracion.jpg']
-    gx, gy, gw, gh, gap = 660, 140, 220, 290, 20
-    for i, p in enumerate(pieces):
-        col, row = i % 3, i // 3
-        image_panel(c, os.path.join(IMG, p),
-                    gx + col * (gw + gap), gy + (1 - row) * (gh + gap), gw, gh, pad=10)
+    # 7 piezas: fila de 4 arriba y de 3 abajo, para que no quede un hueco suelto
+    pieces = [['adolescencia.jpg', 'ciclo-cortos.jpg', 'demian-rugna.jpg', 'julieta.jpg'],
+              ['falopa-feed.jpg', 'brunch-yoga.jpg', 'ilustracion.jpg']]
+    gx, gy, gw, gh, gap = 620, 140, 180, 290, 16
+    for row, rowpieces in enumerate(pieces):
+        for col, p in enumerate(rowpieces):
+            image_panel(c, os.path.join(IMG, p),
+                        gx + col * (gw + gap), gy + (1 - row) * (gh + gap), gw, gh, pad=8)
     footer(c, 4, TOTAL, lang); c.showPage()
 
     project_page(c, t, t['w3'], os.path.join(IMG, 'tiberio-almuerzo.jpg'))
     footer(c, 5, TOTAL, lang); c.showPage()
 
-    closing(c, t); footer(c, 6, TOTAL, lang); c.showPage()
+    # 6 — motion: el PDF no reproduce video, así que van frames + dónde verlos
+    bg(c, BG2)
+    section_label(c, t['motion_label'], M, H - 110)
+    c.setFont('Unb', 52); c.setFillColor(TEXT)
+    c.drawString(M, H - 180, t['motion_title'])
+    para(c, t['motion_intro'], M, H - 240, 900, size=14, leading=26)
+
+    vw, vh, vgap = 200, 300, 26
+    vx, vy = M, 190
+    for i, (slug, name, kind, sample) in enumerate(t['motion']):
+        x = vx + i * (vw + vgap)
+        image_panel(c, os.path.join(IMG, slug + '.jpg'), x, vy, vw, vh, pad=8)
+        # chapita: video, y si corresponde, muestra
+        c.setFillColor(BG); c.setStrokeColor(GREEN); c.setLineWidth(0.8)
+        c.rect(x + 10, vy + vh - 26, 46, 16, fill=1, stroke=1)
+        c.setFont('Mono', 8); c.setFillColor(GREEN)
+        c.drawCentredString(x + 33, vy + vh - 21, 'VIDEO')
+        if sample:
+            tw = pdfmetrics.stringWidth(t['motion_sample'], 'Mono', 8) + 14
+            c.setFillColor(BG); c.setStrokeColor(HexColor('#fbbf24'))
+            c.rect(x + vw - tw - 10, vy + vh - 26, tw, 16, fill=1, stroke=1)
+            c.setFillColor(HexColor('#fbbf24')); c.setFont('Mono', 8)
+            c.drawCentredString(x + vw - tw / 2 - 10, vy + vh - 21, t['motion_sample'])
+        c.setFont('MonoB', 12); c.setFillColor(TEXT)
+        for j, ln in enumerate(wrap(name, 'MonoB', 12, vw)):
+            c.drawString(x, vy - 22 - j * 18, ln)
+        c.setFont('Mono', 10); c.setFillColor(DIM)
+        c.drawString(x, vy - 62, kind)
+
+    c.setFont('Mono', 12); c.setFillColor(CYAN)
+    c.drawString(M, 92, t['motion_watch'] + '  ' + CONTACT['site'] + '/#portfolio')
+    footer(c, 6, TOTAL, lang); c.showPage()
+
+    closing(c, t); footer(c, 7, TOTAL, lang); c.showPage()
     c.save()
     return path
 

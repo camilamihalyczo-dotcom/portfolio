@@ -698,7 +698,8 @@ section { padding: 6rem 3rem; }
 }
 .pf-item:hover { border-color: var(--border2); transform: translateY(-2px); }
 /* contain, no cover: un poster recortado deja de ser el poster */
-.pf-item img {
+.pf-item img,
+.pf-item video {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: contain;
@@ -708,6 +709,34 @@ section { padding: 6rem 3rem; }
   transition: transform 0.25s;
 }
 .pf-item:hover img { transform: scale(1.02); }
+
+/* ── PIEZAS DE VIDEO ── */
+.pf-item.is-video { position: relative; }
+.pf-item .pf-play,
+.pf-item .pf-spec {
+  position: absolute;
+  top: 0.6rem;
+  z-index: 2;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(10,10,15,0.82);
+  padding: 2px 8px;
+  pointer-events: none;
+}
+.pf-item .pf-play { right: 0.6rem; color: var(--green); border: 1px solid rgba(0,255,136,0.45); }
+/* rótulo honesto: pieza de muestra, no trabajo de cliente */
+.pf-item .pf-spec { left: 0.6rem; color: var(--amber); border: 1px solid rgba(251,191,36,0.45); }
+
+#lightbox video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 1px solid var(--border2);
+}
+#lb-video { display: none; }
+#lightbox.is-video #lb-img { display: none; }
+#lightbox.is-video #lb-video { display: block; }
 
 .pf-cap {
   padding: 0.6rem 0.75rem 0.75rem;
@@ -1168,6 +1197,7 @@ footer {
     <button class="pf-tab active" data-filter="all" data-i18n="pf.tab.all">all</button>
     <button class="pf-tab" data-filter="uxui" data-i18n="pf.tab.uxui">ux/ui</button>
     <button class="pf-tab" data-filter="graphic" data-i18n="pf.tab.graphic">graphic &amp; content</button>
+    <button class="pf-tab" data-filter="motion" data-i18n="pf.tab.motion">motion &amp; video</button>
   </div>
 
   <!-- ── UX/UI ── -->
@@ -1238,9 +1268,57 @@ footer {
         <img src="assets/img/work/tiberio-almuerzo.jpg" alt="Pieza Almuerzo Tiberio" loading="lazy">
         <figcaption class="pf-cap"><p class="pf-cap-name">Tiberio</p><p class="pf-cap-type" data-i18n="pf.c.brand">brand content</p></figcaption>
       </figure>
+      <figure class="pf-item" data-full="assets/img/work/brunch-yoga.jpg" data-cap="Nomad Girls Club — Brunch &amp; Yoga">
+        <img src="assets/img/work/brunch-yoga.jpg" alt="Flyer Brunch &amp; Yoga — Nomad Girls Club" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name">Nomad Girls Club</p><p class="pf-cap-type" data-i18n="pf.c.flyer">event flyer</p></figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/hot-sale.jpg" data-cap="Hot Sale — sample piece">
+        <span class="pf-spec" data-i18n="pf.badge.spec">sample</span>
+        <img src="assets/img/work/hot-sale.jpg" alt="Pieza Hot Sale" loading="lazy">
+        <figcaption class="pf-cap"><p class="pf-cap-name">Hot Sale</p><p class="pf-cap-type" data-i18n="pf.c.sample">sample piece</p></figcaption>
+      </figure>
       <figure class="pf-item" data-full="assets/img/work/ilustracion.jpg" data-cap="Ilustración">
         <img src="assets/img/work/ilustracion.jpg" alt="Ilustración" loading="lazy">
         <figcaption class="pf-cap"><p class="pf-cap-name" data-i18n="pf.c.illuname">Illustration</p><p class="pf-cap-type" data-i18n="pf.c.illu">artwork</p></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- ── MOTION / VIDEO ── -->
+  <div class="pf-group reveal" data-cat="motion">
+    <div class="pf-group-head">
+      <div>
+        <h3 class="pf-group-title" data-i18n="pf.motion.title">motion &amp; video</h3>
+        <p class="pf-group-sub" data-i18n="pf.motion.sub">Short-form pieces for feed, stories and ads. Hover to play, click for full size.</p>
+      </div>
+    </div>
+    <div class="pf-grid">
+      <figure class="pf-item is-video" data-video="assets/video/tiberio-ad.mp4" data-full="assets/img/work/tiberio-ad.jpg" data-cap="Tiberio Food &amp; Coffee — brand ad">
+        <span class="pf-play" data-i18n="pf.badge.video">video</span>
+        <video poster="assets/img/work/tiberio-ad.jpg" muted loop playsinline preload="none"><source src="assets/video/tiberio-ad.webm" type="video/webm"><source src="assets/video/tiberio-ad.mp4" type="video/mp4"></video>
+        <figcaption class="pf-cap"><p class="pf-cap-name">Tiberio Food &amp; Coffee</p><p class="pf-cap-type" data-i18n="pf.c.ad">brand ad</p></figcaption>
+      </figure>
+      <figure class="pf-item is-video" data-video="assets/video/tiberio-desayuno.mp4" data-full="assets/img/work/tiberio-desayuno.jpg" data-cap="Tiberio — Desayuno">
+        <span class="pf-play" data-i18n="pf.badge.video">video</span>
+        <video poster="assets/img/work/tiberio-desayuno.jpg" muted loop playsinline preload="none"><source src="assets/video/tiberio-desayuno.webm" type="video/webm"><source src="assets/video/tiberio-desayuno.mp4" type="video/mp4"></video>
+        <figcaption class="pf-cap"><p class="pf-cap-name">Tiberio — Desayuno</p><p class="pf-cap-type" data-i18n="pf.c.social">social piece</p></figcaption>
+      </figure>
+      <figure class="pf-item is-video" data-video="assets/video/coming-soon.mp4" data-full="assets/img/work/coming-soon.jpg" data-cap="Coming Soon — campaign teaser">
+        <span class="pf-play" data-i18n="pf.badge.video">video</span>
+        <video poster="assets/img/work/coming-soon.jpg" muted loop playsinline preload="none"><source src="assets/video/coming-soon.webm" type="video/webm"><source src="assets/video/coming-soon.mp4" type="video/mp4"></video>
+        <figcaption class="pf-cap"><p class="pf-cap-name">Coming Soon</p><p class="pf-cap-type" data-i18n="pf.c.teaser">campaign teaser</p></figcaption>
+      </figure>
+      <figure class="pf-item is-video" data-video="assets/video/sample-promo.mp4" data-full="assets/img/work/sample-promo.jpg" data-cap="Sale Promo — sample piece">
+        <span class="pf-play" data-i18n="pf.badge.video">video</span>
+        <span class="pf-spec" data-i18n="pf.badge.spec">sample</span>
+        <video poster="assets/img/work/sample-promo.jpg" muted loop playsinline preload="none"><source src="assets/video/sample-promo.webm" type="video/webm"><source src="assets/video/sample-promo.mp4" type="video/mp4"></video>
+        <figcaption class="pf-cap"><p class="pf-cap-name">Sale Promo</p><p class="pf-cap-type" data-i18n="pf.c.sample">sample piece</p></figcaption>
+      </figure>
+      <figure class="pf-item is-video" data-video="assets/video/sample-sale.mp4" data-full="assets/img/work/sample-sale.jpg" data-cap="Spring Sale — sample piece">
+        <span class="pf-play" data-i18n="pf.badge.video">video</span>
+        <span class="pf-spec" data-i18n="pf.badge.spec">sample</span>
+        <video poster="assets/img/work/sample-sale.jpg" muted loop playsinline preload="none"><source src="assets/video/sample-sale.webm" type="video/webm"><source src="assets/video/sample-sale.mp4" type="video/mp4"></video>
+        <figcaption class="pf-cap"><p class="pf-cap-name">Spring Sale</p><p class="pf-cap-type" data-i18n="pf.c.sample">sample piece</p></figcaption>
       </figure>
     </div>
   </div>
@@ -1252,6 +1330,7 @@ footer {
   <button class="lb-btn" id="lb-prev" aria-label="previous">‹</button>
   <button class="lb-btn" id="lb-next" aria-label="next">›</button>
   <img id="lb-img" alt="">
+  <video id="lb-video" controls loop muted playsinline></video>
   <p class="lb-caption" id="lb-cap"></p>
 </div>
 
@@ -1367,6 +1446,16 @@ const translations = {
     'nav.projects': 'projects',
     'nav.cv': 'cv',
     'nav.contact': 'contact',
+    'pf.tab.motion': 'motion & video',
+    'pf.motion.title': 'motion & video',
+    'pf.motion.sub': 'Short-form pieces for feed, stories and ads. Hover to play, click for full size.',
+    'pf.badge.video': 'video',
+    'pf.badge.spec': 'sample',
+    'pf.c.flyer': 'event flyer',
+    'pf.c.ad': 'brand ad',
+    'pf.c.social': 'social piece',
+    'pf.c.teaser': 'campaign teaser',
+    'pf.c.sample': 'sample piece',
     'tracks.lead': 'what are you hiring for?',
     'tracks.a.role': 'design & development',
     'tracks.a.hint': 'Interfaces, UX/UI and front-end builds.',
@@ -1465,6 +1554,16 @@ const translations = {
     'nav.projects': 'proyectos',
     'nav.cv': 'cv',
     'nav.contact': 'contacto',
+    'pf.tab.motion': 'motion y video',
+    'pf.motion.title': 'motion y video',
+    'pf.motion.sub': 'Piezas cortas para feed, stories y ads. Pasá el mouse para reproducir, hacé click para verlas completas.',
+    'pf.badge.video': 'video',
+    'pf.badge.spec': 'muestra',
+    'pf.c.flyer': 'flyer de evento',
+    'pf.c.ad': 'pieza de marca',
+    'pf.c.social': 'pieza de redes',
+    'pf.c.teaser': 'teaser de campaña',
+    'pf.c.sample': 'pieza de muestra',
     'tracks.lead': '¿para qué puesto estás buscando?',
     'tracks.a.role': 'diseño y desarrollo',
     'tracks.a.hint': 'Interfaces, UX/UI y desarrollo front-end.',
@@ -1671,12 +1770,32 @@ function lbVisible() {
     .filter(el => el.offsetParent !== null);
 }
 
+const lbVideo = document.getElementById('lb-video');
+
 function lbShow(i) {
   if (!lbItems.length) return;
   lbIndex = (i + lbItems.length) % lbItems.length;
   const el = lbItems[lbIndex];
-  lbImg.src = el.dataset.full;
-  lbImg.alt = el.dataset.cap || '';
+  const src = el.dataset.video;
+
+  lbVideo.pause();
+  if (src) {
+    // dos fuentes: webm primero, mp4 de respaldo para Safari
+    lbVideo.innerHTML =
+      '<source src="' + src.replace(/\.mp4$/, '.webm') + '" type="video/webm">' +
+      '<source src="' + src + '" type="video/mp4">';
+    lbVideo.poster = el.dataset.full || '';
+    lbVideo.load();
+    lb.classList.add('is-video');
+    lbVideo.play().catch(() => {});   // si el navegador bloquea el autoplay, quedan los controles
+  } else {
+    lbVideo.innerHTML = '';
+    lbVideo.removeAttribute('poster');
+    lbVideo.load();
+    lb.classList.remove('is-video');
+    lbImg.src = el.dataset.full;
+    lbImg.alt = el.dataset.cap || '';
+  }
   lbCap.textContent = el.dataset.cap || '';
 }
 function lbOpen(el) {
@@ -1688,6 +1807,7 @@ function lbOpen(el) {
   document.body.style.overflow = 'hidden';
 }
 function lbClose() {
+  lbVideo.pause();
   lb.classList.remove('open');
   lb.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
@@ -1695,6 +1815,14 @@ function lbClose() {
 
 document.querySelectorAll('.pf-item[data-full]').forEach(el =>
   el.addEventListener('click', () => lbOpen(el)));
+
+// las miniaturas de video se reproducen al pasar el mouse, muteadas
+document.querySelectorAll('.pf-item.is-video').forEach(el => {
+  const v = el.querySelector('video');
+  if (!v) return;
+  el.addEventListener('mouseenter', () => { v.play().catch(() => {}); });
+  el.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+});
 document.getElementById('lb-close').addEventListener('click', lbClose);
 document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); lbShow(lbIndex - 1); });
 document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); lbShow(lbIndex + 1); });
