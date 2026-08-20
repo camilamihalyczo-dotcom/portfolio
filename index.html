@@ -1165,8 +1165,7 @@ footer {
       </div>
       <div class="project-links">
         <a href="https://activityblog.vercel.app/" target="_blank" rel="noopener" class="project-link" data-i18n="projects.link">view project</a>
-        <!-- TODO: pegar la URL del repo acá y sacar el comentario
-        <a href="" target="_blank" rel="noopener" class="project-repo" data-i18n="pf.repo">repo ↗</a> -->
+        <a href="https://github.com/camilamihalyczo-dotcom/activityblog" target="_blank" rel="noopener" class="project-repo" data-i18n="pf.repo">repo ↗</a>
       </div>
     </article>
 
@@ -1190,8 +1189,8 @@ footer {
       </div>
       <div class="project-links">
         <a href="https://netianas.vercel.app" target="_blank" rel="noopener" class="project-link" data-i18n="projects.link">view project</a>
-        <!-- TODO: pegar la URL del repo acá y sacar el comentario
-        <a href="" target="_blank" rel="noopener" class="project-repo" data-i18n="pf.repo">repo ↗</a> -->
+        <a href="https://github.com/camilamihalyczo-dotcom/netianas" target="_blank" rel="noopener" class="project-repo" data-i18n="pf.repo.front">repo · front ↗</a>
+        <a href="https://github.com/camilamihalyczo-dotcom/netianas-api" target="_blank" rel="noopener" class="project-repo" data-i18n="pf.repo.api">repo · api ↗</a>
       </div>
     </article>
 
@@ -1427,8 +1426,20 @@ footer {
     </div>
     <div class="pf-grid">
       <!-- Reemplazá cada slot por una <figure class="pf-item"> igual a las de arriba en cuanto tengas la captura -->
-      <div class="pf-item empty"><span data-i18n="pf.slot.blog">Activity Blog<br>— screenshot pending —</span></div>
-      <div class="pf-item empty"><span data-i18n="pf.slot.net2">Netianas<br>— screenshot pending —</span></div>
+      <figure class="pf-item" data-full="assets/img/work/activity-blog.jpg" data-cap="Activity Blog — live site">
+        <img src="assets/img/work/activity-blog.jpg" alt="Activity Blog — sitio publicado" loading="lazy">
+        <figcaption class="pf-cap">
+          <p class="pf-cap-name">Activity Blog</p>
+          <p class="pf-cap-type" data-i18n="pf.c.platform">live platform</p>
+        </figcaption>
+      </figure>
+      <figure class="pf-item" data-full="assets/img/work/netianas.jpg" data-cap="Netianas — live site">
+        <img src="assets/img/work/netianas.jpg" alt="Netianas — sitio publicado" loading="lazy">
+        <figcaption class="pf-cap">
+          <p class="pf-cap-name">Netianas</p>
+          <p class="pf-cap-type" data-i18n="pf.c.netart">net.art · live</p>
+        </figcaption>
+      </figure>
       <figure class="pf-item" data-full="assets/img/work/fle-cookies-landing.jpg" data-cap="Fle Cookies — rebuilt landing page">
         <img src="assets/img/work/fle-cookies-landing.jpg" alt="Landing de Fle Cookies reconstruida" loading="lazy">
         <figcaption class="pf-cap">
@@ -1563,6 +1574,10 @@ const translations = {
     'nav.projects': 'projects',
     'nav.cv': 'cv',
     'nav.contact': 'contact',
+    'pf.repo.front': 'repo · front ↗',
+    'pf.repo.api': 'repo · api ↗',
+    'pf.c.platform': 'live platform',
+    'pf.c.netart': 'net.art · live',
     'pf.c.case': 'ux/ui — case study',
     'pf.c.rebuild': 'rebuilt · 0 a11y failures',
     'pf.proto': 'open prototype',
@@ -1571,8 +1586,6 @@ const translations = {
     'pf.code.sub': 'Shipped products I designed and built. Live links and repos are on each project above.',
     'pf.code.link': 'read the architecture →',
     'pf.case': 'case study ↗',
-    'pf.slot.blog': 'Activity Blog — screenshot pending',
-    'pf.slot.net2': 'Netianas — screenshot pending',
     'pf.slot.vns2': 'VNS Matrix — screenshot pending',
     'pf.tech.label': 'architecture',
     'pf.repo': 'repo ↗',
@@ -1687,6 +1700,10 @@ const translations = {
     'nav.projects': 'proyectos',
     'nav.cv': 'cv',
     'nav.contact': 'contacto',
+    'pf.repo.front': 'repo · front ↗',
+    'pf.repo.api': 'repo · api ↗',
+    'pf.c.platform': 'plataforma publicada',
+    'pf.c.netart': 'net.art · publicado',
     'pf.c.case': 'ux/ui — caso de estudio',
     'pf.c.rebuild': 'reconstruida · 0 fallas de a11y',
     'pf.proto': 'abrir prototipo',
@@ -1695,8 +1712,6 @@ const translations = {
     'pf.code.sub': 'Productos publicados que diseñé y construí. Los links y repos están en cada proyecto de arriba.',
     'pf.code.link': 'ver la arquitectura →',
     'pf.case': 'ver el caso ↗',
-    'pf.slot.blog': 'Activity Blog — falta captura',
-    'pf.slot.net2': 'Netianas — falta captura',
     'pf.slot.vns2': 'VNS Matrix — falta captura',
     'pf.tech.label': 'arquitectura',
     'pf.repo': 'repo ↗',

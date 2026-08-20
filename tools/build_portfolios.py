@@ -20,6 +20,7 @@ from reportlab.lib.utils import ImageReader
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 IMG  = os.path.join(HERE, 'assets', 'img', 'work')
+CASE = os.path.join(HERE, 'assets', 'img', 'cases', 'fle-cookies')
 OUT  = os.path.join(HERE, 'assets', 'portfolio')
 os.makedirs(OUT, exist_ok=True)
 
@@ -250,19 +251,35 @@ CONTENT = {
    ('Visual', 'Type, spacing and colour as a system, not per screen. Built in Figma, handed off in a way a developer can actually implement.'),
   ],
   'approach_note': 'My designs focus on ease of use and accessibility.',
-  'p1': {'kicker': '02 — project', 'title': 'Simply Shopping', 'role': 'Mobile app — UX/UI',
+  'fle': {
+   'kicker': '02 — project',
+   'title': 'Fle Cookies',
+   'role': 'Ordering app — design and build',
+   'tagline': "The app doesn't replace the chat. It writes the message.",
+   'body': 'A home bakery that sells only through WhatsApp, where every order began as a blank chat: five buttons opened the same empty conversation and the customer described what they wanted from scratch.',
+   'bullets': [
+     'Six screens ending in a review step that shows the exact message before it is sent.',
+     'Built from the brand\u2019s own asset kit, not from its website \u2014 which turned out to be a reinterpretation.',
+     'I rebuilt the live landing page as well: the five WhatsApp CTAs were white on green at 1.98:1, failing every WCAG level.',
+   ],
+   'metrics_label': 'landing rebuild, audited',
+   'metrics': ['contrast failures', 'targets under 44 px', 'images without alt'],
+   'screens': ['catalogue', 'cart', 'whatsapp handoff'],
+   'tags': ['Figma', 'Mobile-first', 'User flows', 'Design system', 'WhatsApp commerce'],
+  },
+  'p1': {'kicker': '03 — project', 'title': 'Simply Shopping', 'role': 'Mobile app — UX/UI',
          'body': 'A mobile-first e-commerce app built around discovery. The brief was a simple, accessible interface where finding something you like takes as few taps as possible.',
          'bullets': ['Screens for discovery, weekly deals and personalised recommendations.',
                      'Editorial type paired with generous product imagery to keep the browse experience calm.',
                      'One clear action per card, so the path to a product is never ambiguous.'],
          'tags': ['Figma', 'Mobile-first', 'User flows', 'E-commerce UX', 'App design']},
-  'p2': {'kicker': '03 — project', 'title': 'Agile Technology', 'role': 'Responsive interface — UI',
+  'p2': {'kicker': '04 — project', 'title': 'Agile Technology', 'role': 'Responsive interface — UI',
          'body': 'A responsive interface for a tech product, designed as a system rather than a set of screens: the same components rearrange across sizes instead of being redrawn.',
          'bullets': ['Sign-up flow and product showcase, tablet through desktop.',
                      'High-contrast layout splitting product imagery from the form, so the action always reads first.',
                      'Component and spacing rules documented for handoff.'],
          'tags': ['Figma', 'Design system', 'Responsive UI', 'Interface design']},
-  'more_label': '04 — also in progress',
+  'more_label': '05 — also in progress',
   'more_title': 'design meets code',
   'more_intro': 'Beyond Figma, these are live products where I did both the design and the build. Screens for these are being prepared — they are all public and can be visited today.',
   'more': [
@@ -270,7 +287,7 @@ CONTENT = {
    ('Netianas', 'netianas.vercel.app', 'Mobile-first site designed and built end to end, with a contact flow running on my own Node API deployed on Railway.', ['Visual design', 'Node.js', 'REST API', 'Railway']),
    ('VNS Matrix', 'camilamihalyczo-dotcom.github.io', 'Immersive cyberfeminist web experience — art direction and interface built around a glitch aesthetic, with non-linear navigation.', ['Art direction', 'Interaction design', 'JavaScript']),
   ],
-  'contact_label': '05 — contact',
+  'contact_label': '06 — contact',
   'contact_title': "let's make something",
   'contact_body': 'Open to remote opportunities — full-time, part-time or freelance. Comfortable working with international teams in English or Spanish.',
  },
@@ -288,19 +305,35 @@ CONTENT = {
    ('Visual', 'Tipografía, espaciado y color como sistema, no pantalla por pantalla. Hecho en Figma y entregado de una forma que un dev pueda implementar.'),
   ],
   'approach_note': 'Mis diseños se enfocan en la facilidad de uso y la accesibilidad.',
-  'p1': {'kicker': '02 — proyecto', 'title': 'Simply Shopping', 'role': 'App mobile — UX/UI',
+  'fle': {
+   'kicker': '02 — proyecto',
+   'title': 'Fle Cookies',
+   'role': 'App de pedidos — dise\u00f1o y desarrollo',
+   'tagline': 'La app no reemplaza el chat. Escribe el mensaje.',
+   'body': 'Una pasteler\u00eda casera que vende s\u00f3lo por WhatsApp, donde cada pedido arrancaba como un chat en blanco: cinco botones abr\u00edan la misma conversaci\u00f3n vac\u00eda y el cliente describ\u00eda lo que quer\u00eda desde cero.',
+   'bullets': [
+     'Seis pantallas que terminan en un paso de revisi\u00f3n con el mensaje exacto antes de enviarlo.',
+     'Construida sobre el kit de marca original, no sobre la web \u2014 que result\u00f3 ser una reinterpretaci\u00f3n.',
+     'Tambi\u00e9n reconstru\u00ed la landing publicada: los cinco CTAs de WhatsApp eran blanco sobre verde a 1.98:1, fallando todos los niveles WCAG.',
+   ],
+   'metrics_label': 'landing reconstruida, auditada',
+   'metrics': ['fallas de contraste', 'targets bajo 44 px', 'im\u00e1genes sin alt'],
+   'screens': ['cat\u00e1logo', 'carrito', 'handoff whatsapp'],
+   'tags': ['Figma', 'Mobile-first', 'Flujos de usuario', 'Design system', 'WhatsApp commerce'],
+  },
+  'p1': {'kicker': '03 — proyecto', 'title': 'Simply Shopping', 'role': 'App mobile — UX/UI',
          'body': 'Una app de e-commerce mobile-first construida alrededor del descubrimiento. El pedido era una interfaz simple y accesible, donde encontrar algo que te guste tome la menor cantidad de taps posible.',
          'bullets': ['Pantallas de descubrimiento, ofertas semanales y recomendaciones personalizadas.',
                      'Tipografía editorial combinada con imágenes de producto grandes para que navegar sea una experiencia tranquila.',
                      'Una sola acción clara por tarjeta, para que el camino al producto nunca sea ambiguo.'],
          'tags': ['Figma', 'Mobile-first', 'Flujos de usuario', 'UX de e-commerce', 'Diseño de app']},
-  'p2': {'kicker': '03 — proyecto', 'title': 'Agile Technology', 'role': 'Interfaz responsive — UI',
+  'p2': {'kicker': '04 — proyecto', 'title': 'Agile Technology', 'role': 'Interfaz responsive — UI',
          'body': 'Una interfaz responsive para un producto tecnológico, diseñada como sistema y no como un conjunto de pantallas: los mismos componentes se reacomodan según el tamaño en vez de volver a dibujarse.',
          'bullets': ['Flujo de registro y showcase de producto, de tablet a desktop.',
                      'Layout de alto contraste que separa la imagen de producto del formulario, para que la acción se lea primero.',
                      'Reglas de componentes y espaciado documentadas para la entrega.'],
          'tags': ['Figma', 'Design system', 'UI responsive', 'Diseño de interfaz']},
-  'more_label': '04 — también en curso',
+  'more_label': '05 — también en curso',
   'more_title': 'diseño y código',
   'more_intro': 'Más allá de Figma, estos son productos publicados donde hice el diseño y el desarrollo. Las capturas están en preparación — los tres son públicos y se pueden visitar hoy.',
   'more': [
@@ -308,7 +341,7 @@ CONTENT = {
    ('Netianas', 'netianas.vercel.app', 'Sitio mobile-first diseñado y construido de punta a punta, con un flujo de contacto que corre sobre una API propia en Node desplegada en Railway.', ['Diseño visual', 'Node.js', 'REST API', 'Railway']),
    ('VNS Matrix', 'camilamihalyczo-dotcom.github.io', 'Experiencia web cyberfeminista inmersiva — dirección de arte e interfaz construidas sobre una estética glitch, con navegación no lineal.', ['Dirección de arte', 'Diseño de interacción', 'JavaScript']),
   ],
-  'contact_label': '05 — contacto',
+  'contact_label': '06 — contacto',
   'contact_title': 'hagamos algo',
   'contact_body': 'Abierta a oportunidades remotas — tiempo completo, medio tiempo o freelance. Cómoda trabajando con equipos internacionales en inglés o español.',
  },
@@ -419,12 +452,76 @@ CONTENT = {
 
 
 # ────────────────────────────── documentos ──────────────────────────────
+
+def fle_page(c, t):
+    """Fle Cookies: el caso más completo, con tres pantallas y las métricas del rebuild."""
+    p = t['fle']
+    bg(c)
+    section_label(c, p['kicker'], M, H - 110, GREEN)
+    c.setFont('Unb', 48); c.setFillColor(TEXT)
+    yy = H - 175
+    for ln in wrap(p['title'], 'Unb', 48, 520):
+        c.drawString(M, yy, ln); yy -= 56
+    c.setFont('Mono', 13); c.setFillColor(CYAN)
+    c.drawString(M, yy - 2, p['role'])
+
+    # titular del caso con la barra verde
+    yy -= 40
+    tl = wrap(p['tagline'], 'UnbB', 16, 440)
+    c.setFillColor(GREEN); c.rect(M, yy - len(tl) * 22 + 4, 2, len(tl) * 22 + 6, fill=1, stroke=0)
+    c.setFont('UnbB', 16); c.setFillColor(TEXT)
+    for i, ln in enumerate(tl):
+        c.drawString(M + 16, yy - i * 22, ln)
+    yy -= len(tl) * 22 + 26
+
+    # tags acá arriba: abajo el espacio lo necesitan las métricas
+    yy = tag_row(c, p['tags'], M, yy, 520, 10) - 34
+
+    yy = para(c, p['body'], M, yy, 520, size=12.5, leading=22)
+
+    for b in p['bullets']:
+        yy -= 10
+        bullet_mark(c, M, yy + 2, size=5)
+        lines = wrap(b, 'Mono', 11.5, 480)
+        c.setFillColor(MUTED); c.setFont('Mono', 11.5)
+        for i, ln in enumerate(lines):
+            c.drawString(M + 18, yy - i * 19, ln)
+        yy -= len(lines) * 19
+
+    # métricas del rebuild, ancladas al pie
+    mx, my, mw = M, 100, 168
+    c.setFont('Mono', 9); c.setFillColor(GREEN)
+    c.drawString(mx, my + 80, p['metrics_label'].upper())
+    c.setStrokeColor(BORDER); c.setLineWidth(1)
+    c.line(mx, my + 72, mx + 520, my + 72)
+    for i, lbl in enumerate(p['metrics']):
+        x = mx + i * (mw + 10)
+        c.setFillColor(SURFACE); c.setStrokeColor(BORDER); c.setLineWidth(1)
+        c.rect(x, my, mw, 62, fill=1, stroke=1)
+        c.setFillColor(GREEN); c.rect(x, my + 60, mw, 2, fill=1, stroke=0)
+        # el 0 va en mono: el de Unbounded 900 se lee como un círculo, no como un cero
+        c.setFont('MonoB', 24); c.setFillColor(GREEN)
+        c.drawString(x + 13, my + 30, '0')
+        c.setFont('Mono', 8.5); c.setFillColor(MUTED)
+        for j, ln in enumerate(wrap(lbl, 'Mono', 8.5, mw - 26)):
+            c.drawString(x + 13, my + 17 - j * 11, ln)
+
+    # tres pantallas a la derecha, dentro del margen
+    sw, sh, gap = 195, 520, 14
+    sx, sy = 700, 150
+    for i, sc in enumerate(['screen-01', 'screen-03', 'screen-06']):
+        image_panel(c, os.path.join(CASE, sc + '.jpg'), sx + i * (sw + gap), sy, sw, sh, pad=8)
+    c.setFont('Mono', 9); c.setFillColor(DIM)
+    for i, cap in enumerate(p['screens']):
+        c.drawString(sx + i * (sw + gap), sy - 20, cap)
+
+
 def build_uxui(lang, path):
     t = CONTENT['uxui'][lang]
     c = canvas.Canvas(path, pagesize=(W, H))
     c.setTitle(t['title']); c.setAuthor('Camila Mihalyczo')
     c.setSubject('UX/UI design portfolio')
-    TOTAL = 6
+    TOTAL = 7
 
     cover(c, t); c.showPage()
 
@@ -447,11 +544,14 @@ def build_uxui(lang, path):
     c.drawString(M, 145, '“' + t['approach_note'] + '”')
     footer(c, 2, TOTAL, lang); c.showPage()
 
-    project_page(c, t, t['p1'], os.path.join(IMG, 'simply-shopping.jpg'))
+    fle_page(c, t)
     footer(c, 3, TOTAL, lang); c.showPage()
 
-    project_page(c, t, t['p2'], os.path.join(IMG, 'agile-technology.jpg'))
+    project_page(c, t, t['p1'], os.path.join(IMG, 'simply-shopping.jpg'))
     footer(c, 4, TOTAL, lang); c.showPage()
+
+    project_page(c, t, t['p2'], os.path.join(IMG, 'agile-technology.jpg'))
+    footer(c, 5, TOTAL, lang); c.showPage()
 
     # 5 — also in progress
     bg(c)
@@ -472,9 +572,9 @@ def build_uxui(lang, path):
         # los tags van en su propia columna y envuelven: en ES son más largos
         tag_row(c, tags[:4], M + 930, y + 6, 330, 9)
         y -= 150
-    footer(c, 5, TOTAL, lang); c.showPage()
+    footer(c, 6, TOTAL, lang); c.showPage()
 
-    closing(c, t); footer(c, 6, TOTAL, lang); c.showPage()
+    closing(c, t); footer(c, 7, TOTAL, lang); c.showPage()
     c.save()
     return path
 

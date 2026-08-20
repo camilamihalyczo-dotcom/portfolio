@@ -46,6 +46,17 @@ nav {
 }
 .nav-back:hover { color: var(--green); }
 .nav-back::before { content: '← '; }
+.lang-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.12em;
+  color: var(--dim); background: transparent;
+  border: 1px solid var(--border2); padding: 4px 12px;
+  cursor: pointer; display: flex; align-items: center; gap: 6px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.lang-btn:hover { color: var(--green); border-color: var(--green); }
+.lang-btn .lang-active { color: var(--green); font-weight: 700; }
+.lang-btn .lang-sep { color: var(--border2); }
 .nav-logo {
   font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 700;
   color: var(--green); text-decoration: none; letter-spacing: 0.05em;
@@ -211,51 +222,49 @@ footer a:hover { color: var(--green); }
 <body>
 
 <nav>
-  <a href="index.html#projects" class="nav-back">back to portfolio</a>
-  <a href="index.html" class="nav-logo">CM_</a>
+  <a href="index.html#projects" class="nav-back" data-i18n="c.back">back to portfolio</a>
+  <div style="display:flex;align-items:center;gap:1.2rem">
+    <button class="lang-btn" id="lang-toggle" onclick="toggleLang()">
+      <span id="lang-en" class="lang-active">EN</span>
+      <span class="lang-sep">/</span>
+      <span id="lang-es">ES</span>
+    </button>
+    <a href="index.html" class="nav-logo">CM_</a>
+  </div>
 </nav>
 
 <!-- ══ HERO ══ -->
 <div id="case-hero">
-  <p class="case-label">case study — ux/ui</p>
+  <p class="case-label" data-i18n="c.label">case study — ux/ui</p>
   <h1 class="case-title">Fle <span>Cookies</span></h1>
-  <p class="case-role">Ordering app for a cookie brand — brand audit, flow, UI and prototype</p>
-  <p class="case-intro">
-    Fle Cookies already sold through WhatsApp, but the order itself was never assembled: five
-    different buttons opened the same empty chat and the customer had to describe what they
-    wanted from scratch. This case covers turning that landing page into an app where the
-    order is built before the conversation starts — catalogue, flavour and quantity, cart, and
-    a checkout that hands a complete order to WhatsApp without a payment gateway.
-  </p>
+  <p class="case-role" data-i18n="c.role">Ordering app for a cookie brand — brand audit, flow, UI and prototype</p>
+  <p class="case-tagline" data-i18n="c.tagline">The app doesn't replace the chat. It writes the message.</p>
+  <p class="case-intro" data-i18n="c.intro">Fle Cookies is a home bakery that sells entirely through WhatsApp, where every order used to begin as a blank chat. I designed a six-screen mobile flow that ends by composing the message for the customer — products, quantities, total and delivery details already written — with a review step that shows the exact text before it is sent. The system is built from the brand's own asset kit rather than its website, which turned out to be a reinterpretation that had broken the brand's already-accessible black-on-colour lockup.</p>
 
   <div class="case-meta">
-    <div><p class="cm-label">role</p><p class="cm-val">UX/UI design</p></div>
-    <div><p class="cm-label">year</p><p class="cm-val">2026</p></div>
-    <div><p class="cm-label">tools</p><p class="cm-val">Figma · HTML/CSS/JS</p></div>
-    <div><p class="cm-label">deliverables</p><p class="cm-val">5 boards · 6 screens · prototype · rebuilt landing</p></div>
+    <div><p class="cm-label" data-i18n="c.m.role">role</p><p class="cm-val" data-i18n="c.m.rolev">UX/UI design</p></div>
+    <div><p class="cm-label" data-i18n="c.m.year">year</p><p class="cm-val">2026</p></div>
+    <div><p class="cm-label" data-i18n="c.m.tools">tools</p><p class="cm-val">Figma · HTML/CSS/JS</p></div>
+    <div><p class="cm-label" data-i18n="c.m.deliv">deliverables</p><p class="cm-val" data-i18n="c.m.delivv">5 boards · 6 screens · prototype · rebuilt landing</p></div>
   </div>
 
   <div class="case-ctas">
-    <a href="prototipo-fle-cookies.html" target="_blank" rel="noopener" class="btn-primary" id="proto-link">open prototype →</a>
-    <a href="#screens" class="btn-ghost">see the screens</a>
+    <a href="prototipo-fle-cookies.html" target="_blank" rel="noopener" class="btn-primary" id="proto-link" data-i18n="c.proto">open prototype →</a>
+    <a href="#screens" class="btn-ghost" data-i18n="c.seescreens">see the screens</a>
   </div>
 </div>
 
 <!-- ══ FLUJO ══ -->
 <section>
-  <p class="sec-label">01 — the flow</p>
-  <h2 class="sec-title">from browsing to a complete order</h2>
-  <p class="sec-desc">
-    The whole product exists to move one decision from the chat into the interface: what am I
-    ordering and how much does it cost. Everything after checkout stays where the business
-    already works.
-  </p>
+  <p class="sec-label" data-i18n="c.s1.l">01 — the flow</p>
+  <h2 class="sec-title" data-i18n="c.s1.t">from browsing to a complete order</h2>
+  <p class="sec-desc" data-i18n="c.s1.d">The whole product exists to move one decision from the chat into the interface: what am I ordering and how much does it cost. Everything after checkout stays where the business already works.</p>
   <div class="flow">
-    <div class="flow-step"><p class="flow-n">01</p><p class="flow-t">Catalogue</p><p class="flow-d">Two categories, six products with their own names and prices.</p></div>
-    <div class="flow-step"><p class="flow-n">02</p><p class="flow-t">Flavour &amp; quantity</p><p class="flow-d">The card becomes a selector instead of a read-only tile.</p></div>
-    <div class="flow-step"><p class="flow-n">03</p><p class="flow-t">Cart</p><p class="flow-d">Running total, so the customer knows the cost before writing.</p></div>
-    <div class="flow-step"><p class="flow-n">04</p><p class="flow-t">Checkout</p><p class="flow-d">Delivery context: zone, pickup or delivery, time slot.</p></div>
-    <div class="flow-step"><p class="flow-n">05</p><p class="flow-t">WhatsApp</p><p class="flow-d">The order arrives pre-written. No payment gateway needed.</p></div>
+    <div class="flow-step"><p class="flow-n">01</p><p class="flow-t" data-i18n="c.f1t">Catalogue</p><p class="flow-d" data-i18n="c.f1d">Two categories, six products with their own names and prices.</p></div>
+    <div class="flow-step"><p class="flow-n">02</p><p class="flow-t" data-i18n="c.f2t">Flavour &amp; quantity</p><p class="flow-d" data-i18n="c.f2d">The card becomes a selector instead of a read-only tile.</p></div>
+    <div class="flow-step"><p class="flow-n">03</p><p class="flow-t" data-i18n="c.f3t">Cart</p><p class="flow-d" data-i18n="c.f3d">Running total, so the customer knows the cost before writing.</p></div>
+    <div class="flow-step"><p class="flow-n">04</p><p class="flow-t" data-i18n="c.f4t">Checkout</p><p class="flow-d" data-i18n="c.f4d">Delivery context: zone, pickup or delivery, time slot.</p></div>
+    <div class="flow-step"><p class="flow-n">05</p><p class="flow-t" data-i18n="c.f5t">WhatsApp</p><p class="flow-d" data-i18n="c.f5d">The order arrives pre-written. No payment gateway needed.</p></div>
   </div>
 </section>
 
@@ -263,34 +272,34 @@ footer a:hover { color: var(--green); }
      Soltá los archivos en assets/img/cases/fle-cookies/ con estos nombres exactos
      y aparecen solos. Mientras falten se ve un recuadro punteado, no un ícono roto. -->
 <section>
-  <p class="sec-label">02 — process</p>
-  <h2 class="sec-title">the five boards</h2>
-  <p class="sec-desc">Brand audit, problem, flow, UI system and screens. Click any board to see it full size.</p>
+  <p class="sec-label" data-i18n="c.s2.l">02 — process</p>
+  <h2 class="sec-title" data-i18n="c.s2.t">the five boards</h2>
+  <p class="sec-desc" data-i18n="c.s2.d">Brand audit, problem, flow, UI system and screens. Click any board to see it full size.</p>
   <div class="boards">
 
     <figure class="case-figure" data-missing="board-01">
       <img src="assets/img/cases/fle-cookies/board-01.jpg" alt="Board 01 — brand audit" loading="lazy">
-      <figcaption class="case-cap"><b>01</b> — brand audit — the website vs. the brand kit</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.cap01"><b>01</b> — brand audit — the website vs. the brand kit</figcaption>
     </figure>
 
     <figure class="case-figure" data-missing="board-02">
       <img src="assets/img/cases/fle-cookies/board-02.jpg" alt="Board 02 — user flow" loading="lazy">
-      <figcaption class="case-cap"><b>02</b> — user flow — six screens, states, and the message the flow produces</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.cap02"><b>02</b> — user flow — six screens, states, and the message the flow produces</figcaption>
     </figure>
 
     <figure class="case-figure" data-missing="board-03">
       <img src="assets/img/cases/fle-cookies/board-03.jpg" alt="Board 03 — wireframes" loading="lazy">
-      <figcaption class="case-cap"><b>03</b> — lo-fi wireframes at 390 px, annotated</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.cap03"><b>03</b> — lo-fi wireframes at 390 px, annotated</figcaption>
     </figure>
 
     <figure class="case-figure" data-missing="board-04">
       <img src="assets/img/cases/fle-cookies/board-04.jpg" alt="Board 04 — design system" loading="lazy">
-      <figcaption class="case-cap"><b>04</b> — design system — tokens, type, components and the contrast table</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.cap04"><b>04</b> — design system — tokens, type, components and the contrast table</figcaption>
     </figure>
 
     <figure class="case-figure" data-missing="board-05">
       <img src="assets/img/cases/fle-cookies/board-05.jpg" alt="Board 05 — final UI" loading="lazy">
-      <figcaption class="case-cap"><b>05</b> — final UI, with the WhatsApp handoff broken down</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.cap05"><b>05</b> — final UI, with the WhatsApp handoff broken down</figcaption>
     </figure>
 
   </div>
@@ -298,33 +307,33 @@ footer a:hover { color: var(--green); }
 
 <!-- ══ PANTALLAS ══ -->
 <section id="screens">
-  <p class="sec-label">03 — screens</p>
-  <h2 class="sec-title">six screens</h2>
-  <p class="sec-desc">1170 × 2532. Click to enlarge.</p>
+  <p class="sec-label" data-i18n="c.s3.l">03 — screens</p>
+  <h2 class="sec-title" data-i18n="c.s3.t">six screens</h2>
+  <p class="sec-desc" data-i18n="c.s3.d">1170 × 2532. Click to enlarge.</p>
   <div class="screens">
     <figure class="case-figure" data-missing="screen-01">
       <img src="assets/img/cases/fle-cookies/screen-01.jpg" alt="Catálogo" loading="lazy">
-      <figcaption class="case-cap"><b>01</b> — Catálogo</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.scap01"><b>01</b> — Catálogo</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-02">
       <img src="assets/img/cases/fle-cookies/screen-02.jpg" alt="Armá tu caja" loading="lazy">
-      <figcaption class="case-cap"><b>02</b> — Armá tu caja</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.scap02"><b>02</b> — Armá tu caja</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-03">
       <img src="assets/img/cases/fle-cookies/screen-03.jpg" alt="Carrito" loading="lazy">
-      <figcaption class="case-cap"><b>03</b> — Carrito</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.scap03"><b>03</b> — Carrito</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-04">
       <img src="assets/img/cases/fle-cookies/screen-04.jpg" alt="Entrega" loading="lazy">
-      <figcaption class="case-cap"><b>04</b> — Entrega</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.scap04"><b>04</b> — Entrega</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-05">
       <img src="assets/img/cases/fle-cookies/screen-05.jpg" alt="Revisá tu pedido" loading="lazy">
-      <figcaption class="case-cap"><b>05</b> — Revisá tu pedido</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.scap05"><b>05</b> — Revisá tu pedido</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-06">
       <img src="assets/img/cases/fle-cookies/screen-06.jpg" alt="Handoff a WhatsApp" loading="lazy">
-      <figcaption class="case-cap"><b>06</b> — Handoff a WhatsApp</figcaption>
+      <figcaption class="case-cap" data-i18n-html="c.scap06"><b>06</b> — Handoff a WhatsApp</figcaption>
     </figure>
   </div>
 </section>
@@ -332,40 +341,33 @@ footer a:hover { color: var(--green); }
 
 <!-- ══ REBUILD DE LA LANDING ══ -->
 <section id="landing">
-  <p class="sec-label">04 — the build</p>
-  <h2 class="sec-title">rebuilding the landing page</h2>
-  <p class="sec-desc">
-    The design work surfaced a problem in the live site, so I rebuilt it. Audited with a
-    DOM-level contrast and target-size pass:
-  </p>
+  <p class="sec-label" data-i18n="c.s4.l">04 — the build</p>
+  <h2 class="sec-title" data-i18n="c.s4.t">rebuilding the landing page</h2>
+  <p class="sec-desc" data-i18n="c.s4.d">The design work surfaced a problem in the live site, so I rebuilt it. Audited with a DOM-level contrast and target-size pass:</p>
 
   <div class="metrics">
-    <div class="metric"><p class="metric-n">0</p><p class="metric-l">contrast failures</p></div>
-    <div class="metric"><p class="metric-n">0</p><p class="metric-l">targets under 44&nbsp;px</p></div>
-    <div class="metric"><p class="metric-n">0</p><p class="metric-l">images without alt</p></div>
+    <div class="metric"><p class="metric-n">0</p><p class="metric-l" data-i18n="c.m1">contrast failures</p></div>
+    <div class="metric"><p class="metric-n">0</p><p class="metric-l" data-i18n="c.m2">targets under 44 px</p></div>
+    <div class="metric"><p class="metric-n">0</p><p class="metric-l" data-i18n="c.m3">images without alt</p></div>
   </div>
 
   <div class="rebuild">
     <div>
       <ul class="fixlist">
-        <li><b>Contrast fixed.</b> All five WhatsApp CTAs had white text on #25D366 — 1.98:1, failing every WCAG level. Now black on the same green.</li>
-        <li><b>Palette realigned</b> to the brand kit instead of the website's reinterpretation.</li>
-        <li><b>Real logotype</b> in place of a script font imitating it.</li>
-        <li><b>Illustrated products</b> replace emoji — one recoloured cookie per flavour.</li>
-        <li><b>Mobile navigation fixed.</b> The old page hid the nav below 600&nbsp;px with nothing in its place; now there is a fixed order bar.</li>
-        <li><b>Per-product WhatsApp links</b> pre-fill the flavour, instead of five identical empty messages.</li>
-        <li><b>Skip link, visible focus rings</b> and <code>prefers-reduced-motion</code> on the marquee.</li>
+        <li data-i18n-html="c.fix1"><b>Contrast fixed.</b> All five WhatsApp CTAs had white text on #25D366 — 1.98:1, failing every WCAG level. Now black on the same green.</li>
+        <li data-i18n-html="c.fix2"><b>Palette realigned</b> to the brand kit instead of the website's reinterpretation.</li>
+        <li data-i18n-html="c.fix3"><b>Real logotype</b> in place of a script font imitating it.</li>
+        <li data-i18n-html="c.fix4"><b>Illustrated products</b> replace emoji — one recoloured cookie per flavour.</li>
+        <li data-i18n-html="c.fix5"><b>Mobile navigation fixed.</b> The old page hid the nav below 600&nbsp;px with nothing in its place; now there is a fixed order bar.</li>
+        <li data-i18n-html="c.fix6"><b>Per-product WhatsApp links</b> pre-fill the flavour, instead of five identical empty messages.</li>
+        <li data-i18n-html="c.fix7"><b>Skip link, visible focus rings</b> and <code>prefers-reduced-motion</code> on the marquee.</li>
       </ul>
-      <p class="contrast-jump">
-        The brand had already solved contrast: every flyer and post uses black on colour,
-        a lockup that passes AA across the whole palette. White — what the website used —
-        fails on every single brand colour. The fix was to follow the brand, not to invent.
-      </p>
+      <p class="contrast-jump" data-i18n="c.jump">The brand had already solved contrast: every flyer and post uses black on colour, a lockup that passes AA across the whole palette. White — what the website used — fails on every single brand colour. The fix was to follow the brand, not to invent.</p>
     </div>
     <div>
       <figure class="case-figure" data-missing="landing-desktop">
         <img src="assets/img/cases/fle-cookies/landing-desktop.jpg" alt="Rebuilt landing page — desktop" loading="lazy">
-        <figcaption class="case-cap"><b>desktop</b> — realigned to the brand kit</figcaption>
+        <figcaption class="case-cap" data-i18n-html="c.capdesk"><b>desktop</b> — realigned to the brand kit</figcaption>
       </figure>
     </div>
   </div>
@@ -412,6 +414,161 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') lbClose(); }
 // si el link del prototipo quedó sin completar, no se muestra roto
 const proto = document.getElementById('proto-link');
 if (proto.getAttribute('href') === '#') proto.style.display = 'none';
+
+// ── IDIOMA ── comparte la preferencia con el index vía localStorage
+const translations = {
+  en: {
+    'c.back': 'back to portfolio',
+    'c.label': 'case study — ux/ui',
+    'c.role': 'Ordering app for a cookie brand — brand audit, flow, UI and prototype',
+    'c.tagline': "The app doesn't replace the chat. It writes the message.",
+    'c.intro': "Fle Cookies is a home bakery that sells entirely through WhatsApp, where every order used to begin as a blank chat. I designed a six-screen mobile flow that ends by composing the message for the customer — products, quantities, total and delivery details already written — with a review step that shows the exact text before it is sent. The system is built from the brand's own asset kit rather than its website, which turned out to be a reinterpretation that had broken the brand's already-accessible black-on-colour lockup.",
+    'c.m.role': 'role',
+    'c.m.rolev': 'UX/UI design',
+    'c.m.year': 'year',
+    'c.m.tools': 'tools',
+    'c.m.deliv': 'deliverables',
+    'c.m.delivv': '5 boards · 6 screens · prototype · rebuilt landing',
+    'c.proto': 'open prototype →',
+    'c.seescreens': 'see the screens',
+    'c.s1.l': '01 — the flow',
+    'c.s1.t': 'from browsing to a complete order',
+    'c.s1.d': 'The whole product exists to move one decision from the chat into the interface: what am I ordering and how much does it cost. Everything after checkout stays where the business already works.',
+    'c.f1t': 'Catalogue',
+    'c.f1d': 'Two categories, six products with their own names and prices.',
+    'c.f2t': 'Flavour &amp; quantity',
+    'c.f2d': 'The card becomes a selector instead of a read-only tile.',
+    'c.f3t': 'Cart',
+    'c.f3d': 'Running total, so the customer knows the cost before writing.',
+    'c.f4t': 'Checkout',
+    'c.f4d': 'Delivery context: zone, pickup or delivery, time slot.',
+    'c.f5t': 'WhatsApp',
+    'c.f5d': 'The order arrives pre-written. No payment gateway needed.',
+    'c.s2.l': '02 — process',
+    'c.s2.t': 'the five boards',
+    'c.s2.d': 'Brand audit, problem, flow, UI system and screens. Click any board to see it full size.',
+    'c.s3.l': '03 — screens',
+    'c.s3.t': 'six screens',
+    'c.s3.d': '1170 × 2532. Click to enlarge.',
+    'c.s4.l': '04 — the build',
+    'c.s4.t': 'rebuilding the landing page',
+    'c.s4.d': 'The design work surfaced a problem in the live site, so I rebuilt it. Audited with a DOM-level contrast and target-size pass:',
+    'c.m1': 'contrast failures',
+    'c.m2': 'targets under 44 px',
+    'c.m3': 'images without alt',
+    'c.jump': 'The brand had already solved contrast: every flyer and post uses black on colour, a lockup that passes AA across the whole palette. White — what the website used — fails on every single brand colour. The fix was to follow the brand, not to invent.',
+    'c.cap01': '<b>01</b> — brand audit — the website vs. the brand kit',
+    'c.cap02': '<b>02</b> — user flow — six screens, states, and the message the flow produces',
+    'c.cap03': '<b>03</b> — lo-fi wireframes at 390 px, annotated',
+    'c.cap04': '<b>04</b> — design system — tokens, type, components and the contrast table',
+    'c.cap05': '<b>05</b> — final UI, with the WhatsApp handoff broken down',
+    'c.capdesk': '<b>desktop</b> — realigned to the brand kit',
+    'c.scap01': '<b>01</b> — Catálogo',
+    'c.scap02': '<b>02</b> — Armá tu caja',
+    'c.scap03': '<b>03</b> — Carrito',
+    'c.scap04': '<b>04</b> — Entrega',
+    'c.scap05': '<b>05</b> — Revisá tu pedido',
+    'c.scap06': '<b>06</b> — Handoff a WhatsApp',
+    'c.fix1': '<b>Contrast fixed.</b> All five WhatsApp CTAs had white text on #25D366 — 1.98:1, failing every WCAG level. Now black on the same green.',
+    'c.fix2': "<b>Palette realigned</b> to the brand kit instead of the website's reinterpretation.",
+    'c.fix3': '<b>Real logotype</b> in place of a script font imitating it.',
+    'c.fix4': '<b>Illustrated products</b> replace emoji — one recoloured cookie per flavour.',
+    'c.fix5': '<b>Mobile navigation fixed.</b> The old page hid the nav below 600&nbsp;px with nothing in its place; now there is a fixed order bar.',
+    'c.fix6': '<b>Per-product WhatsApp links</b> pre-fill the flavour, instead of five identical empty messages.',
+    'c.fix7': '<b>Skip link, visible focus rings</b> and <code>prefers-reduced-motion</code> on the marquee.',
+  },
+  es: {
+    'c.back': 'volver al portfolio',
+    'c.label': 'caso de estudio — ux/ui',
+    'c.role': 'App de pedidos para una marca de cookies — auditoría de marca, flujo, UI y prototipo',
+    'c.tagline': 'La app no reemplaza el chat. Escribe el mensaje.',
+    'c.intro': 'Fle Cookies es una pastelería casera que vende únicamente por WhatsApp, donde cada pedido arrancaba como un chat en blanco. Diseñé un flujo mobile de seis pantallas que termina componiendo el mensaje por el cliente — productos, cantidades, total y datos de entrega ya redactados — con un paso de revisión que muestra el texto exacto antes de enviarlo. El sistema se construyó sobre el kit de marca original y no sobre la web, que resultó ser una reinterpretación que había roto el contraste negro sobre color que la marca ya tenía resuelto.',
+    'c.m.role': 'rol',
+    'c.m.rolev': 'Diseño UX/UI',
+    'c.m.year': 'año',
+    'c.m.tools': 'herramientas',
+    'c.m.deliv': 'entregables',
+    'c.m.delivv': '5 boards · 6 pantallas · prototipo · landing reconstruida',
+    'c.proto': 'abrir prototipo →',
+    'c.seescreens': 'ver las pantallas',
+    'c.s1.l': '01 — el flujo',
+    'c.s1.t': 'de mirar el catálogo a un pedido completo',
+    'c.s1.d': 'Todo el producto existe para mover una decisión del chat a la interfaz: qué estoy pidiendo y cuánto cuesta. Todo lo que pasa después del checkout se queda donde el negocio ya funciona.',
+    'c.f1t': 'Catálogo',
+    'c.f1d': 'Dos categorías, seis productos con nombre propio y precio.',
+    'c.f2t': 'Sabor y cantidad',
+    'c.f2d': 'La card pasa a ser un selector en vez de una ficha que sólo se lee.',
+    'c.f3t': 'Carrito',
+    'c.f3d': 'Total en vivo, para que el cliente sepa cuánto va a gastar antes de escribir.',
+    'c.f4t': 'Checkout',
+    'c.f4d': 'Contexto de entrega: zona, retiro o envío, franja horaria.',
+    'c.f5t': 'WhatsApp',
+    'c.f5d': 'El pedido llega ya escrito. Sin pasarela de pago.',
+    'c.s2.l': '02 — proceso',
+    'c.s2.t': 'los cinco boards',
+    'c.s2.d': 'Auditoría de marca, problema, flujo, sistema de UI y pantallas. Hacé click en cualquier board para verlo completo.',
+    'c.s3.l': '03 — pantallas',
+    'c.s3.t': 'seis pantallas',
+    'c.s3.d': '1170 × 2532. Hacé click para ampliar.',
+    'c.s4.l': '04 — el desarrollo',
+    'c.s4.t': 'reconstruir la landing',
+    'c.s4.d': 'El trabajo de diseño destapó un problema en el sitio publicado, así que lo reconstruí. Auditado con una pasada de contraste y tamaño de target a nivel DOM:',
+    'c.m1': 'fallas de contraste',
+    'c.m2': 'targets bajo 44 px',
+    'c.m3': 'imágenes sin alt',
+    'c.jump': 'La marca ya tenía resuelto el contraste: cada flyer y cada posteo usa negro sobre color, una combinación que pasa AA en toda la paleta. El blanco — lo que usaba la web — falla en absolutamente todos los colores de marca. El arreglo fue seguir a la marca, no inventar.',
+    'c.cap01': '<b>01</b> — auditoría de marca — la web contra el kit',
+    'c.cap02': '<b>02</b> — user flow — seis pantallas, estados y el mensaje que produce el flujo',
+    'c.cap03': '<b>03</b> — wireframes lo-fi a 390 px, anotados',
+    'c.cap04': '<b>04</b> — design system — tokens, tipografía, componentes y tabla de contraste',
+    'c.cap05': '<b>05</b> — UI final, con el handoff a WhatsApp desglosado',
+    'c.capdesk': '<b>desktop</b> — realineada al kit de marca',
+    'c.scap01': '<b>01</b> — Catálogo',
+    'c.scap02': '<b>02</b> — Armá tu caja',
+    'c.scap03': '<b>03</b> — Carrito',
+    'c.scap04': '<b>04</b> — Entrega',
+    'c.scap05': '<b>05</b> — Revisá tu pedido',
+    'c.scap06': '<b>06</b> — Handoff a WhatsApp',
+    'c.fix1': '<b>Contraste corregido.</b> Los cinco CTAs de WhatsApp tenían texto blanco sobre #25D366 — 1.98:1, fallando todos los niveles WCAG. Ahora negro sobre el mismo verde.',
+    'c.fix2': '<b>Paleta realineada</b> al kit de marca en vez de la reinterpretación de la web.',
+    'c.fix3': '<b>Logotipo real</b> en lugar de una fuente manuscrita imitándolo.',
+    'c.fix4': '<b>Productos ilustrados</b> reemplazan los emoji — una cookie recoloreada por sabor.',
+    'c.fix5': '<b>Navegación mobile corregida.</b> La página vieja escondía el nav abajo de 600&nbsp;px sin nada en su lugar; ahora hay una barra fija de pedido.',
+    'c.fix6': '<b>Links de WhatsApp por producto</b> precargan el sabor, en vez de cinco mensajes vacíos idénticos.',
+    'c.fix7': '<b>Skip link, focus visible</b> y <code>prefers-reduced-motion</code> en la marquesina.',
+  }
+};
+const LANG_KEY = 'cm-lang';
+function initialLang() {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved === 'en' || saved === 'es') return saved;
+  } catch (e) {}
+  return (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en';
+}
+let currentLang = initialLang();
+function toggleLang() { applyLang(currentLang === 'en' ? 'es' : 'en'); }
+function applyLang(lang) {
+  const t = translations[lang];
+  if (!t) return;
+  currentLang = lang;
+  try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.textContent = t[k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const k = el.getAttribute('data-i18n-html');
+    if (t[k] !== undefined) el.innerHTML = t[k];
+  });
+  document.getElementById('lang-en').className = lang === 'en' ? 'lang-active' : '';
+  document.getElementById('lang-es').className = lang === 'es' ? 'lang-active' : '';
+  document.documentElement.lang = lang;
+  document.title = lang === 'es'
+    ? 'Fle Cookies — caso de estudio UX/UI · Camila Mihalyczo'
+    : 'Fle Cookies — UX/UI case study · Camila Mihalyczo';
+}
+applyLang(currentLang);
 </script>
 </body>
 </html>
