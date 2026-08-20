@@ -626,6 +626,60 @@ section { padding: 6rem 3rem; }
 }
 .project-link::after { content: ' →'; }
 
+/* ── BLOQUE TÉCNICO ── */
+.project-tech {
+  border-top: 1px solid var(--border);
+  border-left: 2px solid var(--green);
+  background: rgba(0,255,136,0.03);
+  padding: 0.7rem 0.9rem;
+  margin: 0 0 1rem;
+}
+.pt-label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.35rem;
+}
+.pt-body { font-size: 11px; color: var(--muted); line-height: 1.65; }
+
+/* fila de enlaces: sitio + repo */
+.project-links { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.project-repo {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.65rem;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+.project-repo:hover { color: var(--green); border-color: rgba(0,255,136,0.45); }
+.project-repo.soon { opacity: 0.45; pointer-events: none; }
+
+/* miniatura de la tarjeta de proyecto */
+.project-thumb {
+  display: block;
+  width: calc(100% + 3.6rem);
+  margin: -1.8rem -1.8rem 1.2rem;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top center;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
+.project-thumb.pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px dashed var(--border2);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
 .badge-live {
   position: absolute;
   top: 1.2rem; right: 1.2rem;
@@ -1093,11 +1147,15 @@ footer {
   </div>
   <div class="projects-grid reveal">
 
-    <a href="https://activityblog.vercel.app/" target="_blank" class="project-card">
+    <article class="project-card">
       <span class="badge-live">live</span>
       <p class="project-type" data-i18n="projects.blog.type">full-stack — product design & build</p>
       <h3 class="project-name">Activity Blog</h3>
       <p class="project-desc" data-i18n="projects.blog.desc">Activity platform for online English classes. Admin panel to create and control sessions and track student progress, with authenticated access. React front end on Vercel, Supabase for auth and database.</p>
+      <div class="project-tech">
+        <span class="pt-label" data-i18n="pf.tech.label">architecture</span>
+        <span class="pt-body" data-i18n="projects.blog.tech">React on Vercel for the front end; Supabase handles auth and the database. The admin panel sits behind authenticated access, so class data is never exposed to the student side.</span>
+      </div>
       <div class="project-tags">
         <span class="project-tag">React</span>
         <span class="project-tag">Supabase</span>
@@ -1105,14 +1163,22 @@ footer {
         <span class="project-tag">Admin dashboard</span>
         <span class="project-tag">Vercel</span>
       </div>
-      <span class="project-link" data-i18n="projects.link">view project</span>
-    </a>
+      <div class="project-links">
+        <a href="https://activityblog.vercel.app/" target="_blank" rel="noopener" class="project-link" data-i18n="projects.link">view project</a>
+        <!-- TODO: pegar la URL del repo acá y sacar el comentario
+        <a href="" target="_blank" rel="noopener" class="project-repo" data-i18n="pf.repo">repo ↗</a> -->
+      </div>
+    </article>
 
-    <a href="https://netianas.vercel.app" target="_blank" class="project-card">
+    <article class="project-card">
       <span class="badge-live">live</span>
       <p class="project-type" data-i18n="projects.netianas.type">web design + development</p>
       <h3 class="project-name">Netianas</h3>
       <p class="project-desc" data-i18n="projects.netianas.desc">Mobile-first site designed and built end to end — layout, visual system and a contact flow running on my own Node API deployed on Railway. Front end live on Vercel.</p>
+      <div class="project-tech">
+        <span class="pt-label" data-i18n="pf.tech.label">architecture</span>
+        <span class="pt-body" data-i18n="projects.netianas.tech">Static front end on Vercel; the contact form posts to my own Node API deployed on Railway. Splitting the API from the host keeps the mail credentials off the client.</span>
+      </div>
       <div class="project-tags">
         <span class="project-tag">Visual design</span>
         <span class="project-tag">Mobile-first</span>
@@ -1122,14 +1188,22 @@ footer {
         <span class="project-tag">Railway</span>
         <span class="project-tag">Vercel</span>
       </div>
-      <span class="project-link" data-i18n="projects.link">view project</span>
-    </a>
+      <div class="project-links">
+        <a href="https://netianas.vercel.app" target="_blank" rel="noopener" class="project-link" data-i18n="projects.link">view project</a>
+        <!-- TODO: pegar la URL del repo acá y sacar el comentario
+        <a href="" target="_blank" rel="noopener" class="project-repo" data-i18n="pf.repo">repo ↗</a> -->
+      </div>
+    </article>
 
-    <a href="#" class="project-card">
+    <article class="project-card">
       <span class="badge-wip">deploying</span>
       <p class="project-type" data-i18n="projects.fle.type">brand + ordering app</p>
       <h3 class="project-name">Fle Cookies</h3>
-      <p class="project-desc" data-i18n="projects.fle.desc">Visual identity and an ordering app for a cookie brand. Customers browse the catalogue, build a cart and check out — the app assembles the order and hands it off to WhatsApp, so the brand takes orders where it already talks to its customers.</p>
+      <p class="project-desc" data-i18n="projects.fle.desc">A home bakery that sells only through WhatsApp, where every order began as a blank chat. Six screens that end by writing the message for the customer — products, total and delivery already composed — with a review step showing the exact text before it is sent.</p>
+      <div class="project-tech">
+        <span class="pt-label" data-i18n="pf.tech.label">architecture</span>
+        <span class="pt-body" data-i18n="projects.fle.tech">No payment gateway: cart state lives in the client and checkout composes a wa.me message with the full order. I also rebuilt the live landing page — the five WhatsApp CTAs were white on green at 1.98:1, failing every WCAG level.</span>
+      </div>
       <div class="project-tags">
         <span class="project-tag">Visual identity</span>
         <span class="project-tag">Ordering flow</span>
@@ -1137,10 +1211,14 @@ footer {
         <span class="project-tag">WhatsApp integration</span>
         <span class="project-tag">HTML5 / CSS3 / JS</span>
       </div>
-      <span class="project-link" data-i18n="projects.link">view project</span>
-    </a>
+      <div class="project-links">
+        <a href="prototipo-fle-cookies.html" target="_blank" rel="noopener" class="project-link" data-i18n="pf.proto">open prototype</a>
+        <a href="caso-fle-cookies.html" class="project-repo" style="color:var(--violet);border-color:rgba(167,139,250,0.45)" data-i18n="pf.case">case study ↗</a>
+        <span class="project-repo soon" data-i18n="pf.repo.soon">repo soon</span>
+      </div>
+    </article>
 
-    <a href="#" class="project-card">
+    <article class="project-card">
       <span class="badge-live">live</span>
       <p class="project-type" data-i18n="projects.ux.type">ux/ui — product design</p>
       <h3 class="project-name">Simply Shopping</h3>
@@ -1151,10 +1229,11 @@ footer {
         <span class="project-tag">E-commerce UX</span>
         <span class="project-tag">App design</span>
       </div>
-      <span class="project-link" data-i18n="projects.link.figma">view in Figma</span>
-    </a>
+      <div class="project-links">
+        <a href="#" target="_blank" rel="noopener" class="project-link" data-i18n="projects.link.figma">view in Figma</a>      </div>
+    </article>
 
-    <a href="#" class="project-card">
+    <article class="project-card">
       <span class="badge-live">live</span>
       <p class="project-type" data-i18n="projects.agile.type">ux/ui — interface system</p>
       <h3 class="project-name">Agile Technology UI</h3>
@@ -1165,14 +1244,19 @@ footer {
         <span class="project-tag">Responsive UI</span>
         <span class="project-tag">Interface design</span>
       </div>
-      <span class="project-link" data-i18n="projects.link.figma">view in Figma</span>
-    </a>
+      <div class="project-links">
+        <a href="#" target="_blank" rel="noopener" class="project-link" data-i18n="projects.link.figma">view in Figma</a>      </div>
+    </article>
 
-    <a href="https://camilamihalyczo-dotcom.github.io/tp-2-info-general" target="_blank" class="project-card">
+    <article class="project-card">
       <span class="badge-live">live</span>
       <p class="project-type" data-i18n="projects.vns.type">interactive experience — design & build</p>
       <h3 class="project-name">VNS Matrix</h3>
       <p class="project-desc" data-i18n="projects.vns.desc">Immersive cyberfeminist web experience. Art direction and interface built around a glitch aesthetic — floating OS-style windows, interactive gallery, non-linear navigation and a hidden Easter egg.</p>
+      <div class="project-tech">
+        <span class="pt-label" data-i18n="pf.tech.label">architecture</span>
+        <span class="pt-body" data-i18n="projects.vns.tech">Static multi-page site on GitHub Pages, hand-written HTML/CSS/JS with Tailwind. The floating windows and the Easter egg are plain DOM, no framework.</span>
+      </div>
       <div class="project-tags">
         <span class="project-tag">Art direction</span>
         <span class="project-tag">Interaction design</span>
@@ -1181,8 +1265,11 @@ footer {
         <span class="project-tag">JavaScript</span>
         <span class="project-tag">Tailwind</span>
       </div>
-      <span class="project-link" data-i18n="projects.link">view project</span>
-    </a>
+      <div class="project-links">
+        <a href="https://camilamihalyczo-dotcom.github.io/tp-2-info-general" target="_blank" rel="noopener" class="project-link" data-i18n="projects.link">view project</a>
+        <a href="https://github.com/camilamihalyczo-dotcom/tp-2-info-general" target="_blank" rel="noopener" class="project-repo" data-i18n="pf.repo">repo ↗</a>
+      </div>
+    </article>
   </div>
 </section>
 
@@ -1198,6 +1285,7 @@ footer {
     <button class="pf-tab" data-filter="uxui" data-i18n="pf.tab.uxui">ux/ui</button>
     <button class="pf-tab" data-filter="graphic" data-i18n="pf.tab.graphic">graphic &amp; content</button>
     <button class="pf-tab" data-filter="motion" data-i18n="pf.tab.motion">motion &amp; video</button>
+    <button class="pf-tab" data-filter="code" data-i18n="pf.tab.code">code &amp; front-end</button>
   </div>
 
   <!-- ── UX/UI ── -->
@@ -1217,6 +1305,13 @@ footer {
           <p class="pf-cap-type" data-i18n="pf.c.app">mobile app</p>
         </figcaption>
       </figure>
+      <figure class="pf-item" data-full="assets/img/work/fle-cookies.jpg" data-cap="Fle Cookies — ordering app">
+        <img src="assets/img/work/fle-cookies.jpg" alt="Fle Cookies — app de pedidos" loading="lazy">
+        <figcaption class="pf-cap">
+          <p class="pf-cap-name">Fle Cookies</p>
+          <p class="pf-cap-type" data-i18n="pf.c.case">ux/ui — case study</p>
+        </figcaption>
+      </figure>
       <figure class="pf-item" data-full="assets/img/work/agile-technology.jpg" data-cap="Agile Technology — UI">
         <img src="assets/img/work/agile-technology.jpg" alt="Agile Technology — interfaz de registro" loading="lazy">
         <figcaption class="pf-cap">
@@ -1225,8 +1320,6 @@ footer {
         </figcaption>
       </figure>
       <!-- Slots a completar: exportá la captura y reemplazá este bloque por una <figure> igual a las de arriba -->
-      <div class="pf-item empty"><span data-i18n="pf.slot.vns">VNS Matrix<br>— screenshot pending —</span></div>
-      <div class="pf-item empty"><span data-i18n="pf.slot.net">Netianas<br>— screenshot pending —</span></div>
     </div>
   </div>
 
@@ -1320,6 +1413,30 @@ footer {
         <video poster="assets/img/work/sample-sale.jpg" muted loop playsinline preload="none"><source src="assets/video/sample-sale.webm" type="video/webm"><source src="assets/video/sample-sale.mp4" type="video/mp4"></video>
         <figcaption class="pf-cap"><p class="pf-cap-name">Spring Sale</p><p class="pf-cap-type" data-i18n="pf.c.sample">sample piece</p></figcaption>
       </figure>
+    </div>
+  </div>
+
+  <!-- ── CÓDIGO / FRONT-END ── -->
+  <div class="pf-group reveal" data-cat="code">
+    <div class="pf-group-head">
+      <div>
+        <h3 class="pf-group-title" data-i18n="pf.code.title">code &amp; front-end</h3>
+        <p class="pf-group-sub" data-i18n="pf.code.sub">Shipped products I designed and built. Live links and repos are on each project above.</p>
+      </div>
+      <a href="#projects" class="pf-dl" style="color:var(--green);border-color:rgba(0,255,136,0.4)" data-i18n="pf.code.link">read the architecture →</a>
+    </div>
+    <div class="pf-grid">
+      <!-- Reemplazá cada slot por una <figure class="pf-item"> igual a las de arriba en cuanto tengas la captura -->
+      <div class="pf-item empty"><span data-i18n="pf.slot.blog">Activity Blog<br>— screenshot pending —</span></div>
+      <div class="pf-item empty"><span data-i18n="pf.slot.net2">Netianas<br>— screenshot pending —</span></div>
+      <figure class="pf-item" data-full="assets/img/work/fle-cookies-landing.jpg" data-cap="Fle Cookies — rebuilt landing page">
+        <img src="assets/img/work/fle-cookies-landing.jpg" alt="Landing de Fle Cookies reconstruida" loading="lazy">
+        <figcaption class="pf-cap">
+          <p class="pf-cap-name">Fle Cookies — landing</p>
+          <p class="pf-cap-type" data-i18n="pf.c.rebuild">rebuilt · 0 a11y failures</p>
+        </figcaption>
+      </figure>
+      <div class="pf-item empty"><span data-i18n="pf.slot.vns2">VNS Matrix<br>— screenshot pending —</span></div>
     </div>
   </div>
 </section>
@@ -1446,6 +1563,24 @@ const translations = {
     'nav.projects': 'projects',
     'nav.cv': 'cv',
     'nav.contact': 'contact',
+    'pf.c.case': 'ux/ui — case study',
+    'pf.c.rebuild': 'rebuilt · 0 a11y failures',
+    'pf.proto': 'open prototype',
+    'pf.tab.code': 'code & front-end',
+    'pf.code.title': 'code & front-end',
+    'pf.code.sub': 'Shipped products I designed and built. Live links and repos are on each project above.',
+    'pf.code.link': 'read the architecture →',
+    'pf.case': 'case study ↗',
+    'pf.slot.blog': 'Activity Blog — screenshot pending',
+    'pf.slot.net2': 'Netianas — screenshot pending',
+    'pf.slot.vns2': 'VNS Matrix — screenshot pending',
+    'pf.tech.label': 'architecture',
+    'pf.repo': 'repo ↗',
+    'pf.repo.soon': 'repo soon',
+    'projects.blog.tech': 'React on Vercel for the front end; Supabase handles auth and the database. The admin panel sits behind authenticated access, so class data is never exposed to the student side.',
+    'projects.netianas.tech': 'Static front end on Vercel; the contact form posts to my own Node API deployed on Railway. Splitting the API from the host keeps the mail credentials off the client.',
+    'projects.fle.tech': 'No payment gateway: cart state lives in the client and checkout composes a wa.me message with the full order. I also rebuilt the live landing page — the five WhatsApp CTAs were white on green at 1.98:1, failing every WCAG level.',
+    'projects.vns.tech': 'Static multi-page site on GitHub Pages, hand-written HTML/CSS/JS with Tailwind. The floating windows and the Easter egg are plain DOM, no framework.',
     'pf.tab.motion': 'motion & video',
     'pf.motion.title': 'motion & video',
     'pf.motion.sub': 'Short-form pieces for feed, stories and ads. Hover to play, click for full size.',
@@ -1495,8 +1630,6 @@ const translations = {
     'pf.c.brand': 'brand content',
     'pf.c.illu': 'artwork',
     'pf.c.illuname': 'Illustration',
-    'pf.slot.vns': 'VNS Matrix — screenshot pending',
-    'pf.slot.net': 'Netianas — screenshot pending',
     'cv.btn.cv': '↓ download CV (PDF)',
     'cv.btn.pf': '↓ download portfolio (PDF)',
     'cv.btn.cv2': '↓ download CV (PDF)',
@@ -1530,7 +1663,7 @@ const translations = {
     'projects.netianas.type': 'web design + development',
     'projects.netianas.desc': 'Mobile-first site designed and built end to end — layout, visual system and a contact flow running on my own Node API deployed on Railway. Front end live on Vercel.',
     'projects.fle.type': 'brand + ordering app',
-    'projects.fle.desc': 'Visual identity and an ordering app for a cookie brand. Customers browse the catalogue, build a cart and check out — the app assembles the order and hands it off to WhatsApp, so the brand takes orders where it already talks to its customers.',
+    'projects.fle.desc': 'A home bakery that sells only through WhatsApp, where every order began as a blank chat. Six screens that end by writing the message for the customer — products, total and delivery already composed — with a review step showing the exact text before it is sent.',
     'projects.ux.type': 'ux/ui — product design',
     'projects.ux.desc': 'Mobile-first e-commerce app. Simple, accessible design focused on usability — screens for discovery, deals, and personalization.',
     'projects.agile.type': 'ux/ui — interface system',
@@ -1554,6 +1687,24 @@ const translations = {
     'nav.projects': 'proyectos',
     'nav.cv': 'cv',
     'nav.contact': 'contacto',
+    'pf.c.case': 'ux/ui — caso de estudio',
+    'pf.c.rebuild': 'reconstruida · 0 fallas de a11y',
+    'pf.proto': 'abrir prototipo',
+    'pf.tab.code': 'código y front-end',
+    'pf.code.title': 'código y front-end',
+    'pf.code.sub': 'Productos publicados que diseñé y construí. Los links y repos están en cada proyecto de arriba.',
+    'pf.code.link': 'ver la arquitectura →',
+    'pf.case': 'ver el caso ↗',
+    'pf.slot.blog': 'Activity Blog — falta captura',
+    'pf.slot.net2': 'Netianas — falta captura',
+    'pf.slot.vns2': 'VNS Matrix — falta captura',
+    'pf.tech.label': 'arquitectura',
+    'pf.repo': 'repo ↗',
+    'pf.repo.soon': 'repo pronto',
+    'projects.blog.tech': 'React en Vercel para el front; Supabase resuelve auth y base de datos. El panel de administración queda detrás de acceso autenticado, así los datos de clase nunca quedan del lado del alumno.',
+    'projects.netianas.tech': 'Front estático en Vercel; el formulario postea a una API propia en Node desplegada en Railway. Separar la API del hosting mantiene las credenciales de mail fuera del cliente.',
+    'projects.fle.tech': 'Sin pasarela de pago: el estado del carrito vive en el cliente y el checkout compone un mensaje wa.me con el pedido completo. También reconstruí la landing publicada — los cinco CTAs de WhatsApp eran blanco sobre verde a 1.98:1, fallando todos los niveles WCAG.',
+    'projects.vns.tech': 'Sitio multipágina estático en GitHub Pages, HTML/CSS/JS a mano con Tailwind. Las ventanas flotantes y el Easter egg son DOM puro, sin framework.',
     'pf.tab.motion': 'motion y video',
     'pf.motion.title': 'motion y video',
     'pf.motion.sub': 'Piezas cortas para feed, stories y ads. Pasá el mouse para reproducir, hacé click para verlas completas.',
@@ -1603,8 +1754,6 @@ const translations = {
     'pf.c.brand': 'contenido de marca',
     'pf.c.illu': 'obra',
     'pf.c.illuname': 'Ilustración',
-    'pf.slot.vns': 'VNS Matrix — falta captura',
-    'pf.slot.net': 'Netianas — falta captura',
     'cv.btn.cv': '↓ descargar CV (PDF)',
     'cv.btn.pf': '↓ descargar portfolio (PDF)',
     'cv.btn.cv2': '↓ descargar CV (PDF)',
@@ -1638,7 +1787,7 @@ const translations = {
     'projects.netianas.type': 'diseño web + desarrollo',
     'projects.netianas.desc': 'Sitio mobile-first diseñado y construido de punta a punta — layout, sistema visual y un flujo de contacto que corre sobre una API propia en Node desplegada en Railway. Front end publicado en Vercel.',
     'projects.fle.type': 'marca + app de pedidos',
-    'projects.fle.desc': 'Identidad visual y app de pedidos para una marca de cookies. El cliente recorre el catálogo, arma el carrito y hace el checkout — la app compone el pedido y lo pasa a WhatsApp, así la marca recibe los pedidos donde ya habla con su gente.',
+    'projects.fle.desc': 'Una pastelería casera que vende sólo por WhatsApp, donde cada pedido arrancaba como un chat en blanco. Seis pantallas que terminan escribiendo el mensaje por el cliente — productos, total y entrega ya redactados — con un paso de revisión que muestra el texto exacto antes de enviarlo.',
     'projects.ux.type': 'ux/ui — diseño de producto',
     'projects.ux.desc': 'App de e-commerce mobile-first. Diseño simple y accesible enfocado en usabilidad — pantallas de descubrimiento, ofertas y personalización.',
     'projects.agile.type': 'ux/ui — sistema de interfaz',

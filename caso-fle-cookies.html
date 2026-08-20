@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fle Cookies — UX/UI case study · Camila Mihalyczo</title>
+<meta name="description" content="Fle Cookies — ordering app for a cookie brand. UX/UI case study: brand audit, flow, wireframes, UI and prototype.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<meta name="theme-color" content="#0a0a0f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fle Cookies — UX/UI case study">
+<meta property="og:description" content="Ordering app for a cookie brand: catalogue, cart and a checkout that hands the order to WhatsApp.">
+<meta property="og:image" content="https://camilamihalyczo.vercel.app/assets/img/cases/fle-cookies/cover.jpg">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Unbounded:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0f; --bg2: #111118; --bg3: #1a1a24; --surface: #1e1e2e;
+  --border: #2a2a3e; --border2: #3a3a55;
+  --text: #e2e0f0; --muted: #8888aa; --dim: #555570;
+  --green: #00ff88; --cyan: #00d4ff; --violet: #a78bfa; --amber: #fbbf24;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  padding: 1rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(10,10,15,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-back {
+  font-size: 12px; letter-spacing: 0.08em;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--green); }
+.nav-back::before { content: '← '; }
+.nav-logo {
+  font-family: 'Unbounded', sans-serif; font-size: 13px; font-weight: 700;
+  color: var(--green); text-decoration: none; letter-spacing: 0.05em;
+}
+
+/* ── HERO ── */
+#case-hero { padding: 5rem 3rem 3rem; max-width: 1400px; margin: 0 auto; }
+.case-label {
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--green); margin-bottom: 0.6rem;
+}
+.case-label::before { content: '// '; color: var(--dim); }
+.case-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 900;
+  letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 0.8rem;
+}
+.case-title span { color: var(--green); }
+.case-role { font-size: 14px; color: var(--cyan); margin-bottom: 2rem; }
+.case-tagline {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 700;
+  letter-spacing: -0.02em; line-height: 1.4;
+  color: var(--text); max-width: 620px;
+  border-left: 2px solid var(--green); padding-left: 1.2rem;
+  margin-bottom: 2rem;
+}
+.case-intro { font-size: 15px; color: var(--muted); line-height: 1.9; max-width: 720px; }
+
+/* ── REBUILD DE LA LANDING ── */
+.rebuild { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+.metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-bottom: 2rem; }
+.metric {
+  border: 1px solid var(--border); border-top: 2px solid var(--green);
+  background: var(--surface); padding: 1rem;
+}
+.metric-n {
+  font-family: 'Unbounded', sans-serif; font-size: 1.6rem; font-weight: 900;
+  color: var(--green); line-height: 1;
+}
+.metric-l { font-size: 10px; color: var(--muted); margin-top: 0.5rem; line-height: 1.5; }
+
+.fixlist { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+.fixlist li { font-size: 13px; color: var(--muted); line-height: 1.7; padding-left: 1.2rem; position: relative; }
+.fixlist li::before { content: '▸'; position: absolute; left: 0; color: var(--green); }
+.fixlist b { color: var(--text); font-weight: 400; }
+.contrast-jump {
+  font-size: 12px; color: var(--amber);
+  border: 1px solid rgba(251,191,36,0.35); background: rgba(251,191,36,0.05);
+  padding: 0.8rem 1rem; margin-top: 1.5rem; line-height: 1.7;
+}
+@media (max-width: 900px) {
+  .rebuild { grid-template-columns: 1fr; }
+  .metrics { grid-template-columns: 1fr; }
+}
+
+.case-meta {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem; margin: 3rem 0;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 1.5rem 0;
+}
+.cm-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); margin-bottom: 0.4rem; }
+.cm-val { font-size: 13px; color: var(--text); }
+
+.case-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+.btn-primary {
+  background: var(--green); color: var(--bg); border: none;
+  padding: 0.8rem 1.8rem; font-family: inherit; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,255,136,0.3); }
+.btn-ghost {
+  background: transparent; color: var(--text); border: 1px solid var(--border2);
+  padding: 0.8rem 1.8rem; font-family: inherit; font-size: 12px;
+  letter-spacing: 0.08em; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+/* ── SECCIONES ── */
+section { padding: 4rem 3rem; max-width: 1400px; margin: 0 auto; }
+.sec-label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--green); margin-bottom: 0.5rem; }
+.sec-label::before { content: '// '; color: var(--dim); }
+.sec-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 700;
+  letter-spacing: -0.02em; margin-bottom: 0.8rem;
+}
+.sec-desc { font-size: 14px; color: var(--muted); max-width: 720px; margin-bottom: 2.5rem; line-height: 1.9; }
+
+/* ── BOARDS ── */
+.boards { display: flex; flex-direction: column; gap: 2.5rem; }
+.case-figure { margin: 0; }
+.case-figure img {
+  width: 100%; display: block;
+  border: 1px solid var(--border); background: var(--bg2);
+  cursor: zoom-in;
+}
+.case-cap { font-size: 11px; color: var(--dim); margin-top: 0.7rem; letter-spacing: 0.05em; }
+.case-cap b { color: var(--muted); font-weight: 400; }
+
+/* placeholder cuando el archivo todavía no está en el repo */
+.case-figure.missing img { display: none; }
+.case-figure.missing::before {
+  content: attr(data-missing);
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 16 / 10;
+  border: 1px dashed var(--border2); background: var(--bg2);
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--dim); text-align: center; padding: 1rem;
+}
+.screens .case-figure.missing::before { aspect-ratio: 1170 / 2532; }
+
+/* ── PANTALLAS ── */
+.screens { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.2rem; }
+.screens .case-figure img { border-radius: 6px; }
+
+/* ── FLUJO ── */
+.flow { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: stretch; }
+.flow-step {
+  flex: 1 1 160px;
+  border: 1px solid var(--border); background: var(--surface);
+  padding: 1rem 1.1rem; position: relative;
+}
+.flow-step::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--green);
+}
+.flow-n { font-size: 9px; letter-spacing: 0.18em; color: var(--green); }
+.flow-t { font-family: 'Unbounded', sans-serif; font-size: 0.8rem; font-weight: 700; margin: 0.4rem 0 0.3rem; }
+.flow-d { font-size: 11px; color: var(--muted); line-height: 1.6; }
+
+/* ── LIGHTBOX ── */
+#lb { position: fixed; inset: 0; z-index: 5000; background: rgba(5,5,9,0.95); backdrop-filter: blur(6px);
+      display: none; align-items: center; justify-content: center; padding: 3rem; }
+#lb.open { display: flex; }
+#lb img { max-width: 100%; max-height: 100%; object-fit: contain; border: 1px solid var(--border2); }
+#lb-close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  width: 42px; height: 42px; background: transparent;
+  border: 1px solid var(--border2); color: var(--text);
+  font-family: inherit; font-size: 16px; cursor: pointer;
+}
+#lb-close:hover { border-color: var(--green); color: var(--green); }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 3rem; display: flex; justify-content: space-between;
+  flex-wrap: wrap; gap: 0.5rem; font-size: 11px; color: var(--dim);
+}
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--green); }
+
+@media (max-width: 768px) {
+  nav, section, #case-hero, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  #case-hero { padding-top: 3rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html#projects" class="nav-back">back to portfolio</a>
+  <a href="index.html" class="nav-logo">CM_</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div id="case-hero">
+  <p class="case-label">case study — ux/ui</p>
+  <h1 class="case-title">Fle <span>Cookies</span></h1>
+  <p class="case-role">Ordering app for a cookie brand — brand audit, flow, UI and prototype</p>
+  <p class="case-intro">
+    Fle Cookies already sold through WhatsApp, but the order itself was never assembled: five
+    different buttons opened the same empty chat and the customer had to describe what they
+    wanted from scratch. This case covers turning that landing page into an app where the
+    order is built before the conversation starts — catalogue, flavour and quantity, cart, and
+    a checkout that hands a complete order to WhatsApp without a payment gateway.
+  </p>
+
+  <div class="case-meta">
+    <div><p class="cm-label">role</p><p class="cm-val">UX/UI design</p></div>
+    <div><p class="cm-label">year</p><p class="cm-val">2026</p></div>
+    <div><p class="cm-label">tools</p><p class="cm-val">Figma · HTML/CSS/JS</p></div>
+    <div><p class="cm-label">deliverables</p><p class="cm-val">5 boards · 6 screens · prototype · rebuilt landing</p></div>
+  </div>
+
+  <div class="case-ctas">
+    <a href="prototipo-fle-cookies.html" target="_blank" rel="noopener" class="btn-primary" id="proto-link">open prototype →</a>
+    <a href="#screens" class="btn-ghost">see the screens</a>
+  </div>
+</div>
+
+<!-- ══ FLUJO ══ -->
+<section>
+  <p class="sec-label">01 — the flow</p>
+  <h2 class="sec-title">from browsing to a complete order</h2>
+  <p class="sec-desc">
+    The whole product exists to move one decision from the chat into the interface: what am I
+    ordering and how much does it cost. Everything after checkout stays where the business
+    already works.
+  </p>
+  <div class="flow">
+    <div class="flow-step"><p class="flow-n">01</p><p class="flow-t">Catalogue</p><p class="flow-d">Two categories, six products with their own names and prices.</p></div>
+    <div class="flow-step"><p class="flow-n">02</p><p class="flow-t">Flavour &amp; quantity</p><p class="flow-d">The card becomes a selector instead of a read-only tile.</p></div>
+    <div class="flow-step"><p class="flow-n">03</p><p class="flow-t">Cart</p><p class="flow-d">Running total, so the customer knows the cost before writing.</p></div>
+    <div class="flow-step"><p class="flow-n">04</p><p class="flow-t">Checkout</p><p class="flow-d">Delivery context: zone, pickup or delivery, time slot.</p></div>
+    <div class="flow-step"><p class="flow-n">05</p><p class="flow-t">WhatsApp</p><p class="flow-d">The order arrives pre-written. No payment gateway needed.</p></div>
+  </div>
+</section>
+
+<!-- ══ BOARDS ══
+     Soltá los archivos en assets/img/cases/fle-cookies/ con estos nombres exactos
+     y aparecen solos. Mientras falten se ve un recuadro punteado, no un ícono roto. -->
+<section>
+  <p class="sec-label">02 — process</p>
+  <h2 class="sec-title">the five boards</h2>
+  <p class="sec-desc">Brand audit, problem, flow, UI system and screens. Click any board to see it full size.</p>
+  <div class="boards">
+
+    <figure class="case-figure" data-missing="board-01">
+      <img src="assets/img/cases/fle-cookies/board-01.jpg" alt="Board 01 — brand audit" loading="lazy">
+      <figcaption class="case-cap"><b>01</b> — brand audit — the website vs. the brand kit</figcaption>
+    </figure>
+
+    <figure class="case-figure" data-missing="board-02">
+      <img src="assets/img/cases/fle-cookies/board-02.jpg" alt="Board 02 — user flow" loading="lazy">
+      <figcaption class="case-cap"><b>02</b> — user flow — six screens, states, and the message the flow produces</figcaption>
+    </figure>
+
+    <figure class="case-figure" data-missing="board-03">
+      <img src="assets/img/cases/fle-cookies/board-03.jpg" alt="Board 03 — wireframes" loading="lazy">
+      <figcaption class="case-cap"><b>03</b> — lo-fi wireframes at 390 px, annotated</figcaption>
+    </figure>
+
+    <figure class="case-figure" data-missing="board-04">
+      <img src="assets/img/cases/fle-cookies/board-04.jpg" alt="Board 04 — design system" loading="lazy">
+      <figcaption class="case-cap"><b>04</b> — design system — tokens, type, components and the contrast table</figcaption>
+    </figure>
+
+    <figure class="case-figure" data-missing="board-05">
+      <img src="assets/img/cases/fle-cookies/board-05.jpg" alt="Board 05 — final UI" loading="lazy">
+      <figcaption class="case-cap"><b>05</b> — final UI, with the WhatsApp handoff broken down</figcaption>
+    </figure>
+
+  </div>
+</section>
+
+<!-- ══ PANTALLAS ══ -->
+<section id="screens">
+  <p class="sec-label">03 — screens</p>
+  <h2 class="sec-title">six screens</h2>
+  <p class="sec-desc">1170 × 2532. Click to enlarge.</p>
+  <div class="screens">
+    <figure class="case-figure" data-missing="screen-01">
+      <img src="assets/img/cases/fle-cookies/screen-01.jpg" alt="Catálogo" loading="lazy">
+      <figcaption class="case-cap"><b>01</b> — Catálogo</figcaption>
+    </figure>
+    <figure class="case-figure" data-missing="screen-02">
+      <img src="assets/img/cases/fle-cookies/screen-02.jpg" alt="Armá tu caja" loading="lazy">
+      <figcaption class="case-cap"><b>02</b> — Armá tu caja</figcaption>
+    </figure>
+    <figure class="case-figure" data-missing="screen-03">
+      <img src="assets/img/cases/fle-cookies/screen-03.jpg" alt="Carrito" loading="lazy">
+      <figcaption class="case-cap"><b>03</b> — Carrito</figcaption>
+    </figure>
+    <figure class="case-figure" data-missing="screen-04">
+      <img src="assets/img/cases/fle-cookies/screen-04.jpg" alt="Entrega" loading="lazy">
+      <figcaption class="case-cap"><b>04</b> — Entrega</figcaption>
+    </figure>
+    <figure class="case-figure" data-missing="screen-05">
+      <img src="assets/img/cases/fle-cookies/screen-05.jpg" alt="Revisá tu pedido" loading="lazy">
+      <figcaption class="case-cap"><b>05</b> — Revisá tu pedido</figcaption>
+    </figure>
+    <figure class="case-figure" data-missing="screen-06">
+      <img src="assets/img/cases/fle-cookies/screen-06.jpg" alt="Handoff a WhatsApp" loading="lazy">
+      <figcaption class="case-cap"><b>06</b> — Handoff a WhatsApp</figcaption>
+    </figure>
+  </div>
+</section>
+
+
+<!-- ══ REBUILD DE LA LANDING ══ -->
+<section id="landing">
+  <p class="sec-label">04 — the build</p>
+  <h2 class="sec-title">rebuilding the landing page</h2>
+  <p class="sec-desc">
+    The design work surfaced a problem in the live site, so I rebuilt it. Audited with a
+    DOM-level contrast and target-size pass:
+  </p>
+
+  <div class="metrics">
+    <div class="metric"><p class="metric-n">0</p><p class="metric-l">contrast failures</p></div>
+    <div class="metric"><p class="metric-n">0</p><p class="metric-l">targets under 44&nbsp;px</p></div>
+    <div class="metric"><p class="metric-n">0</p><p class="metric-l">images without alt</p></div>
+  </div>
+
+  <div class="rebuild">
+    <div>
+      <ul class="fixlist">
+        <li><b>Contrast fixed.</b> All five WhatsApp CTAs had white text on #25D366 — 1.98:1, failing every WCAG level. Now black on the same green.</li>
+        <li><b>Palette realigned</b> to the brand kit instead of the website's reinterpretation.</li>
+        <li><b>Real logotype</b> in place of a script font imitating it.</li>
+        <li><b>Illustrated products</b> replace emoji — one recoloured cookie per flavour.</li>
+        <li><b>Mobile navigation fixed.</b> The old page hid the nav below 600&nbsp;px with nothing in its place; now there is a fixed order bar.</li>
+        <li><b>Per-product WhatsApp links</b> pre-fill the flavour, instead of five identical empty messages.</li>
+        <li><b>Skip link, visible focus rings</b> and <code>prefers-reduced-motion</code> on the marquee.</li>
+      </ul>
+      <p class="contrast-jump">
+        The brand had already solved contrast: every flyer and post uses black on colour,
+        a lockup that passes AA across the whole palette. White — what the website used —
+        fails on every single brand colour. The fix was to follow the brand, not to invent.
+      </p>
+    </div>
+    <div>
+      <figure class="case-figure" data-missing="landing-desktop">
+        <img src="assets/img/cases/fle-cookies/landing-desktop.jpg" alt="Rebuilt landing page — desktop" loading="lazy">
+        <figcaption class="case-cap"><b>desktop</b> — realigned to the brand kit</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Camila Mihalyczo</span>
+  <span><a href="index.html">camilamihalyczo.vercel.app</a></span>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lb" aria-hidden="true">
+  <button id="lb-close" aria-label="close">✕</button>
+  <img id="lb-img" alt="">
+</div>
+
+<script>
+// las figuras que no encuentran su archivo muestran el recuadro punteado
+document.querySelectorAll('.case-figure img').forEach(img => {
+  const mark = () => img.closest('.case-figure').classList.add('missing');
+  if (img.complete && img.naturalWidth === 0) mark();
+  img.addEventListener('error', mark);
+});
+
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lb-img');
+document.querySelectorAll('.case-figure img').forEach(img => {
+  img.addEventListener('click', () => {
+    if (img.naturalWidth === 0) return;
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+function lbClose() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lb-close').addEventListener('click', lbClose);
+lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') lbClose(); });
+
+// si el link del prototipo quedó sin completar, no se muestra roto
+const proto = document.getElementById('proto-link');
+if (proto.getAttribute('href') === '#') proto.style.display = 'none';
+</script>
+</body>
+</html>
