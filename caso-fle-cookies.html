@@ -193,12 +193,28 @@ section { padding: 4rem 3rem; max-width: 1400px; margin: 0 auto; }
 .flow-d { font-size: 11px; color: var(--muted); line-height: 1.6; }
 
 /* ── LIGHTBOX ── */
-#lb { position: fixed; inset: 0; z-index: 5000; background: rgba(5,5,9,0.95); backdrop-filter: blur(6px);
-      display: none; align-items: center; justify-content: center; padding: 3rem; }
-#lb.open { display: flex; }
-#lb img { max-width: 100%; max-height: 100%; object-fit: contain; border: 1px solid var(--border2); }
+/* El lightbox scrollea en vez de encajar por alto: un board de 1:3 encajado
+   por alto se ve MÁS CHICO que en la página, que es justo lo contrario de ampliar. */
+#lb { position: fixed; inset: 0; z-index: 5000; background: rgba(5,5,9,0.97); backdrop-filter: blur(6px);
+      display: none; overflow: auto; padding: 4.5rem 1.5rem 3rem; text-align: center;
+      overscroll-behavior: contain; }
+#lb.open { display: block; }
+#lb img {
+  display: inline-block;
+  border: 1px solid var(--border2);
+  /* por defecto ocupa todo el ancho disponible; con .zoomed va a tamaño natural */
+  width: min(100%, 1400px); height: auto;
+}
+#lb img.zoomable { cursor: zoom-in; }
+#lb img.zoomed { width: auto; max-width: none; cursor: zoom-out; }
+#lb-hint {
+  position: fixed; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--dim); background: rgba(10,10,15,0.9);
+  border: 1px solid var(--border); padding: 6px 14px; pointer-events: none;
+}
 #lb-close {
-  position: absolute; top: 1.5rem; right: 1.5rem;
+  position: fixed; top: 1.5rem; right: 1.5rem;
   width: 42px; height: 42px; background: transparent;
   border: 1px solid var(--border2); color: var(--text);
   font-family: inherit; font-size: 16px; cursor: pointer;
@@ -278,27 +294,27 @@ footer a:hover { color: var(--green); }
   <div class="boards">
 
     <figure class="case-figure" data-missing="board-01">
-      <img src="assets/img/cases/fle-cookies/board-01.jpg" alt="Board 01 — brand audit" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/board-01" data-zoom="full" src="assets/img/cases/fle-cookies/board-01-en.jpg" alt="Board 01 — brand audit" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.cap01"><b>01</b> — brand audit — the website vs. the brand kit</figcaption>
     </figure>
 
     <figure class="case-figure" data-missing="board-02">
-      <img src="assets/img/cases/fle-cookies/board-02.jpg" alt="Board 02 — user flow" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/board-02" data-zoom="full" src="assets/img/cases/fle-cookies/board-02-en.jpg" alt="Board 02 — user flow" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.cap02"><b>02</b> — user flow — six screens, states, and the message the flow produces</figcaption>
     </figure>
 
     <figure class="case-figure" data-missing="board-03">
-      <img src="assets/img/cases/fle-cookies/board-03.jpg" alt="Board 03 — wireframes" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/board-03" data-zoom="full" src="assets/img/cases/fle-cookies/board-03-en.jpg" alt="Board 03 — wireframes" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.cap03"><b>03</b> — lo-fi wireframes at 390 px, annotated</figcaption>
     </figure>
 
     <figure class="case-figure" data-missing="board-04">
-      <img src="assets/img/cases/fle-cookies/board-04.jpg" alt="Board 04 — design system" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/board-04" data-zoom="full" src="assets/img/cases/fle-cookies/board-04-en.jpg" alt="Board 04 — design system" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.cap04"><b>04</b> — design system — tokens, type, components and the contrast table</figcaption>
     </figure>
 
     <figure class="case-figure" data-missing="board-05">
-      <img src="assets/img/cases/fle-cookies/board-05.jpg" alt="Board 05 — final UI" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/board-05" data-zoom="full" src="assets/img/cases/fle-cookies/board-05-en.jpg" alt="Board 05 — final UI" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.cap05"><b>05</b> — final UI, with the WhatsApp handoff broken down</figcaption>
     </figure>
 
@@ -312,27 +328,27 @@ footer a:hover { color: var(--green); }
   <p class="sec-desc" data-i18n="c.s3.d">1170 × 2532. Click to enlarge.</p>
   <div class="screens">
     <figure class="case-figure" data-missing="screen-01">
-      <img src="assets/img/cases/fle-cookies/screen-01.jpg" alt="Catálogo" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/screen-01" src="assets/img/cases/fle-cookies/screen-01-en.jpg" alt="Catálogo" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.scap01"><b>01</b> — Catálogo</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-02">
-      <img src="assets/img/cases/fle-cookies/screen-02.jpg" alt="Armá tu caja" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/screen-02" src="assets/img/cases/fle-cookies/screen-02-en.jpg" alt="Armá tu caja" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.scap02"><b>02</b> — Armá tu caja</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-03">
-      <img src="assets/img/cases/fle-cookies/screen-03.jpg" alt="Carrito" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/screen-03" src="assets/img/cases/fle-cookies/screen-03-en.jpg" alt="Carrito" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.scap03"><b>03</b> — Carrito</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-04">
-      <img src="assets/img/cases/fle-cookies/screen-04.jpg" alt="Entrega" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/screen-04" src="assets/img/cases/fle-cookies/screen-04-en.jpg" alt="Entrega" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.scap04"><b>04</b> — Entrega</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-05">
-      <img src="assets/img/cases/fle-cookies/screen-05.jpg" alt="Revisá tu pedido" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/screen-05" src="assets/img/cases/fle-cookies/screen-05-en.jpg" alt="Revisá tu pedido" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.scap05"><b>05</b> — Revisá tu pedido</figcaption>
     </figure>
     <figure class="case-figure" data-missing="screen-06">
-      <img src="assets/img/cases/fle-cookies/screen-06.jpg" alt="Handoff a WhatsApp" loading="lazy">
+      <img data-src-base="assets/img/cases/fle-cookies/screen-06" src="assets/img/cases/fle-cookies/screen-06-en.jpg" alt="Handoff a WhatsApp" loading="lazy">
       <figcaption class="case-cap" data-i18n-html="c.scap06"><b>06</b> — Handoff a WhatsApp</figcaption>
     </figure>
   </div>
@@ -382,6 +398,7 @@ footer a:hover { color: var(--green); }
 <div id="lb" aria-hidden="true">
   <button id="lb-close" aria-label="close">✕</button>
   <img id="lb-img" alt="">
+  <p id="lb-hint"></p>
 </div>
 
 <script>
@@ -394,14 +411,35 @@ document.querySelectorAll('.case-figure img').forEach(img => {
 
 const lb = document.getElementById('lb');
 const lbImg = document.getElementById('lb-img');
+const lbHint = document.getElementById('lb-hint');
+
 document.querySelectorAll('.case-figure img').forEach(img => {
   img.addEventListener('click', () => {
     if (img.naturalWidth === 0) return;
-    lbImg.src = img.src;
+    // los boards tienen una copia en alta sólo para ampliar
+    const base = img.dataset.srcBase;
+    const zoomSrc = (base && img.dataset.zoom)
+      ? base + '-' + currentLang + '-full.jpg'
+      : img.src;
+    lbImg.classList.remove('zoomed');
+    lbImg.classList.toggle('zoomable', Boolean(img.dataset.zoom));
+    lbImg.src = zoomSrc;
     lbImg.alt = img.alt;
+    lbHint.textContent = img.dataset.zoom
+      ? (currentLang === 'es' ? 'click para tamaño real · esc para cerrar'
+                              : 'click for full size · esc to close')
+      : (currentLang === 'es' ? 'esc para cerrar' : 'esc to close');
+    lb.scrollTop = 0;
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
   });
+});
+
+// segundo click: tamaño natural, con scroll en los dos ejes
+lbImg.addEventListener('click', e => {
+  if (!lbImg.classList.contains('zoomable')) return;
+  e.stopPropagation();
+  lbImg.classList.toggle('zoomed');
 });
 function lbClose() {
   lb.classList.remove('open');
@@ -561,6 +599,11 @@ function applyLang(lang) {
     const k = el.getAttribute('data-i18n-html');
     if (t[k] !== undefined) el.innerHTML = t[k];
   });
+  // las capturas y los boards existen en los dos idiomas
+  document.querySelectorAll('[data-src-base]').forEach(img => {
+    img.src = img.dataset.srcBase + '-' + lang + '.jpg';
+  });
+
   document.getElementById('lang-en').className = lang === 'en' ? 'lang-active' : '';
   document.getElementById('lang-es').className = lang === 'es' ? 'lang-active' : '';
   document.documentElement.lang = lang;
